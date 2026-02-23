@@ -1,0 +1,122 @@
+# ============================================================
+#  Aerogel — Card-Mod Snippets
+#  Paste these into card configs for deeper neumorphic styling
+#  Requires: card-mod (https://github.com/thomasloven/lovelace-card-mod)
+# ============================================================
+
+# ─── Neumorphic Tile Card ────────────────────────────────────
+# type: tile
+# entity: light.living_room
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#       border: none !important;
+#     }
+#     ha-card:hover {
+#       transform: translateY(-2px);
+#       box-shadow: var(--aerogel-hover) !important;
+#     }
+#     ha-card:active {
+#       transform: scale(0.985);
+#       box-shadow: var(--aerogel-active) !important;
+#     }
+
+# ─── Neumorphic Button ──────────────────────────────────────
+# type: button
+# entity: switch.example
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-md) !important;
+#       box-shadow: var(--aerogel-convex-sm) !important;
+#       border: none !important;
+#       cursor: pointer;
+#     }
+#     ha-card:hover {
+#       box-shadow: var(--aerogel-convex-md) !important;
+#       transform: translateY(-1px);
+#     }
+#     ha-card:active {
+#       box-shadow: var(--aerogel-active) !important;
+#       transform: scale(0.97);
+#     }
+
+# ─── Neumorphic Gauge ───────────────────────────────────────
+# type: gauge
+# entity: sensor.fuel_level
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-xl) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#       border: none !important;
+#     }
+
+# ─── Inset Panel (for stats / info) ─────────────────────────
+# type: markdown
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-concave-md) !important;
+#       border: none !important;
+#     }
+
+# ─── Pulse Glow Animation ───────────────────────────────────
+# card_mod:
+#   style: |
+#     @keyframes aerogel-pulse {
+#       0%, 100% {
+#         box-shadow: var(--aerogel-convex-md), 0 0 0 rgba(108, 180, 238, 0);
+#       }
+#       50% {
+#         box-shadow: var(--aerogel-convex-md), var(--aerogel-glow);
+#       }
+#     }
+#     ha-card {
+#       animation: aerogel-pulse 3s ease-in-out infinite;
+#     }
+
+# ─── Breathing Icon ─────────────────────────────────────────
+# card_mod:
+#   style: |
+#     @keyframes aerogel-breathe {
+#       0%, 100% { opacity: 0.7; transform: scale(1); }
+#       50% { opacity: 1; transform: scale(1.05); }
+#     }
+#     state-badge {
+#       animation: aerogel-breathe 2.5s ease-in-out infinite;
+#     }
+
+# ─── Ripple on Tap ──────────────────────────────────────────
+# card_mod:
+#   style: |
+#     @keyframes aerogel-ripple {
+#       0% { transform: scale(0); opacity: 0.3; }
+#       100% { transform: scale(2.5); opacity: 0; }
+#     }
+#     ha-card {
+#       position: relative;
+#       overflow: hidden;
+#     }
+#     ha-card::after {
+#       content: '';
+#       position: absolute;
+#       width: 100px;
+#       height: 100px;
+#       top: 50%;
+#       left: 50%;
+#       transform: translate(-50%, -50%) scale(0);
+#       border-radius: 50%;
+#       background: rgba(108, 180, 238, 0.15);
+#       pointer-events: none;
+#     }
+#     ha-card:active::after {
+#       animation: aerogel-ripple 0.5s ease-out forwards;
+#     }

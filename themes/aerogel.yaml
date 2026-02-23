@@ -1,0 +1,593 @@
+Aerogel:
+
+  # ============================================================
+  #  AEROGEL — Premium Neumorphic Theme for Home Assistant
+  #  Inspired by Smartphone Car Control UI (Figma Community)
+  #  Author: skeep83  |  Version: 1.0.0
+  # ============================================================
+
+  # ── Google Font ──────────────────────────────────────────────
+  card-mod-theme: Aerogel
+  card-mod-root-yaml: |
+    .: |
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+      :host {
+        --aerogel-font: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      html {
+        font-family: var(--aerogel-font) !important;
+      }
+      /* ─ Sidebar smooth transitions ─ */
+      ha-sidebar {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-sidebar .menu .title {
+        font-family: var(--aerogel-font) !important;
+        font-weight: 700 !important;
+      }
+      /* ─ Card hover lift ─ */
+      ha-card {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-card:hover {
+        transform: translateY(-2px) !important;
+      }
+      /* ─ Toolbar styling ─ */
+      .toolbar {
+        background: var(--aerogel-base, #E3E6EC) !important;
+        box-shadow: 0 2px 8px rgba(200, 203, 211, 0.4) !important;
+      }
+      /* ─ Smooth page transitions ─ */
+      hui-view, hui-panel-view {
+        transition: opacity 0.3s ease !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        border: none !important;
+        font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
+      }
+      ha-card:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 10px 10px 20px var(--aerogel-shadow-dark, #C8CBD3),
+                    -10px -10px 20px var(--aerogel-shadow-light, #FFFFFF) !important;
+      }
+      ha-card:active {
+        transform: scale(0.985) !important;
+        box-shadow: inset 4px 4px 8px var(--aerogel-shadow-dark, #C8CBD3),
+                    inset -4px -4px 8px var(--aerogel-shadow-light, #FFFFFF) !important;
+        transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+      }
+  card-mod-more-info-yaml: |
+    .: |
+      ha-dialog {
+        --ha-dialog-border-radius: 24px !important;
+      }
+      ha-dialog .content {
+        font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
+      }
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background: var(--aerogel-base, #E3E6EC) !important;
+      }
+
+  # ── Typography ──────────────────────────────────────────────
+  primary-font-family: "'Nunito', -apple-system, BlinkMacSystemFont, sans-serif"
+  paper-font-common-base_-_font-family: "'Nunito', -apple-system, BlinkMacSystemFont, sans-serif"
+  paper-font-common-code_-_font-family: "'JetBrains Mono', 'Fira Code', monospace"
+  paper-font-body1_-_font-size: "15px"
+  paper-font-body1_-_font-weight: "400"
+  paper-font-body1_-_line-height: "1.6"
+  paper-font-subhead_-_font-size: "16px"
+  paper-font-headline_-_font-size: "24px"
+  paper-font-title_-_font-size: "20px"
+  title-font-weight: "700"
+
+  # ── Core Design Tokens ─────────────────────────────────────
+  primary-color: "#6CB4EE"
+  accent-color: "#6CB4EE"
+  primary-background-color: "#E3E6EC"
+  secondary-background-color: "#DDE1E8"
+  card-background-color: "#E3E6EC"
+  primary-text-color: "#2C3345"
+  secondary-text-color: "#8A90A0"
+  text-primary-color: "#FFFFFF"
+  text-accent-color: "#FFFFFF"
+  disabled-text-color: "#B0B5C3"
+
+  # ── RGB Variants ───────────────────────────────────────────
+  rgb-primary-color: "108, 180, 238"
+  rgb-accent-color: "108, 180, 238"
+  rgb-primary-text-color: "44, 51, 69"
+  rgb-secondary-text-color: "138, 144, 160"
+  rgb-card-background-color: "227, 230, 236"
+
+  # ── Divider / Scrollbar ────────────────────────────────────
+  divider-color: "rgba(44, 51, 69, 0.08)"
+  scrollbar-thumb-color: "#C0C5D0"
+
+  # ── Error / Success / Warning / Info ───────────────────────
+  error-color: "#E74C3C"
+  warning-color: "#F07B3F"
+  success-color: "#27AE60"
+  info-color: "#6CB4EE"
+
+  # ── Header ─────────────────────────────────────────────────
+  app-header-background-color: "#E3E6EC"
+  app-header-text-color: "#2C3345"
+  app-header-selection-bar-color: "#6CB4EE"
+  app-header-edit-background-color: "#6CB4EE"
+  app-header-edit-text-color: "#FFFFFF"
+
+  # ── Sidebar ────────────────────────────────────────────────
+  sidebar-background-color: "#DDE1E8"
+  sidebar-text-color: "#2C3345"
+  sidebar-icon-color: "#8A90A0"
+  sidebar-selected-background-color: "#E3E6EC"
+  sidebar-selected-text-color: "#6CB4EE"
+  sidebar-selected-icon-color: "#6CB4EE"
+
+  # ── Cards ──────────────────────────────────────────────────
+  ha-card-border-radius: "24px"
+  ha-card-border-width: "0"
+  ha-card-border-color: "transparent"
+  ha-card-box-shadow: "8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF"
+  ha-card-background: "#E3E6EC"
+  ha-card-header-font-size: "20px"
+  ha-card-header-color: "#2C3345"
+
+  # ── State Domain Colors ────────────────────────────────────
+  state-active-color: "#6CB4EE"
+  state-inactive-color: "#8A90A0"
+  state-unavailable-color: "#B0B5C3"
+
+  # Alarms
+  state-alarm_control_panel-armed_away-color: "#E74C3C"
+  state-alarm_control_panel-armed_custom_bypass-color: "#F07B3F"
+  state-alarm_control_panel-armed_home-color: "#27AE60"
+  state-alarm_control_panel-armed_night-color: "#8E44AD"
+  state-alarm_control_panel-armed_vacation-color: "#2980B9"
+  state-alarm_control_panel-arming-color: "#F07B3F"
+  state-alarm_control_panel-disarmed-color: "#27AE60"
+  state-alarm_control_panel-pending-color: "#F39C12"
+  state-alarm_control_panel-triggered-color: "#E74C3C"
+
+  # Climate
+  state-climate-auto-color: "#27AE60"
+  state-climate-cool-color: "#6CB4EE"
+  state-climate-dry-color: "#F39C12"
+  state-climate-fan_only-color: "#1ABC9C"
+  state-climate-heat-color: "#E74C3C"
+  state-climate-heat_cool-color: "#F39C12"
+
+  # Light / Switch / Binary Sensor
+  state-light-on-color: "#F9D71C"
+  state-switch-on-color: "#6CB4EE"
+  state-binary_sensor-active-color: "#6CB4EE"
+  state-binary_sensor-problem-color: "#E74C3C"
+  state-binary_sensor-safety-color: "#E74C3C"
+
+  # Lock
+  state-lock-jammed-color: "#E74C3C"
+  state-lock-locked-color: "#27AE60"
+  state-lock-locking-color: "#F07B3F"
+  state-lock-unlocked-color: "#E74C3C"
+  state-lock-unlocking-color: "#F07B3F"
+
+  # Person / Tracker
+  state-person-home-color: "#27AE60"
+  state-person-not_home-color: "#8A90A0"
+  state-person-zone-color: "#6CB4EE"
+
+  # Media Player
+  state-media_player-idle-color: "#8A90A0"
+  state-media_player-off-color: "#8A90A0"
+  state-media_player-paused-color: "#F07B3F"
+  state-media_player-playing-color: "#6CB4EE"
+  state-media_player-on-color: "#6CB4EE"
+  state-media_player-standby-color: "#8A90A0"
+
+  # Update
+  state-update-on-color: "#F07B3F"
+  state-update-installing-color: "#6CB4EE"
+  state-update-off-color: "#27AE60"
+
+  # Alert
+  state-alert-on-color: "#E74C3C"
+  state-alert-off-color: "#8A90A0"
+
+  # Automation / Script
+  state-automation-on-color: "#6CB4EE"
+  state-automation-off-color: "#8A90A0"
+  state-script-on-color: "#6CB4EE"
+
+  # Sensor
+  state-sensor-battery-low-color: "#E74C3C"
+  state-sensor-battery-medium-color: "#F07B3F"
+  state-sensor-battery-high-color: "#27AE60"
+
+  # Fan / Cover
+  state-fan-on-color: "#6CB4EE"
+  state-cover-open-color: "#6CB4EE"
+  state-cover-closed-color: "#8A90A0"
+
+  # Weather
+  state-weather-exceptional-color: "#E74C3C"
+  state-weather-rainy-color: "#2980B9"
+  state-weather-snowy-color: "#85C1E9"
+  state-weather-sunny-color: "#F9D71C"
+  state-weather-cloudy-color: "#95A5A6"
+  state-weather-fog-color: "#BDC3C7"
+  state-weather-hail-color: "#5DADE2"
+  state-weather-lightning-color: "#F4D03F"
+  state-weather-partlycloudy-color: "#AED6F1"
+  state-weather-pouring-color: "#1A5276"
+  state-weather-windy-color: "#48C9B0"
+
+  # Vacuum
+  state-vacuum-cleaning-color: "#6CB4EE"
+  state-vacuum-docked-color: "#27AE60"
+  state-vacuum-idle-color: "#8A90A0"
+  state-vacuum-returning-color: "#F07B3F"
+  state-vacuum-error-color: "#E74C3C"
+
+  # ── State Icon Colors ──────────────────────────────────────
+  state-icon-color: "#8A90A0"
+  state-icon-active-color: "#6CB4EE"
+  state-icon-unavailable-color: "#B0B5C3"
+  state-icon-error-color: "#E74C3C"
+
+  # ── Switches / Toggles ────────────────────────────────────
+  switch-checked-button-color: "#FFFFFF"
+  switch-checked-track-color: "#6CB4EE"
+  switch-unchecked-button-color: "#E3E6EC"
+  switch-unchecked-track-color: "#C8CBD3"
+
+  # ── Slider ─────────────────────────────────────────────────
+  paper-slider-knob-color: "#6CB4EE"
+  paper-slider-knob-start-color: "#6CB4EE"
+  paper-slider-active-color: "#6CB4EE"
+  paper-slider-secondary-color: "rgba(108, 180, 238, 0.3)"
+  paper-slider-container-color: "#C8CBD3"
+  paper-slider-pin-color: "#6CB4EE"
+  paper-slider-pin-start-color: "#6CB4EE"
+
+  # ── Dialog & Modal ─────────────────────────────────────────
+  ha-dialog-border-radius: "24px"
+  dialog-backdrop-color: "rgba(44, 51, 69, 0.35)"
+
+  # ── Chip / Badge ───────────────────────────────────────────
+  ha-label-badge-color: "#6CB4EE"
+
+  # ── Map ────────────────────────────────────────────────────
+  map-filter: "brightness(0.97) saturate(0.9)"
+
+  # ── Full Color Palette ─────────────────────────────────────
+  red-color: "#E74C3C"
+  pink-color: "#E91E90"
+  purple-color: "#8E44AD"
+  deep-purple-color: "#6C3483"
+  indigo-color: "#2E4053"
+  blue-color: "#6CB4EE"
+  light-blue-color: "#85C1E9"
+  cyan-color: "#1ABC9C"
+  teal-color: "#16A085"
+  green-color: "#27AE60"
+  light-green-color: "#2ECC71"
+  lime-color: "#A3CB38"
+  yellow-color: "#F9D71C"
+  amber-color: "#F39C12"
+  orange-color: "#F07B3F"
+  deep-orange-color: "#E67E22"
+  brown-color: "#795548"
+  grey-color: "#8A90A0"
+  blue-grey-color: "#607D8B"
+  white-color: "#FFFFFF"
+  disabled-color: "#B0B5C3"
+  black-color: "#2C3345"
+
+  # ── Graph / Calendar Colors ────────────────────────────────
+  graph-color-1: "#6CB4EE"
+  graph-color-2: "#F07B3F"
+  graph-color-3: "#27AE60"
+  graph-color-4: "#E74C3C"
+  graph-color-5: "#8E44AD"
+  graph-color-6: "#F9D71C"
+
+  # ── Energy Dashboard ───────────────────────────────────────
+  energy-grid-consumption-color: "#6CB4EE"
+  energy-grid-return-color: "#27AE60"
+  energy-solar-color: "#F9D71C"
+  energy-non-fossil-color: "#1ABC9C"
+  energy-battery-in-color: "#27AE60"
+  energy-battery-out-color: "#F07B3F"
+  energy-gas-color: "#E67E22"
+  energy-water-color: "#3498DB"
+
+  # ── History ────────────────────────────────────────────────
+  history-unavailable-color: "rgba(138, 144, 160, 0.3)"
+  history-unknown-color: "rgba(138, 144, 160, 0.15)"
+
+  # ── Markdown ───────────────────────────────────────────────
+  markdown-code-background-color: "rgba(108, 180, 238, 0.08)"
+
+  # ── Table ──────────────────────────────────────────────────
+  table-row-background-color: "#E3E6EC"
+  table-row-alternative-background-color: "rgba(221, 225, 232, 0.6)"
+  data-table-background-color: "#E3E6EC"
+  table-header-background-color: "#DDE1E8"
+
+  # ── MDC Theme ──────────────────────────────────────────────
+  mdc-theme-primary: "#6CB4EE"
+  mdc-theme-secondary: "#F07B3F"
+  mdc-theme-on-primary: "#FFFFFF"
+  mdc-theme-on-secondary: "#FFFFFF"
+  mdc-theme-surface: "#E3E6EC"
+  mdc-theme-on-surface: "#2C3345"
+  mdc-theme-background: "#E3E6EC"
+  mdc-theme-error: "#E74C3C"
+  mdc-theme-on-error: "#FFFFFF"
+
+  # ── MDC Button ─────────────────────────────────────────────
+  mdc-button-outline-color: "rgba(108, 180, 238, 0.3)"
+  mdc-shape-small: "16px"
+  mdc-shape-medium: "24px"
+
+  # ── MDC Checkbox / Radio ───────────────────────────────────
+  mdc-checkbox-unchecked-color: "#C8CBD3"
+  mdc-checkbox-checked-color: "#6CB4EE"
+  mdc-checkbox-ink-color: "#FFFFFF"
+  mdc-radio-unchecked-color: "#C8CBD3"
+  mdc-radio-checked-color: "#6CB4EE"
+
+  # ── MDC Tab ────────────────────────────────────────────────
+  mdc-tab-text-label-color-default: "#8A90A0"
+  mdc-tab-color-default: "#8A90A0"
+
+  # ── MDC Dialog ─────────────────────────────────────────────
+  mdc-dialog-heading-ink-color: "#2C3345"
+  mdc-dialog-content-ink-color: "#2C3345"
+  mdc-dialog-scroll-divider-color: "rgba(44, 51, 69, 0.06)"
+
+  # ── MDC Text Field / Select ────────────────────────────────
+  mdc-text-field-fill-color: "rgba(200, 203, 211, 0.25)"
+  mdc-text-field-ink-color: "#2C3345"
+  mdc-text-field-label-ink-color: "#8A90A0"
+  mdc-text-field-idle-line-color: "transparent"
+  mdc-text-field-hover-line-color: "#6CB4EE"
+  mdc-select-fill-color: "rgba(200, 203, 211, 0.25)"
+  mdc-select-ink-color: "#2C3345"
+  mdc-select-label-ink-color: "#8A90A0"
+  mdc-select-idle-line-color: "transparent"
+  mdc-select-hover-line-color: "#6CB4EE"
+  mdc-select-dropdown-icon-color: "#8A90A0"
+
+  # ── Input Outlined ─────────────────────────────────────────
+  input-fill-color: "rgba(200, 203, 211, 0.2)"
+  input-ink-color: "#2C3345"
+  input-label-ink-color: "#8A90A0"
+  input-idle-line-color: "rgba(44, 51, 69, 0.1)"
+  input-hover-line-color: "#6CB4EE"
+  input-disabled-fill-color: "rgba(200, 203, 211, 0.12)"
+  input-disabled-ink-color: "#B0B5C3"
+  input-disabled-line-color: "rgba(44, 51, 69, 0.06)"
+  input-outlined-idle-border-color: "rgba(44, 51, 69, 0.12)"
+  input-outlined-hover-border-color: "#6CB4EE"
+  input-outlined-disabled-border-color: "rgba(44, 51, 69, 0.06)"
+  input-dropdown-icon-color: "#8A90A0"
+
+  # ── HA Buttons / Chips ─────────────────────────────────────
+  ha-button-active-color: "#6CB4EE"
+  ha-button-toggle-on-color: "#E3E6EC"
+  ha-button-toggle-off-color: "#E3E6EC"
+  ha-chip-background-color: "#E3E6EC"
+  ha-chip-text-color: "#2C3345"
+
+  # ── Codemirror ─────────────────────────────────────────────
+  codemirror-keyword: "#6CB4EE"
+  codemirror-operator: "#F07B3F"
+  codemirror-variable: "#8E44AD"
+  codemirror-variable-2: "#27AE60"
+  codemirror-variable-3: "#F07B3F"
+  codemirror-builtin: "#6CB4EE"
+  codemirror-atom: "#8E44AD"
+  codemirror-number: "#27AE60"
+  codemirror-def: "#2C3345"
+  codemirror-string: "#27AE60"
+  codemirror-string-2: "#16A085"
+  codemirror-comment: "#B0B5C3"
+  codemirror-tag: "#E74C3C"
+  codemirror-meta: "#8A90A0"
+  codemirror-attribute: "#F07B3F"
+  codemirror-property: "#6CB4EE"
+  codemirror-qualifier: "#8E44AD"
+  codemirror-type: "#F07B3F"
+
+  # ── Aerogel Custom Variables ───────────────────────────────
+  aerogel-base: "#E3E6EC"
+  aerogel-base-alt: "#DDE1E8"
+  aerogel-shadow-dark: "#C8CBD3"
+  aerogel-shadow-light: "#FFFFFF"
+  aerogel-accent: "#6CB4EE"
+  aerogel-accent-rgb: "108, 180, 238"
+  aerogel-warning: "#F07B3F"
+  aerogel-text: "#2C3345"
+  aerogel-text-secondary: "#8A90A0"
+  aerogel-radius-xs: "8px"
+  aerogel-radius-sm: "12px"
+  aerogel-radius-md: "16px"
+  aerogel-radius-lg: "24px"
+  aerogel-radius-xl: "32px"
+  aerogel-radius-full: "50px"
+
+  # Convex (raised)
+  aerogel-convex-xs: "2px 2px 4px #C8CBD3, -2px -2px 4px #FFFFFF"
+  aerogel-convex-sm: "4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF"
+  aerogel-convex-md: "8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF"
+  aerogel-convex-lg: "12px 12px 24px #C8CBD3, -12px -12px 24px #FFFFFF"
+  aerogel-convex-xl: "16px 16px 32px #C8CBD3, -16px -16px 32px #FFFFFF"
+
+  # Concave (pressed)
+  aerogel-concave-xs: "inset 2px 2px 4px #C8CBD3, inset -2px -2px 4px #FFFFFF"
+  aerogel-concave-sm: "inset 4px 4px 8px #C8CBD3, inset -4px -4px 8px #FFFFFF"
+  aerogel-concave-md: "inset 6px 6px 12px #C8CBD3, inset -6px -6px 12px #FFFFFF"
+  aerogel-concave-lg: "inset 8px 8px 16px #C8CBD3, inset -8px -8px 16px #FFFFFF"
+
+  # Interaction
+  aerogel-hover: "10px 10px 20px #C8CBD3, -10px -10px 20px #FFFFFF"
+  aerogel-active: "inset 4px 4px 8px #C8CBD3, inset -4px -4px 8px #FFFFFF"
+  aerogel-flat: "4px 4px 8px rgba(200, 203, 211, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.6)"
+
+  # Glow
+  aerogel-glow: "0 0 16px rgba(108, 180, 238, 0.35)"
+  aerogel-glow-lg: "0 0 32px rgba(108, 180, 238, 0.25)"
+  aerogel-glow-warning: "0 0 16px rgba(240, 123, 63, 0.35)"
+
+  # Transitions
+  aerogel-transition-fast: "all 0.15s cubic-bezier(0.4, 0, 0.2, 1)"
+  aerogel-transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+  aerogel-transition-slow: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
+
+  # ____________________________________________________________
+  #
+  #   D A R K   M O D E
+  # ____________________________________________________________
+
+  modes:
+    dark:
+      primary-color: "#6CB4EE"
+      accent-color: "#6CB4EE"
+      primary-background-color: "#1A1D2E"
+      secondary-background-color: "#1E2132"
+      card-background-color: "#1A1D2E"
+      primary-text-color: "#E8EAF0"
+      secondary-text-color: "#6A7090"
+      text-primary-color: "#FFFFFF"
+      text-accent-color: "#FFFFFF"
+      disabled-text-color: "#4A5070"
+
+      rgb-primary-color: "108, 180, 238"
+      rgb-accent-color: "108, 180, 238"
+      rgb-primary-text-color: "232, 234, 240"
+      rgb-secondary-text-color: "106, 112, 144"
+      rgb-card-background-color: "26, 29, 46"
+
+      divider-color: "rgba(232, 234, 240, 0.06)"
+      scrollbar-thumb-color: "#2A2E45"
+
+      error-color: "#E74C3C"
+      warning-color: "#F9A06C"
+      success-color: "#2ECC71"
+      info-color: "#6CB4EE"
+
+      state-icon-color: "#6A7090"
+      state-icon-active-color: "#6CB4EE"
+      state-icon-unavailable-color: "#4A5070"
+      state-icon-error-color: "#E74C3C"
+      state-active-color: "#6CB4EE"
+      state-inactive-color: "#6A7090"
+      state-unavailable-color: "#4A5070"
+
+      app-header-background-color: "#1A1D2E"
+      app-header-text-color: "#E8EAF0"
+
+      sidebar-background-color: "#1E2132"
+      sidebar-text-color: "#E8EAF0"
+      sidebar-icon-color: "#6A7090"
+      sidebar-selected-background-color: "#1A1D2E"
+      sidebar-selected-text-color: "#6CB4EE"
+      sidebar-selected-icon-color: "#6CB4EE"
+
+      ha-card-box-shadow: "8px 8px 16px #12141F, -8px -8px 16px #222640"
+      ha-card-background: "#1A1D2E"
+      ha-card-header-color: "#E8EAF0"
+
+      switch-checked-button-color: "#FFFFFF"
+      switch-checked-track-color: "#6CB4EE"
+      switch-unchecked-button-color: "#2A2E45"
+      switch-unchecked-track-color: "#12141F"
+
+      paper-slider-knob-color: "#6CB4EE"
+      paper-slider-active-color: "#6CB4EE"
+      paper-slider-container-color: "#2A2E45"
+
+      dialog-backdrop-color: "rgba(10, 12, 20, 0.55)"
+      map-filter: "invert(0.9) hue-rotate(170deg) brightness(1.1) contrast(1.1) saturate(0.3)"
+
+      table-row-background-color: "#1A1D2E"
+      table-row-alternative-background-color: "rgba(30, 33, 50, 0.6)"
+      data-table-background-color: "#1A1D2E"
+      table-header-background-color: "#1E2132"
+
+      mdc-theme-surface: "#1A1D2E"
+      mdc-theme-on-surface: "#E8EAF0"
+      mdc-theme-background: "#1A1D2E"
+
+      mdc-text-field-fill-color: "rgba(42, 46, 69, 0.5)"
+      mdc-text-field-ink-color: "#E8EAF0"
+      mdc-text-field-label-ink-color: "#6A7090"
+      mdc-select-fill-color: "rgba(42, 46, 69, 0.5)"
+      mdc-select-ink-color: "#E8EAF0"
+      mdc-select-label-ink-color: "#6A7090"
+      mdc-select-dropdown-icon-color: "#6A7090"
+
+      mdc-checkbox-unchecked-color: "#4A5070"
+      mdc-radio-unchecked-color: "#4A5070"
+
+      mdc-dialog-heading-ink-color: "#E8EAF0"
+      mdc-dialog-content-ink-color: "#E8EAF0"
+      mdc-dialog-scroll-divider-color: "rgba(232, 234, 240, 0.06)"
+
+      input-fill-color: "rgba(42, 46, 69, 0.3)"
+      input-ink-color: "#E8EAF0"
+      input-label-ink-color: "#6A7090"
+      input-idle-line-color: "rgba(232, 234, 240, 0.08)"
+      input-disabled-fill-color: "rgba(42, 46, 69, 0.15)"
+      input-disabled-ink-color: "#4A5070"
+      input-outlined-idle-border-color: "rgba(232, 234, 240, 0.1)"
+      input-outlined-hover-border-color: "#6CB4EE"
+      input-dropdown-icon-color: "#6A7090"
+
+      ha-chip-background-color: "#1E2132"
+      ha-chip-text-color: "#E8EAF0"
+
+      codemirror-comment: "#4A5070"
+      codemirror-def: "#E8EAF0"
+      codemirror-string: "#2ECC71"
+      codemirror-number: "#2ECC71"
+
+      markdown-code-background-color: "rgba(108, 180, 238, 0.08)"
+
+      history-unavailable-color: "rgba(106, 112, 144, 0.3)"
+      history-unknown-color: "rgba(106, 112, 144, 0.15)"
+
+      # Aerogel Dark Custom Variables
+      aerogel-base: "#1A1D2E"
+      aerogel-base-alt: "#1E2132"
+      aerogel-shadow-dark: "#12141F"
+      aerogel-shadow-light: "#222640"
+      aerogel-text: "#E8EAF0"
+      aerogel-text-secondary: "#6A7090"
+
+      aerogel-convex-xs: "2px 2px 4px #12141F, -2px -2px 4px #222640"
+      aerogel-convex-sm: "4px 4px 8px #12141F, -4px -4px 8px #222640"
+      aerogel-convex-md: "8px 8px 16px #12141F, -8px -8px 16px #222640"
+      aerogel-convex-lg: "12px 12px 24px #12141F, -12px -12px 24px #222640"
+      aerogel-convex-xl: "16px 16px 32px #12141F, -16px -16px 32px #222640"
+
+      aerogel-concave-xs: "inset 2px 2px 4px #12141F, inset -2px -2px 4px #222640"
+      aerogel-concave-sm: "inset 4px 4px 8px #12141F, inset -4px -4px 8px #222640"
+      aerogel-concave-md: "inset 6px 6px 12px #12141F, inset -6px -6px 12px #222640"
+      aerogel-concave-lg: "inset 8px 8px 16px #12141F, inset -8px -8px 16px #222640"
+
+      aerogel-hover: "10px 10px 20px #12141F, -10px -10px 20px #222640"
+      aerogel-active: "inset 4px 4px 8px #12141F, inset -4px -4px 8px #222640"
+      aerogel-flat: "4px 4px 8px rgba(18, 20, 31, 0.5), -4px -4px 8px rgba(34, 38, 64, 0.5)"
+
+      aerogel-glow: "0 0 20px rgba(108, 180, 238, 0.25)"
+      aerogel-glow-lg: "0 0 40px rgba(108, 180, 238, 0.15)"
+      aerogel-glow-warning: "0 0 20px rgba(240, 123, 63, 0.25)"

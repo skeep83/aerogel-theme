@@ -453,6 +453,21 @@ Aerogel:
       aerogel-glow: 0 0 20px rgba(108, 180, 238, 0.25)
       aerogel-glow-lg: 0 0 40px rgba(108, 180, 238, 0.15)
       aerogel-glow-warning: 0 0 20px rgba(240, 123, 63, 0.25)
+  mush-rgb-info: 108, 180, 238
+  mush-rgb-success: 39, 174, 96
+  mush-rgb-warning: 240, 123, 63
+  mush-rgb-danger: 231, 76, 60
+  mush-title-font-weight: '700'
+  mush-card-primary-font-weight: '600'
+  mush-card-secondary-font-weight: '400'
+  mush-control-border-radius: 16px
+  mush-chip-border-radius: 16px
+  mush-icon-border-radius: 16px
+  mush-badge-border-radius: 50%
+  mush-chip-background: var(--aerogel-base)
+  mush-chip-box-shadow: var(--aerogel-convex-sm)
+  mush-chip-border-width: '0'
+  mush-control-height: 44px
 Aerogel Light:
   card-mod-theme: Aerogel
   card-mod-root-yaml: |
@@ -800,6 +815,21 @@ Aerogel Light:
   aerogel-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+  mush-rgb-info: 108, 180, 238
+  mush-rgb-success: 39, 174, 96
+  mush-rgb-warning: 240, 123, 63
+  mush-rgb-danger: 231, 76, 60
+  mush-title-font-weight: '700'
+  mush-card-primary-font-weight: '600'
+  mush-card-secondary-font-weight: '400'
+  mush-control-border-radius: 16px
+  mush-chip-border-radius: 16px
+  mush-icon-border-radius: 16px
+  mush-badge-border-radius: 50%
+  mush-chip-background: var(--aerogel-base)
+  mush-chip-box-shadow: var(--aerogel-convex-sm)
+  mush-chip-border-width: '0'
+  mush-control-height: 44px
 Aerogel Dark:
   card-mod-theme: Aerogel
   card-mod-root-yaml: |
@@ -1147,3 +1177,18 @@ Aerogel Dark:
   aerogel-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+  mush-rgb-info: 108, 180, 238
+  mush-rgb-success: 39, 174, 96
+  mush-rgb-warning: 240, 123, 63
+  mush-rgb-danger: 231, 76, 60
+  mush-title-font-weight: '700'
+  mush-card-primary-font-weight: '600'
+  mush-card-secondary-font-weight: '400'
+  mush-control-border-radius: 16px
+  mush-chip-border-radius: 16px
+  mush-icon-border-radius: 16px
+  mush-badge-border-radius: 50%
+  mush-chip-background: var(--aerogel-base)
+  mush-chip-box-shadow: var(--aerogel-convex-sm)
+  mush-chip-border-width: '0'
+  mush-control-height: 44px

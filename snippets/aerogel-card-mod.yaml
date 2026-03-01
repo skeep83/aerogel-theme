@@ -1,5 +1,5 @@
 # ============================================================
-#  Aerogel — Card-Mod Snippets
+#  Aerogel — Card-Mod Snippets (Premium Edition)
 #  Paste these into card configs for deeper neumorphic styling
 #  Requires: card-mod (https://github.com/thomasloven/lovelace-card-mod)
 # ============================================================
@@ -68,6 +68,144 @@
 #       border: none !important;
 #     }
 
+# ─── Glassmorphism Card ──────────────────────────────────────
+# type: markdown
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-glass) !important;
+#       backdrop-filter: var(--aerogel-glass-blur) !important;
+#       -webkit-backdrop-filter: var(--aerogel-glass-blur) !important;
+#       border: var(--aerogel-glass-border) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-glass-shadow) !important;
+#     }
+
+# ─── Gradient Header Card ───────────────────────────────────
+# type: markdown
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-gradient-subtle) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#       border: none !important;
+#     }
+#     ha-card .card-header {
+#       background: var(--aerogel-gradient) !important;
+#       -webkit-background-clip: text !important;
+#       -webkit-text-fill-color: transparent !important;
+#       font-weight: 700 !important;
+#     }
+
+# ─── Weather Card (glass overlay) ───────────────────────────
+# type: weather-forecast
+# entity: weather.home
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-glass) !important;
+#       backdrop-filter: var(--aerogel-glass-blur) !important;
+#       -webkit-backdrop-filter: var(--aerogel-glass-blur) !important;
+#       border: var(--aerogel-glass-border) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#     }
+#     .forecast {
+#       border-radius: var(--aerogel-radius-sm) !important;
+#       box-shadow: var(--aerogel-concave-xs) !important;
+#       padding: var(--aerogel-space-sm) !important;
+#     }
+
+# ─── Media Player Card ──────────────────────────────────────
+# type: media-control
+# entity: media_player.living_room
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#       border: none !important;
+#       overflow: hidden;
+#     }
+#     .thumbnail {
+#       border-radius: var(--aerogel-radius-md) !important;
+#       box-shadow: var(--aerogel-concave-sm) !important;
+#     }
+#     .controls mwc-icon-button {
+#       border-radius: var(--aerogel-radius-full) !important;
+#       box-shadow: var(--aerogel-convex-xs) !important;
+#       transition: var(--aerogel-transition) !important;
+#     }
+#     .controls mwc-icon-button:hover {
+#       box-shadow: var(--aerogel-convex-sm), var(--aerogel-glow) !important;
+#     }
+
+# ─── Thermostat / Climate Card ──────────────────────────────
+# type: thermostat
+# entity: climate.living_room
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-xl) !important;
+#       box-shadow: var(--aerogel-convex-lg) !important;
+#       border: none !important;
+#     }
+#     .current-temperature {
+#       font-weight: 700 !important;
+#       text-shadow: 0 0 12px rgba(var(--aerogel-accent-rgb), 0.2) !important;
+#     }
+
+# ─── History Graph Card (glass) ─────────────────────────────
+# type: history-graph
+# entities:
+#   - sensor.temperature
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-glass) !important;
+#       backdrop-filter: var(--aerogel-glass-blur) !important;
+#       -webkit-backdrop-filter: var(--aerogel-glass-blur) !important;
+#       border: var(--aerogel-glass-border) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-sm) !important;
+#     }
+
+# ─── Map Card (glass overlay) ───────────────────────────────
+# type: map
+# card_mod:
+#   style: |
+#     ha-card {
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#       border: none !important;
+#       overflow: hidden;
+#     }
+
+# ─── Calendar Card ──────────────────────────────────────────
+# type: calendar
+# entities:
+#   - calendar.personal
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#       border: none !important;
+#     }
+#     .calendar-event {
+#       border-radius: var(--aerogel-radius-sm) !important;
+#       box-shadow: var(--aerogel-concave-xs) !important;
+#       margin-bottom: var(--aerogel-space-xs) !important;
+#     }
+
+# ═══════════════════════════════════════════════════════════
+#  ANIMATIONS — apply these via card_mod style
+# ═══════════════════════════════════════════════════════════
+
 # ─── Pulse Glow Animation ───────────────────────────────────
 # card_mod:
 #   style: |
@@ -83,6 +221,54 @@
 #       animation: aerogel-pulse 3s ease-in-out infinite;
 #     }
 
+# ─── Alert Pulse (red glow) ─────────────────────────────────
+# card_mod:
+#   style: |
+#     @keyframes aerogel-alert {
+#       0%, 100% {
+#         box-shadow: var(--aerogel-convex-md);
+#       }
+#       50% {
+#         box-shadow: var(--aerogel-convex-md), var(--aerogel-glow-error);
+#       }
+#     }
+#     ha-card {
+#       animation: aerogel-alert 2s ease-in-out infinite;
+#     }
+
+# ─── Success Flash (green) ──────────────────────────────────
+# card_mod:
+#   style: |
+#     @keyframes aerogel-success {
+#       0% {
+#         box-shadow: var(--aerogel-convex-md), var(--aerogel-glow-success);
+#       }
+#       100% {
+#         box-shadow: var(--aerogel-convex-md);
+#       }
+#     }
+#     ha-card {
+#       animation: aerogel-success 1.5s ease-out forwards;
+#     }
+
+# ─── Shimmer Loading ────────────────────────────────────────
+# card_mod:
+#   style: |
+#     @keyframes aerogel-shimmer {
+#       0% { background-position: -200% 0; }
+#       100% { background-position: 200% 0; }
+#     }
+#     ha-card {
+#       background: linear-gradient(
+#         90deg,
+#         var(--aerogel-base) 25%,
+#         var(--aerogel-base-alt) 50%,
+#         var(--aerogel-base) 75%
+#       ) !important;
+#       background-size: 200% 100% !important;
+#       animation: aerogel-shimmer 2s linear infinite;
+#     }
+
 # ─── Breathing Icon ─────────────────────────────────────────
 # card_mod:
 #   style: |
@@ -92,6 +278,17 @@
 #     }
 #     state-badge {
 #       animation: aerogel-breathe 2.5s ease-in-out infinite;
+#     }
+
+# ─── Float Effect ────────────────────────────────────────────
+# card_mod:
+#   style: |
+#     @keyframes aerogel-float {
+#       0%, 100% { transform: translateY(0); }
+#       50% { transform: translateY(-4px); }
+#     }
+#     ha-card {
+#       animation: aerogel-float 4s ease-in-out infinite;
 #     }
 
 # ─── Ripple on Tap ──────────────────────────────────────────

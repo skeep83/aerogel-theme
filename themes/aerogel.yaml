@@ -9,13 +9,32 @@ Aerogel:
       html {
         font-family: var(--aerogel-font) !important;
       }
-      /* ─ Sidebar smooth transitions ─ */
+      /* ─ Sidebar neumorphic ─ */
       ha-sidebar {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
       }
       ha-sidebar .menu .title {
         font-family: var(--aerogel-font) !important;
         font-weight: 700 !important;
+        letter-spacing: 0.02em !important;
+      }
+      ha-sidebar .menu ha-icon-button,
+      ha-sidebar .menu a {
+        border-radius: var(--aerogel-radius-sm, 12px) !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-sidebar .menu a:hover {
+        background: var(--aerogel-base, #E3E6EC) !important;
+        box-shadow: var(--aerogel-convex-xs, 2px 2px 4px #C8CBD3, -2px -2px 4px #FFFFFF) !important;
+      }
+      ha-sidebar .menu a[data-selected] {
+        background: var(--aerogel-base, #E3E6EC) !important;
+        box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF),
+                    0 0 12px rgba(var(--aerogel-accent-rgb, 108, 180, 238), 0.2) !important;
+      }
+      ha-sidebar .menu a[data-selected] ha-icon {
+        color: var(--aerogel-accent, #6CB4EE) !important;
+        filter: drop-shadow(0 0 6px rgba(var(--aerogel-accent-rgb, 108, 180, 238), 0.35)) !important;
       }
       /* ─ Card hover lift ─ */
       ha-card {
@@ -34,11 +53,27 @@ Aerogel:
       hui-view, hui-panel-view {
         transition: opacity 0.3s ease !important;
       }
+      /* ─ Scrollbar styling ─ */
+      ::-webkit-scrollbar {
+        width: 6px !important;
+        height: 6px !important;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent !important;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb-color, #C0C5D0) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--aerogel-accent, #6CB4EE) !important;
+      }
   card-mod-card-yaml: |
     .: |
       ha-card {
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.3s ease !important;
         border: none !important;
         font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
       }
@@ -53,13 +88,72 @@ Aerogel:
                     inset -4px -4px 8px var(--aerogel-shadow-light, #FFFFFF) !important;
         transition: transform 0.1s ease, box-shadow 0.1s ease !important;
       }
+      /* ─ Slider / bar neumorphic ─ */
+      ha-bar-slider, ha-slider {
+        --slider-bg-color: var(--aerogel-base-alt, #DDE1E8) !important;
+      }
+      /* ─ Badges & Chips ─ */
+      ha-state-label-badge {
+        box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+        border: none !important;
+        transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+      }
+      ha-state-label-badge:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF) !important;
+      }
+      ha-chip, .chip {
+        box-shadow: var(--aerogel-convex-xs, 2px 2px 4px #C8CBD3, -2px -2px 4px #FFFFFF) !important;
+        border: none !important;
+        border-radius: var(--aerogel-radius-md, 16px) !important;
+        transition: all 0.2s ease !important;
+      }
+      ha-chip:hover, .chip:hover {
+        box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF) !important;
+        transform: translateY(-1px) !important;
+      }
+      /* ─ Animations ─ */
+      @keyframes aerogel-pulse {
+        0%, 100% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF); }
+        50% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF), var(--aerogel-glow, 0 0 16px rgba(108,180,238,0.35)); }
+      }
+      @keyframes aerogel-alert {
+        0%, 100% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF); }
+        50% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF), 0 0 20px rgba(231,76,60,0.4); }
+      }
+      @keyframes aerogel-success {
+        0% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF), 0 0 24px rgba(39,174,96,0.5); }
+        100% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF); }
+      }
+      @keyframes aerogel-shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+      @keyframes aerogel-breathe {
+        0%, 100% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+      @keyframes aerogel-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+      }
   card-mod-more-info-yaml: |
     .: |
       ha-dialog {
-        --ha-dialog-border-radius: 24px !important;
+        --ha-dialog-border-radius: 28px !important;
       }
       ha-dialog .content {
         font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
+      }
+      /* ─ Premium glass dialog ─ */
+      ha-dialog > div:first-child {
+        backdrop-filter: blur(16px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+      }
+      ha-dialog ha-header-bar {
+        background: linear-gradient(135deg, rgba(var(--aerogel-accent-rgb, 108,180,238), 0.08) 0%, transparent 100%) !important;
+        font-weight: 600 !important;
       }
   card-mod-view-yaml: |
     .: |
@@ -319,14 +413,37 @@ Aerogel:
   aerogel-accent: '#6CB4EE'
   aerogel-accent-rgb: 108, 180, 238
   aerogel-warning: '#F07B3F'
+  aerogel-success: '#27AE60'
+  aerogel-error: '#E74C3C'
   aerogel-text: '#2C3345'
   aerogel-text-secondary: '#8A90A0'
+  # ─ Glassmorphism ─
+  aerogel-glass: rgba(227, 230, 236, 0.6)
+  aerogel-glass-dark: rgba(200, 203, 211, 0.35)
+  aerogel-glass-blur: blur(20px) saturate(1.2)
+  aerogel-glass-border: 1px solid rgba(255, 255, 255, 0.3)
+  aerogel-glass-shadow: 0 8px 32px rgba(200, 203, 211, 0.25)
+  # ─ Gradients ─
+  aerogel-gradient: linear-gradient(135deg, #6CB4EE 0%, #9BD4F5 50%, #A8E6CF 100%)
+  aerogel-gradient-warm: linear-gradient(135deg, #F07B3F 0%, #F9A06C 100%)
+  aerogel-gradient-cool: linear-gradient(135deg, #6CB4EE 0%, #9B8EC4 100%)
+  aerogel-gradient-surface: linear-gradient(145deg, #E8EBF0 0%, #DDE1E8 100%)
+  aerogel-gradient-subtle: linear-gradient(135deg, rgba(108,180,238,0.08) 0%, rgba(168,230,207,0.08) 100%)
+  # ─ Spacing ─
+  aerogel-space-xs: 4px
+  aerogel-space-sm: 8px
+  aerogel-space-md: 16px
+  aerogel-space-lg: 24px
+  aerogel-space-xl: 32px
+  aerogel-space-2xl: 48px
+  # ─ Radius ─
   aerogel-radius-xs: 8px
   aerogel-radius-sm: 12px
   aerogel-radius-md: 16px
   aerogel-radius-lg: 24px
   aerogel-radius-xl: 32px
   aerogel-radius-full: 50px
+  # ─ Neumorphic shadows ─
   aerogel-convex-xs: '2px 2px 4px #C8CBD3, -2px -2px 4px #FFFFFF'
   aerogel-convex-sm: '4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF'
   aerogel-convex-md: '8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF'
@@ -339,12 +456,17 @@ Aerogel:
   aerogel-hover: '10px 10px 20px #C8CBD3, -10px -10px 20px #FFFFFF'
   aerogel-active: 'inset 4px 4px 8px #C8CBD3, inset -4px -4px 8px #FFFFFF'
   aerogel-flat: 4px 4px 8px rgba(200, 203, 211, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.6)
+  # ─ Glow effects ─
   aerogel-glow: 0 0 16px rgba(108, 180, 238, 0.35)
   aerogel-glow-lg: 0 0 32px rgba(108, 180, 238, 0.25)
   aerogel-glow-warning: 0 0 16px rgba(240, 123, 63, 0.35)
+  aerogel-glow-success: 0 0 16px rgba(39, 174, 96, 0.35)
+  aerogel-glow-error: 0 0 16px rgba(231, 76, 60, 0.35)
+  # ─ Transitions ─
   aerogel-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+  aerogel-transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)
   modes:
     dark:
       primary-color: '#6CB4EE'
@@ -438,6 +560,19 @@ Aerogel:
       aerogel-shadow-light: '#222640'
       aerogel-text: '#E8EAF0'
       aerogel-text-secondary: '#6A7090'
+      # ─ Glassmorphism (dark) ─
+      aerogel-glass: rgba(26, 29, 46, 0.65)
+      aerogel-glass-dark: rgba(18, 20, 31, 0.5)
+      aerogel-glass-blur: blur(20px) saturate(1.3)
+      aerogel-glass-border: 1px solid rgba(255, 255, 255, 0.08)
+      aerogel-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3)
+      # ─ Gradients (dark) ─
+      aerogel-gradient: linear-gradient(135deg, #6CB4EE 0%, #9BD4F5 50%, #A8E6CF 100%)
+      aerogel-gradient-warm: linear-gradient(135deg, #F07B3F 0%, #F9A06C 100%)
+      aerogel-gradient-cool: linear-gradient(135deg, #6CB4EE 0%, #9B8EC4 100%)
+      aerogel-gradient-surface: linear-gradient(145deg, #1E2132 0%, #1A1D2E 100%)
+      aerogel-gradient-subtle: linear-gradient(135deg, rgba(108,180,238,0.06) 0%, rgba(168,230,207,0.06) 100%)
+      # ─ Neumorphic shadows (dark) ─
       aerogel-convex-xs: '2px 2px 4px #12141F, -2px -2px 4px #222640'
       aerogel-convex-sm: '4px 4px 8px #12141F, -4px -4px 8px #222640'
       aerogel-convex-md: '8px 8px 16px #12141F, -8px -8px 16px #222640'
@@ -450,16 +585,26 @@ Aerogel:
       aerogel-hover: '10px 10px 20px #12141F, -10px -10px 20px #222640'
       aerogel-active: 'inset 4px 4px 8px #12141F, inset -4px -4px 8px #222640'
       aerogel-flat: 4px 4px 8px rgba(18, 20, 31, 0.5), -4px -4px 8px rgba(34, 38, 64, 0.5)
+      # ─ Glow effects (dark) ─
       aerogel-glow: 0 0 20px rgba(108, 180, 238, 0.25)
       aerogel-glow-lg: 0 0 40px rgba(108, 180, 238, 0.15)
       aerogel-glow-warning: 0 0 20px rgba(240, 123, 63, 0.25)
+      aerogel-glow-success: 0 0 20px rgba(39, 174, 96, 0.25)
+      aerogel-glow-error: 0 0 20px rgba(231, 76, 60, 0.25)
+  # ─ Mushroom ─
   mush-rgb-info: 108, 180, 238
   mush-rgb-success: 39, 174, 96
   mush-rgb-warning: 240, 123, 63
   mush-rgb-danger: 231, 76, 60
+  mush-rgb-disabled: 176, 181, 195
   mush-title-font-weight: '700'
+  mush-title-letter-spacing: 0.02em
   mush-card-primary-font-weight: '600'
   mush-card-secondary-font-weight: '400'
+  mush-card-primary-font-size: 15px
+  mush-card-secondary-font-size: 13px
+  mush-card-primary-color: var(--aerogel-text)
+  mush-card-secondary-color: var(--aerogel-text-secondary)
   mush-control-border-radius: 16px
   mush-chip-border-radius: 16px
   mush-icon-border-radius: 16px
@@ -468,6 +613,12 @@ Aerogel:
   mush-chip-box-shadow: var(--aerogel-convex-sm)
   mush-chip-border-width: '0'
   mush-control-height: 44px
+  mush-card-background-color: var(--aerogel-base)
+  mush-card-box-shadow: var(--aerogel-convex-md)
+  mush-slider-background: var(--aerogel-base-alt)
+  mush-slider-box-shadow: var(--aerogel-concave-sm)
+  mush-icon-background-color: var(--aerogel-base-alt)
+  mush-icon-box-shadow: var(--aerogel-concave-xs)
 Aerogel Light:
   card-mod-theme: Aerogel
   card-mod-root-yaml: |
@@ -479,13 +630,32 @@ Aerogel Light:
       html {
         font-family: var(--aerogel-font) !important;
       }
-      /* ─ Sidebar smooth transitions ─ */
+      /* ─ Sidebar neumorphic ─ */
       ha-sidebar {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
       }
       ha-sidebar .menu .title {
         font-family: var(--aerogel-font) !important;
         font-weight: 700 !important;
+        letter-spacing: 0.02em !important;
+      }
+      ha-sidebar .menu ha-icon-button,
+      ha-sidebar .menu a {
+        border-radius: var(--aerogel-radius-sm, 12px) !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-sidebar .menu a:hover {
+        background: var(--aerogel-base, #E3E6EC) !important;
+        box-shadow: var(--aerogel-convex-xs, 2px 2px 4px #C8CBD3, -2px -2px 4px #FFFFFF) !important;
+      }
+      ha-sidebar .menu a[data-selected] {
+        background: var(--aerogel-base, #E3E6EC) !important;
+        box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF),
+                    0 0 12px rgba(var(--aerogel-accent-rgb, 108, 180, 238), 0.2) !important;
+      }
+      ha-sidebar .menu a[data-selected] ha-icon {
+        color: var(--aerogel-accent, #6CB4EE) !important;
+        filter: drop-shadow(0 0 6px rgba(var(--aerogel-accent-rgb, 108, 180, 238), 0.35)) !important;
       }
       /* ─ Card hover lift ─ */
       ha-card {
@@ -504,11 +674,27 @@ Aerogel Light:
       hui-view, hui-panel-view {
         transition: opacity 0.3s ease !important;
       }
+      /* ─ Scrollbar styling ─ */
+      ::-webkit-scrollbar {
+        width: 6px !important;
+        height: 6px !important;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent !important;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb-color, #C0C5D0) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--aerogel-accent, #6CB4EE) !important;
+      }
   card-mod-card-yaml: |
     .: |
       ha-card {
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.3s ease !important;
         border: none !important;
         font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
       }
@@ -523,13 +709,72 @@ Aerogel Light:
                     inset -4px -4px 8px var(--aerogel-shadow-light, #FFFFFF) !important;
         transition: transform 0.1s ease, box-shadow 0.1s ease !important;
       }
+      /* ─ Slider / bar neumorphic ─ */
+      ha-bar-slider, ha-slider {
+        --slider-bg-color: var(--aerogel-base-alt, #DDE1E8) !important;
+      }
+      /* ─ Badges & Chips ─ */
+      ha-state-label-badge {
+        box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+        border: none !important;
+        transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+      }
+      ha-state-label-badge:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF) !important;
+      }
+      ha-chip, .chip {
+        box-shadow: var(--aerogel-convex-xs, 2px 2px 4px #C8CBD3, -2px -2px 4px #FFFFFF) !important;
+        border: none !important;
+        border-radius: var(--aerogel-radius-md, 16px) !important;
+        transition: all 0.2s ease !important;
+      }
+      ha-chip:hover, .chip:hover {
+        box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF) !important;
+        transform: translateY(-1px) !important;
+      }
+      /* ─ Animations ─ */
+      @keyframes aerogel-pulse {
+        0%, 100% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF); }
+        50% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF), var(--aerogel-glow, 0 0 16px rgba(108,180,238,0.35)); }
+      }
+      @keyframes aerogel-alert {
+        0%, 100% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF); }
+        50% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF), 0 0 20px rgba(231,76,60,0.4); }
+      }
+      @keyframes aerogel-success {
+        0% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF), 0 0 24px rgba(39,174,96,0.5); }
+        100% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF); }
+      }
+      @keyframes aerogel-shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+      @keyframes aerogel-breathe {
+        0%, 100% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+      @keyframes aerogel-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+      }
   card-mod-more-info-yaml: |
     .: |
       ha-dialog {
-        --ha-dialog-border-radius: 24px !important;
+        --ha-dialog-border-radius: 28px !important;
       }
       ha-dialog .content {
         font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
+      }
+      /* ─ Premium glass dialog ─ */
+      ha-dialog > div:first-child {
+        backdrop-filter: blur(16px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+      }
+      ha-dialog ha-header-bar {
+        background: linear-gradient(135deg, rgba(var(--aerogel-accent-rgb, 108,180,238), 0.08) 0%, transparent 100%) !important;
+        font-weight: 600 !important;
       }
   card-mod-view-yaml: |
     .: |
@@ -789,14 +1034,37 @@ Aerogel Light:
   aerogel-accent: '#6CB4EE'
   aerogel-accent-rgb: 108, 180, 238
   aerogel-warning: '#F07B3F'
+  aerogel-success: '#27AE60'
+  aerogel-error: '#E74C3C'
   aerogel-text: '#2C3345'
   aerogel-text-secondary: '#8A90A0'
+  # ─ Glassmorphism ─
+  aerogel-glass: rgba(227, 230, 236, 0.6)
+  aerogel-glass-dark: rgba(200, 203, 211, 0.35)
+  aerogel-glass-blur: blur(20px) saturate(1.2)
+  aerogel-glass-border: 1px solid rgba(255, 255, 255, 0.3)
+  aerogel-glass-shadow: 0 8px 32px rgba(200, 203, 211, 0.25)
+  # ─ Gradients ─
+  aerogel-gradient: linear-gradient(135deg, #6CB4EE 0%, #9BD4F5 50%, #A8E6CF 100%)
+  aerogel-gradient-warm: linear-gradient(135deg, #F07B3F 0%, #F9A06C 100%)
+  aerogel-gradient-cool: linear-gradient(135deg, #6CB4EE 0%, #9B8EC4 100%)
+  aerogel-gradient-surface: linear-gradient(145deg, #E8EBF0 0%, #DDE1E8 100%)
+  aerogel-gradient-subtle: linear-gradient(135deg, rgba(108,180,238,0.08) 0%, rgba(168,230,207,0.08) 100%)
+  # ─ Spacing ─
+  aerogel-space-xs: 4px
+  aerogel-space-sm: 8px
+  aerogel-space-md: 16px
+  aerogel-space-lg: 24px
+  aerogel-space-xl: 32px
+  aerogel-space-2xl: 48px
+  # ─ Radius ─
   aerogel-radius-xs: 8px
   aerogel-radius-sm: 12px
   aerogel-radius-md: 16px
   aerogel-radius-lg: 24px
   aerogel-radius-xl: 32px
   aerogel-radius-full: 50px
+  # ─ Neumorphic shadows ─
   aerogel-convex-xs: '2px 2px 4px #C8CBD3, -2px -2px 4px #FFFFFF'
   aerogel-convex-sm: '4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF'
   aerogel-convex-md: '8px 8px 16px #C8CBD3, -8px -8px 16px #FFFFFF'
@@ -809,19 +1077,31 @@ Aerogel Light:
   aerogel-hover: '10px 10px 20px #C8CBD3, -10px -10px 20px #FFFFFF'
   aerogel-active: 'inset 4px 4px 8px #C8CBD3, inset -4px -4px 8px #FFFFFF'
   aerogel-flat: 4px 4px 8px rgba(200, 203, 211, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.6)
+  # ─ Glow effects ─
   aerogel-glow: 0 0 16px rgba(108, 180, 238, 0.35)
   aerogel-glow-lg: 0 0 32px rgba(108, 180, 238, 0.25)
   aerogel-glow-warning: 0 0 16px rgba(240, 123, 63, 0.35)
+  aerogel-glow-success: 0 0 16px rgba(39, 174, 96, 0.35)
+  aerogel-glow-error: 0 0 16px rgba(231, 76, 60, 0.35)
+  # ─ Transitions ─
   aerogel-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+  aerogel-transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)
+  # ─ Mushroom ─
   mush-rgb-info: 108, 180, 238
   mush-rgb-success: 39, 174, 96
   mush-rgb-warning: 240, 123, 63
   mush-rgb-danger: 231, 76, 60
+  mush-rgb-disabled: 176, 181, 195
   mush-title-font-weight: '700'
+  mush-title-letter-spacing: 0.02em
   mush-card-primary-font-weight: '600'
   mush-card-secondary-font-weight: '400'
+  mush-card-primary-font-size: 15px
+  mush-card-secondary-font-size: 13px
+  mush-card-primary-color: var(--aerogel-text)
+  mush-card-secondary-color: var(--aerogel-text-secondary)
   mush-control-border-radius: 16px
   mush-chip-border-radius: 16px
   mush-icon-border-radius: 16px
@@ -830,6 +1110,12 @@ Aerogel Light:
   mush-chip-box-shadow: var(--aerogel-convex-sm)
   mush-chip-border-width: '0'
   mush-control-height: 44px
+  mush-card-background-color: var(--aerogel-base)
+  mush-card-box-shadow: var(--aerogel-convex-md)
+  mush-slider-background: var(--aerogel-base-alt)
+  mush-slider-box-shadow: var(--aerogel-concave-sm)
+  mush-icon-background-color: var(--aerogel-base-alt)
+  mush-icon-box-shadow: var(--aerogel-concave-xs)
 Aerogel Dark:
   card-mod-theme: Aerogel
   card-mod-root-yaml: |
@@ -841,13 +1127,32 @@ Aerogel Dark:
       html {
         font-family: var(--aerogel-font) !important;
       }
-      /* ─ Sidebar smooth transitions ─ */
+      /* ─ Sidebar neumorphic ─ */
       ha-sidebar {
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
       }
       ha-sidebar .menu .title {
         font-family: var(--aerogel-font) !important;
         font-weight: 700 !important;
+        letter-spacing: 0.02em !important;
+      }
+      ha-sidebar .menu ha-icon-button,
+      ha-sidebar .menu a {
+        border-radius: var(--aerogel-radius-sm, 12px) !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-sidebar .menu a:hover {
+        background: var(--aerogel-base, #1A1D2E) !important;
+        box-shadow: var(--aerogel-convex-xs, 2px 2px 4px #12141F, -2px -2px 4px #222640) !important;
+      }
+      ha-sidebar .menu a[data-selected] {
+        background: var(--aerogel-base, #1A1D2E) !important;
+        box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #12141F, -4px -4px 8px #222640),
+                    0 0 12px rgba(var(--aerogel-accent-rgb, 108, 180, 238), 0.2) !important;
+      }
+      ha-sidebar .menu a[data-selected] ha-icon {
+        color: var(--aerogel-accent, #6CB4EE) !important;
+        filter: drop-shadow(0 0 6px rgba(var(--aerogel-accent-rgb, 108, 180, 238), 0.35)) !important;
       }
       /* ─ Card hover lift ─ */
       ha-card {
@@ -859,44 +1164,119 @@ Aerogel Dark:
       }
       /* ─ Toolbar styling ─ */
       .toolbar {
-        background: var(--aerogel-base, #E3E6EC) !important;
-        box-shadow: 0 2px 8px rgba(200, 203, 211, 0.4) !important;
+        background: var(--aerogel-base, #1A1D2E) !important;
+        box-shadow: 0 2px 8px rgba(18, 20, 31, 0.5) !important;
       }
       /* ─ Smooth page transitions ─ */
       hui-view, hui-panel-view {
         transition: opacity 0.3s ease !important;
       }
+      /* ─ Scrollbar styling ─ */
+      ::-webkit-scrollbar {
+        width: 6px !important;
+        height: 6px !important;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent !important;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb-color, #2A2E45) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--aerogel-accent, #6CB4EE) !important;
+      }
   card-mod-card-yaml: |
     .: |
       ha-card {
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.3s ease !important;
         border: none !important;
         font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
       }
       ha-card:hover {
         transform: translateY(-2px) !important;
-        box-shadow: 10px 10px 20px var(--aerogel-shadow-dark, #C8CBD3),
-                    -10px -10px 20px var(--aerogel-shadow-light, #FFFFFF) !important;
+        box-shadow: 10px 10px 20px var(--aerogel-shadow-dark, #12141F),
+                    -10px -10px 20px var(--aerogel-shadow-light, #222640) !important;
       }
       ha-card:active {
         transform: scale(0.985) !important;
-        box-shadow: inset 4px 4px 8px var(--aerogel-shadow-dark, #C8CBD3),
-                    inset -4px -4px 8px var(--aerogel-shadow-light, #FFFFFF) !important;
+        box-shadow: inset 4px 4px 8px var(--aerogel-shadow-dark, #12141F),
+                    inset -4px -4px 8px var(--aerogel-shadow-light, #222640) !important;
         transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+      }
+      /* ─ Slider / bar neumorphic ─ */
+      ha-bar-slider, ha-slider {
+        --slider-bg-color: var(--aerogel-base-alt, #1E2132) !important;
+      }
+      /* ─ Badges & Chips ─ */
+      ha-state-label-badge {
+        box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #12141F, -4px -4px 8px #222640) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+        border: none !important;
+        transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+      }
+      ha-state-label-badge:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: var(--aerogel-convex-md, 8px 8px 16px #12141F, -8px -8px 16px #222640) !important;
+      }
+      ha-chip, .chip {
+        box-shadow: var(--aerogel-convex-xs, 2px 2px 4px #12141F, -2px -2px 4px #222640) !important;
+        border: none !important;
+        border-radius: var(--aerogel-radius-md, 16px) !important;
+        transition: all 0.2s ease !important;
+      }
+      ha-chip:hover, .chip:hover {
+        box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #12141F, -4px -4px 8px #222640) !important;
+        transform: translateY(-1px) !important;
+      }
+      /* ─ Animations ─ */
+      @keyframes aerogel-pulse {
+        0%, 100% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #12141F, -8px -8px 16px #222640); }
+        50% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #12141F, -8px -8px 16px #222640), var(--aerogel-glow, 0 0 20px rgba(108,180,238,0.25)); }
+      }
+      @keyframes aerogel-alert {
+        0%, 100% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #12141F, -8px -8px 16px #222640); }
+        50% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #12141F, -8px -8px 16px #222640), 0 0 20px rgba(231,76,60,0.4); }
+      }
+      @keyframes aerogel-success {
+        0% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #12141F, -8px -8px 16px #222640), 0 0 24px rgba(39,174,96,0.5); }
+        100% { box-shadow: var(--aerogel-convex-md, 8px 8px 16px #12141F, -8px -8px 16px #222640); }
+      }
+      @keyframes aerogel-shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+      @keyframes aerogel-breathe {
+        0%, 100% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+      @keyframes aerogel-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
       }
   card-mod-more-info-yaml: |
     .: |
       ha-dialog {
-        --ha-dialog-border-radius: 24px !important;
+        --ha-dialog-border-radius: 28px !important;
       }
       ha-dialog .content {
         font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
       }
+      /* ─ Premium glass dialog ─ */
+      ha-dialog > div:first-child {
+        backdrop-filter: blur(16px) saturate(1.3) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(1.3) !important;
+      }
+      ha-dialog ha-header-bar {
+        background: linear-gradient(135deg, rgba(var(--aerogel-accent-rgb, 108,180,238), 0.08) 0%, transparent 100%) !important;
+        font-weight: 600 !important;
+      }
   card-mod-view-yaml: |
     .: |
       hui-view {
-        background: var(--aerogel-base, #E3E6EC) !important;
+        background: var(--aerogel-base, #1A1D2E) !important;
       }
   primary-font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
   paper-font-common-base_-_font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
@@ -1151,14 +1531,37 @@ Aerogel Dark:
   aerogel-accent: '#6CB4EE'
   aerogel-accent-rgb: 108, 180, 238
   aerogel-warning: '#F07B3F'
+  aerogel-success: '#2ECC71'
+  aerogel-error: '#E74C3C'
   aerogel-text: '#E8EAF0'
   aerogel-text-secondary: '#6A7090'
+  # ─ Glassmorphism (dark) ─
+  aerogel-glass: rgba(26, 29, 46, 0.65)
+  aerogel-glass-dark: rgba(18, 20, 31, 0.5)
+  aerogel-glass-blur: blur(20px) saturate(1.3)
+  aerogel-glass-border: 1px solid rgba(255, 255, 255, 0.08)
+  aerogel-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3)
+  # ─ Gradients (dark) ─
+  aerogel-gradient: linear-gradient(135deg, #6CB4EE 0%, #9BD4F5 50%, #A8E6CF 100%)
+  aerogel-gradient-warm: linear-gradient(135deg, #F07B3F 0%, #F9A06C 100%)
+  aerogel-gradient-cool: linear-gradient(135deg, #6CB4EE 0%, #9B8EC4 100%)
+  aerogel-gradient-surface: linear-gradient(145deg, #1E2132 0%, #1A1D2E 100%)
+  aerogel-gradient-subtle: linear-gradient(135deg, rgba(108,180,238,0.06) 0%, rgba(168,230,207,0.06) 100%)
+  # ─ Spacing ─
+  aerogel-space-xs: 4px
+  aerogel-space-sm: 8px
+  aerogel-space-md: 16px
+  aerogel-space-lg: 24px
+  aerogel-space-xl: 32px
+  aerogel-space-2xl: 48px
+  # ─ Radius ─
   aerogel-radius-xs: 8px
   aerogel-radius-sm: 12px
   aerogel-radius-md: 16px
   aerogel-radius-lg: 24px
   aerogel-radius-xl: 32px
   aerogel-radius-full: 50px
+  # ─ Neumorphic shadows (dark) ─
   aerogel-convex-xs: '2px 2px 4px #12141F, -2px -2px 4px #222640'
   aerogel-convex-sm: '4px 4px 8px #12141F, -4px -4px 8px #222640'
   aerogel-convex-md: '8px 8px 16px #12141F, -8px -8px 16px #222640'
@@ -1171,19 +1574,31 @@ Aerogel Dark:
   aerogel-hover: '10px 10px 20px #12141F, -10px -10px 20px #222640'
   aerogel-active: 'inset 4px 4px 8px #12141F, inset -4px -4px 8px #222640'
   aerogel-flat: 4px 4px 8px rgba(18, 20, 31, 0.5), -4px -4px 8px rgba(34, 38, 64, 0.5)
+  # ─ Glow effects (dark) ─
   aerogel-glow: 0 0 20px rgba(108, 180, 238, 0.25)
   aerogel-glow-lg: 0 0 40px rgba(108, 180, 238, 0.15)
   aerogel-glow-warning: 0 0 20px rgba(240, 123, 63, 0.25)
+  aerogel-glow-success: 0 0 20px rgba(39, 174, 96, 0.25)
+  aerogel-glow-error: 0 0 20px rgba(231, 76, 60, 0.25)
+  # ─ Transitions ─
   aerogel-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
   aerogel-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+  aerogel-transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)
+  # ─ Mushroom ─
   mush-rgb-info: 108, 180, 238
   mush-rgb-success: 39, 174, 96
   mush-rgb-warning: 240, 123, 63
   mush-rgb-danger: 231, 76, 60
+  mush-rgb-disabled: 74, 80, 112
   mush-title-font-weight: '700'
+  mush-title-letter-spacing: 0.02em
   mush-card-primary-font-weight: '600'
   mush-card-secondary-font-weight: '400'
+  mush-card-primary-font-size: 15px
+  mush-card-secondary-font-size: 13px
+  mush-card-primary-color: var(--aerogel-text)
+  mush-card-secondary-color: var(--aerogel-text-secondary)
   mush-control-border-radius: 16px
   mush-chip-border-radius: 16px
   mush-icon-border-radius: 16px
@@ -1192,3 +1607,9 @@ Aerogel Dark:
   mush-chip-box-shadow: var(--aerogel-convex-sm)
   mush-chip-border-width: '0'
   mush-control-height: 44px
+  mush-card-background-color: var(--aerogel-base)
+  mush-card-box-shadow: var(--aerogel-convex-md)
+  mush-slider-background: var(--aerogel-base-alt)
+  mush-slider-box-shadow: var(--aerogel-concave-sm)
+  mush-icon-background-color: var(--aerogel-base-alt)
+  mush-icon-box-shadow: var(--aerogel-concave-xs)

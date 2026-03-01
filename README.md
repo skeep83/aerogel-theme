@@ -6,19 +6,31 @@
 [![HACS](https://img.shields.io/badge/HACS-Custom-orange?style=flat-square)](https://hacs.xyz/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-> A soft-UI neumorphic theme with **300+ CSS variables**, built-in **hover/press animations**, sky-blue accent, and 24px rounded cards. Install it — and your entire Home Assistant transforms.
+> A soft-UI neumorphic theme with **400+ CSS variables**, built-in **hover/press/glow animations**, glassmorphism effects, gradient accents, and 24px rounded cards. Install it — and your entire Home Assistant transforms.
+
+<p align="center">
+  <img src="images/preview.png" alt="Aerogel Theme Preview" width="100%">
+</p>
 
 ---
 
 ## ✨ Features
 
-- **300+ CSS variables** — every HA element covered (light & dark modes)
-- **Built-in animations** — hover lift, press effect, pulse glow (via card-mod)
+- **400+ CSS variables** — every HA element covered (light & dark modes)
+- **Built-in animations** — hover lift, press effect, pulse glow, alert, success, shimmer, breathe, float (via card-mod)
+- **Glassmorphism** — frosted-glass cards with blur, border, and shadow variables
+- **Gradient accents** — sky→mint, warm, cool, and surface gradients
+- **Neumorphic sidebar** — convex/concave items with accent glow on selection
+- **Premium dialogs** — frosted glass backdrop with gradient header bars
 - **24px card radius** — ultra-modern rounded aesthetic
 - **Sky-blue accent** `#6CB4EE` — fresh & clean
 - **Nunito font** — friendly rounded typography from Google Fonts
 - **Full card-mod integration** — animations auto-apply via `card-mod-card-yaml`
 - **Deep coverage** — states, toggles, sliders, dialogs, inputs, chips, energy, code editor
+- **Styled scrollbars** — slim, rounded, accent-highlighted on hover
+- **Badge & Chip styling** — neumorphic chips with hover lift
+- **Spacing system** — modular `--aerogel-space-*` (xs → 2xl) tokens
+- **Mushroom cards support** — 17+ variables for perfect Mushroom integration
 - **Custom `--aerogel-*` variables** — for advanced card-mod styling
 
 ---
@@ -61,7 +73,7 @@
 3. Select category: **Theme**
 4. Click **Add** → Find **"Aerogel"** → **Download**
 5. Go to Developer Tools → YAML → **Reload Themes**
-6. Profile → Theme → **Aerogel**
+6. Profile → Theme → **Aerogel** (auto) / **Aerogel Light** / **Aerogel Dark**
 
 ### Option B: Manual
 
@@ -84,7 +96,10 @@ The theme **automatically applies** hover and press animations to all cards when
 - 🏂 **Hover** → card lifts 2px with enhanced shadow
 - 👆 **Press** → card scales down with inset shadow
 - 🎨 **Font** → Nunito applied globally
-- 💬 **Dialogs** → 24px rounded corners
+- 💬 **Dialogs** → 28px rounded corners with frosted glass
+- 📊 **Sidebar** → neumorphic items with accent glow on selection
+- 🎯 **Badges/Chips** → neumorphic shadows with hover lift
+- 📏 **Scrollbar** → slim & rounded, accent on hover
 
 ### Custom CSS Variables
 
@@ -99,11 +114,24 @@ For advanced styling, use these `--aerogel-*` variables in card-mod:
 | `--aerogel-flat` | Subtle flat shadow |
 | `--aerogel-glow` | Sky-blue glow effect |
 | `--aerogel-glow-warning` | Orange glow effect |
+| `--aerogel-glow-success` | Green glow effect |
+| `--aerogel-glow-error` | Red glow effect |
+| `--aerogel-glass` | Glassmorphism background |
+| `--aerogel-glass-blur` | Frosted glass blur filter |
+| `--aerogel-glass-border` | Glass border |
+| `--aerogel-glass-shadow` | Glass shadow |
+| `--aerogel-gradient` | Sky→mint gradient |
+| `--aerogel-gradient-warm` | Orange→peach gradient |
+| `--aerogel-gradient-cool` | Blue→lavender gradient |
+| `--aerogel-gradient-surface` | Subtle surface gradient |
+| `--aerogel-gradient-subtle` | Ultra-subtle overlay gradient |
 | `--aerogel-radius-{xs,sm,md,lg,xl,full}` | Border radius (6 sizes) |
+| `--aerogel-space-{xs,sm,md,lg,xl,2xl}` | Spacing tokens (6 sizes) |
 | `--aerogel-base` | Base surface color |
 | `--aerogel-base-alt` | Alternate surface |
 | `--aerogel-transition` | Smooth cubic-bezier 0.3s |
 | `--aerogel-transition-fast` | Quick 0.15s |
+| `--aerogel-transition-bounce` | Bounce easing 0.4s |
 
 ### Example: Neumorphic Tile Card
 
@@ -123,6 +151,23 @@ card_mod:
     }
 ```
 
+### Example: Glassmorphism Card
+
+```yaml
+type: markdown
+content: "Frosted glass!"
+card_mod:
+  style: |
+    ha-card {
+      background: var(--aerogel-glass) !important;
+      backdrop-filter: var(--aerogel-glass-blur) !important;
+      -webkit-backdrop-filter: var(--aerogel-glass-blur) !important;
+      border: var(--aerogel-glass-border) !important;
+      border-radius: var(--aerogel-radius-lg) !important;
+      box-shadow: var(--aerogel-glass-shadow) !important;
+    }
+```
+
 ### Example: Pulse Glow Animation
 
 ```yaml
@@ -139,7 +184,41 @@ card_mod:
     }
 ```
 
-> 📎 More snippets in [`snippets/aerogel-card-mod.yaml`](snippets/aerogel-card-mod.yaml)
+### Example: Alert Pulse (Red Glow)
+
+```yaml
+type: button
+entity: binary_sensor.smoke
+card_mod:
+  style: |
+    @keyframes aerogel-alert {
+      0%, 100% { box-shadow: var(--aerogel-convex-md); }
+      50% { box-shadow: var(--aerogel-convex-md), var(--aerogel-glow-error); }
+    }
+    ha-card {
+      animation: aerogel-alert 2s ease-in-out infinite;
+    }
+```
+
+> 📎 More snippets in [`snippets/aerogel-card-mod.yaml`](snippets/aerogel-card-mod.yaml) — 12 card types + 7 animations
+
+---
+
+## 🍄 Mushroom Cards
+
+Full Mushroom integration with neumorphic shadows on cards, sliders, chips, and icons:
+
+```yaml
+# Supported Mushroom variables:
+mush-card-background-color    → neumorphic base
+mush-card-box-shadow          → convex shadow
+mush-slider-background        → concave track
+mush-slider-box-shadow        → inset shadow
+mush-chip-background          → neumorphic chips
+mush-chip-box-shadow          → convex chip shadow
+mush-icon-background-color    → concave icon well
+mush-icon-box-shadow          → inset icon shadow
+```
 
 ---
 

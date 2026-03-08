@@ -97,6 +97,29 @@
 
 ---
 
+## 🃏 Custom Cards (Optional)
+
+Aerogel includes 6 custom Lovelace cards that appear in the card picker dialog:
+
+| Card | Description |
+|------|-------------|
+| 🫧 **Aerogel Glass** | Frosted glass card with backdrop blur |
+| ⚡ **Aerogel Neon** | Cyberpunk neon glow border with animation |
+| 🎯 **Aerogel Entity** | Auto state glow (on) / dimming (unavailable) |
+| 🌈 **Aerogel Gradient** | 8 gradient presets (sunset, ocean, forest...) |
+| 🌦️ **Aerogel Weather** | Weather with animated icons (rain, snow, thunder) |
+| 🔲 **Aerogel Tile** | 6 variants: default, glass, gradient, flat, glow, inset |
+
+### Install Cards
+
+1. Copy `dist/aerogel-cards.js` to `/config/www/aerogel-cards.js`
+2. Add as Lovelace resource:
+   - Dashboard → ⋮ → **Edit dashboard** → ⋮ → **Manage resources**
+   - Add resource: `/local/aerogel-cards.js` (JavaScript module)
+3. Refresh browser — cards appear in the **"Add Card"** picker!
+
+---
+
 ## 🔧 Card-Mod Integration
 
 The theme **automatically applies** hover and press animations to all cards when card-mod is installed. No extra config needed!

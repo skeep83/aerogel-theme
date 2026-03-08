@@ -1,6 +1,6 @@
 {
     "name": "🫧✨ Aerogel — Premium Neumorphic Theme ✨🫧",
-    "description": "A soft-UI neumorphic theme with 300+ CSS variables, built-in hover/press animations, and sky-blue accents.",
+    "description": "A soft-UI neumorphic theme with 550+ CSS variables, 9 theme variants (including AMOLED & 5 accent palettes), weather animations, and premium card-mod integration.",
     "homeassistant": "2023.1.0",
     "render_readme": true
 }

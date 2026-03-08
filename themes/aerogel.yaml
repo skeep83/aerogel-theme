@@ -92,6 +92,16 @@ Aerogel:
       ha-bar-slider, ha-slider {
         --slider-bg-color: var(--aerogel-base-alt, #DDE1E8) !important;
       }
+      /* ─ Neumorphic toggle switches ─ */
+      ha-switch {
+        --switch-checked-track-color: var(--aerogel-accent, #6CB4EE) !important;
+        --switch-unchecked-track-color: var(--aerogel-base-alt, #DDE1E8) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-switch[checked] {
+        filter: drop-shadow(0 0 6px rgba(var(--aerogel-accent-rgb, 108,180,238), 0.3)) !important;
+      }
       /* ─ Badges & Chips ─ */
       ha-state-label-badge {
         box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF) !important;
@@ -138,6 +148,41 @@ Aerogel:
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-4px); }
       }
+      /* ─ Mesh gradient background animation ─ */
+      @keyframes aerogel-mesh {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      /* ─ Weather animations ─ */
+      @keyframes aerogel-sunny {
+        0%, 100% { filter: drop-shadow(0 0 8px rgba(249,215,28,0.4)); }
+        50% { filter: drop-shadow(0 0 16px rgba(249,215,28,0.7)); }
+      }
+      @keyframes aerogel-rain {
+        0% { transform: translateY(-8px); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(8px); opacity: 0; }
+      }
+      @keyframes aerogel-snow {
+        0% { transform: translateY(-6px) rotate(0deg); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(6px) rotate(180deg); opacity: 0; }
+      }
+      @keyframes aerogel-thunder {
+        0%, 90%, 100% { opacity: 1; }
+        92% { opacity: 0.2; }
+        94% { opacity: 1; }
+        96% { opacity: 0.3; }
+      }
+      @keyframes aerogel-fog {
+        0%, 100% { opacity: 0.5; transform: translateX(0); }
+        50% { opacity: 0.8; transform: translateX(6px); }
+      }
+      @keyframes aerogel-clouds {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(4px); }
+      }
   card-mod-more-info-yaml: |
     .: |
       ha-dialog {
@@ -159,6 +204,12 @@ Aerogel:
     .: |
       hui-view {
         background: var(--aerogel-base, #E3E6EC) !important;
+      }
+      /* ─ Animated mesh gradient (opt-in via card-mod) ─ */
+      hui-view.aerogel-mesh {
+        background: linear-gradient(-45deg, var(--aerogel-base, #E3E6EC), var(--aerogel-base-alt, #DDE1E8), rgba(var(--aerogel-accent-rgb, 108,180,238), 0.05), var(--aerogel-base, #E3E6EC)) !important;
+        background-size: 400% 400% !important;
+        animation: aerogel-mesh 25s ease infinite !important;
       }
   primary-font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
   paper-font-common-base_-_font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
@@ -713,6 +764,16 @@ Aerogel Light:
       ha-bar-slider, ha-slider {
         --slider-bg-color: var(--aerogel-base-alt, #DDE1E8) !important;
       }
+      /* ─ Neumorphic toggle switches ─ */
+      ha-switch {
+        --switch-checked-track-color: var(--aerogel-accent, #6CB4EE) !important;
+        --switch-unchecked-track-color: var(--aerogel-base-alt, #DDE1E8) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-switch[checked] {
+        filter: drop-shadow(0 0 6px rgba(var(--aerogel-accent-rgb, 108,180,238), 0.3)) !important;
+      }
       /* ─ Badges & Chips ─ */
       ha-state-label-badge {
         box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #C8CBD3, -4px -4px 8px #FFFFFF) !important;
@@ -759,6 +820,41 @@ Aerogel Light:
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-4px); }
       }
+      /* ─ Mesh gradient background animation ─ */
+      @keyframes aerogel-mesh {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      /* ─ Weather animations ─ */
+      @keyframes aerogel-sunny {
+        0%, 100% { filter: drop-shadow(0 0 8px rgba(249,215,28,0.4)); }
+        50% { filter: drop-shadow(0 0 16px rgba(249,215,28,0.7)); }
+      }
+      @keyframes aerogel-rain {
+        0% { transform: translateY(-8px); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(8px); opacity: 0; }
+      }
+      @keyframes aerogel-snow {
+        0% { transform: translateY(-6px) rotate(0deg); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(6px) rotate(180deg); opacity: 0; }
+      }
+      @keyframes aerogel-thunder {
+        0%, 90%, 100% { opacity: 1; }
+        92% { opacity: 0.2; }
+        94% { opacity: 1; }
+        96% { opacity: 0.3; }
+      }
+      @keyframes aerogel-fog {
+        0%, 100% { opacity: 0.5; transform: translateX(0); }
+        50% { opacity: 0.8; transform: translateX(6px); }
+      }
+      @keyframes aerogel-clouds {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(4px); }
+      }
   card-mod-more-info-yaml: |
     .: |
       ha-dialog {
@@ -780,6 +876,11 @@ Aerogel Light:
     .: |
       hui-view {
         background: var(--aerogel-base, #E3E6EC) !important;
+      }
+      hui-view.aerogel-mesh {
+        background: linear-gradient(-45deg, var(--aerogel-base, #E3E6EC), var(--aerogel-base-alt, #DDE1E8), rgba(var(--aerogel-accent-rgb, 108,180,238), 0.05), var(--aerogel-base, #E3E6EC)) !important;
+        background-size: 400% 400% !important;
+        animation: aerogel-mesh 25s ease infinite !important;
       }
   primary-font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
   paper-font-common-base_-_font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
@@ -1210,6 +1311,16 @@ Aerogel Dark:
       ha-bar-slider, ha-slider {
         --slider-bg-color: var(--aerogel-base-alt, #1E2132) !important;
       }
+      /* ─ Neumorphic toggle switches ─ */
+      ha-switch {
+        --switch-checked-track-color: var(--aerogel-accent, #6CB4EE) !important;
+        --switch-unchecked-track-color: var(--aerogel-base-alt, #1E2132) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-switch[checked] {
+        filter: drop-shadow(0 0 6px rgba(var(--aerogel-accent-rgb, 108,180,238), 0.3)) !important;
+      }
       /* ─ Badges & Chips ─ */
       ha-state-label-badge {
         box-shadow: var(--aerogel-convex-sm, 4px 4px 8px #12141F, -4px -4px 8px #222640) !important;
@@ -1256,6 +1367,41 @@ Aerogel Dark:
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-4px); }
       }
+      /* ─ Mesh gradient background animation ─ */
+      @keyframes aerogel-mesh {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      /* ─ Weather animations ─ */
+      @keyframes aerogel-sunny {
+        0%, 100% { filter: drop-shadow(0 0 8px rgba(249,215,28,0.4)); }
+        50% { filter: drop-shadow(0 0 16px rgba(249,215,28,0.7)); }
+      }
+      @keyframes aerogel-rain {
+        0% { transform: translateY(-8px); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(8px); opacity: 0; }
+      }
+      @keyframes aerogel-snow {
+        0% { transform: translateY(-6px) rotate(0deg); opacity: 0; }
+        50% { opacity: 1; }
+        100% { transform: translateY(6px) rotate(180deg); opacity: 0; }
+      }
+      @keyframes aerogel-thunder {
+        0%, 90%, 100% { opacity: 1; }
+        92% { opacity: 0.2; }
+        94% { opacity: 1; }
+        96% { opacity: 0.3; }
+      }
+      @keyframes aerogel-fog {
+        0%, 100% { opacity: 0.5; transform: translateX(0); }
+        50% { opacity: 0.8; transform: translateX(6px); }
+      }
+      @keyframes aerogel-clouds {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(4px); }
+      }
   card-mod-more-info-yaml: |
     .: |
       ha-dialog {
@@ -1277,6 +1423,11 @@ Aerogel Dark:
     .: |
       hui-view {
         background: var(--aerogel-base, #1A1D2E) !important;
+      }
+      hui-view.aerogel-mesh {
+        background: linear-gradient(-45deg, var(--aerogel-base, #1A1D2E), var(--aerogel-base-alt, #1E2132), rgba(var(--aerogel-accent-rgb, 108,180,238), 0.04), var(--aerogel-base, #1A1D2E)) !important;
+        background-size: 400% 400% !important;
+        animation: aerogel-mesh 25s ease infinite !important;
       }
   primary-font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
   paper-font-common-base_-_font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
@@ -1613,3 +1764,835 @@ Aerogel Dark:
   mush-slider-box-shadow: var(--aerogel-concave-sm)
   mush-icon-background-color: var(--aerogel-base-alt)
   mush-icon-box-shadow: var(--aerogel-concave-xs)
+Aerogel AMOLED:
+  card-mod-theme: Aerogel
+  card-mod-root-yaml: |
+    .: |
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+      :host {
+        --aerogel-font: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      html {
+        font-family: var(--aerogel-font) !important;
+      }
+      /* ─ Sidebar neumorphic ─ */
+      ha-sidebar {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-sidebar .menu .title {
+        font-family: var(--aerogel-font) !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.02em !important;
+      }
+      ha-sidebar .menu ha-icon-button,
+      ha-sidebar .menu a {
+        border-radius: var(--aerogel-radius-sm, 12px) !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-sidebar .menu a:hover {
+        background: var(--aerogel-base, #000000) !important;
+        box-shadow: var(--aerogel-convex-xs, 1px 1px 3px #000000, -1px -1px 3px #1A1A22) !important;
+      }
+      ha-sidebar .menu a[data-selected] {
+        background: var(--aerogel-base, #000000) !important;
+        box-shadow: var(--aerogel-convex-sm, 2px 2px 6px #000000, -2px -2px 6px #1A1A22),
+                    0 0 16px rgba(var(--aerogel-accent-rgb, 108, 180, 238), 0.3) !important;
+      }
+      ha-sidebar .menu a[data-selected] ha-icon {
+        color: var(--aerogel-accent, #6CB4EE) !important;
+        filter: drop-shadow(0 0 8px rgba(var(--aerogel-accent-rgb, 108, 180, 238), 0.5)) !important;
+      }
+      /* ─ Card hover lift ─ */
+      ha-card {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-card:hover {
+        transform: translateY(-2px) !important;
+      }
+      /* ─ Toolbar styling ─ */
+      .toolbar {
+        background: var(--aerogel-base, #000000) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
+      }
+      /* ─ Smooth page transitions ─ */
+      hui-view, hui-panel-view {
+        transition: opacity 0.3s ease !important;
+      }
+      /* ─ Scrollbar styling ─ */
+      ::-webkit-scrollbar {
+        width: 6px !important;
+        height: 6px !important;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent !important;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb-color, #1A1A22) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--aerogel-accent, #6CB4EE) !important;
+      }
+  card-mod-card-yaml: |
+    .: |
+      ha-card {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    background 0.3s ease !important;
+        border: none !important;
+        font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
+      }
+      ha-card:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 6px 6px 14px var(--aerogel-shadow-dark, #000000),
+                    -6px -6px 14px var(--aerogel-shadow-light, #1A1A22) !important;
+      }
+      ha-card:active {
+        transform: scale(0.985) !important;
+        box-shadow: inset 3px 3px 6px var(--aerogel-shadow-dark, #000000),
+                    inset -3px -3px 6px var(--aerogel-shadow-light, #1A1A22) !important;
+        transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+      }
+      /* ─ Slider / bar neumorphic ─ */
+      ha-bar-slider, ha-slider {
+        --slider-bg-color: var(--aerogel-base-alt, #0A0A0F) !important;
+      }
+      /* ─ Neumorphic toggle switches ─ */
+      ha-switch {
+        --switch-checked-track-color: var(--aerogel-accent, #6CB4EE) !important;
+        --switch-unchecked-track-color: var(--aerogel-base-alt, #0A0A0F) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      }
+      ha-switch[checked] {
+        filter: drop-shadow(0 0 8px rgba(var(--aerogel-accent-rgb, 108,180,238), 0.4)) !important;
+      }
+      /* ─ Badges & Chips ─ */
+      ha-state-label-badge {
+        box-shadow: var(--aerogel-convex-sm, 2px 2px 6px #000000, -2px -2px 6px #1A1A22) !important;
+        border-radius: var(--aerogel-radius-full, 50px) !important;
+        border: none !important;
+        transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+      }
+      ha-state-label-badge:hover {
+        transform: translateY(-1px) !important;
+        box-shadow: var(--aerogel-convex-md, 4px 4px 10px #000000, -4px -4px 10px #1A1A22) !important;
+      }
+      ha-chip, .chip {
+        box-shadow: var(--aerogel-convex-xs, 1px 1px 3px #000000, -1px -1px 3px #1A1A22) !important;
+        border: none !important;
+        border-radius: var(--aerogel-radius-md, 16px) !important;
+        transition: all 0.2s ease !important;
+      }
+      ha-chip:hover, .chip:hover {
+        box-shadow: var(--aerogel-convex-sm, 2px 2px 6px #000000, -2px -2px 6px #1A1A22) !important;
+        transform: translateY(-1px) !important;
+      }
+      /* ─ Animations ─ */
+      @keyframes aerogel-pulse {
+        0%, 100% { box-shadow: var(--aerogel-convex-md); }
+        50% { box-shadow: var(--aerogel-convex-md), var(--aerogel-glow); }
+      }
+      @keyframes aerogel-alert {
+        0%, 100% { box-shadow: var(--aerogel-convex-md); }
+        50% { box-shadow: var(--aerogel-convex-md), 0 0 24px rgba(231,76,60,0.5); }
+      }
+      @keyframes aerogel-success {
+        0% { box-shadow: var(--aerogel-convex-md), 0 0 28px rgba(39,174,96,0.6); }
+        100% { box-shadow: var(--aerogel-convex-md); }
+      }
+      @keyframes aerogel-shimmer {
+        0% { background-position: -200% 0; }
+        100% { background-position: 200% 0; }
+      }
+      @keyframes aerogel-breathe {
+        0%, 100% { opacity: 0.7; transform: scale(1); }
+        50% { opacity: 1; transform: scale(1.05); }
+      }
+      @keyframes aerogel-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-4px); }
+      }
+  card-mod-more-info-yaml: |
+    .: |
+      ha-dialog {
+        --ha-dialog-border-radius: 28px !important;
+      }
+      ha-dialog .content {
+        font-family: var(--aerogel-font, 'Nunito', sans-serif) !important;
+      }
+      /* ─ Premium glass dialog ─ */
+      ha-dialog > div:first-child {
+        backdrop-filter: blur(20px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(1.4) !important;
+      }
+      ha-dialog ha-header-bar {
+        background: linear-gradient(135deg, rgba(var(--aerogel-accent-rgb, 108,180,238), 0.1) 0%, transparent 100%) !important;
+        font-weight: 600 !important;
+      }
+  card-mod-view-yaml: |
+    .: |
+      hui-view {
+        background: var(--aerogel-base, #000000) !important;
+      }
+  primary-font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
+  paper-font-common-base_-_font-family: '''Nunito'', -apple-system, BlinkMacSystemFont, sans-serif'
+  paper-font-common-code_-_font-family: '''JetBrains Mono'', ''Fira Code'', monospace'
+  paper-font-body1_-_font-size: 15px
+  paper-font-body1_-_font-weight: '400'
+  paper-font-body1_-_line-height: '1.6'
+  paper-font-subhead_-_font-size: 16px
+  paper-font-headline_-_font-size: 24px
+  paper-font-title_-_font-size: 20px
+  title-font-weight: '700'
+  primary-color: '#6CB4EE'
+  accent-color: '#6CB4EE'
+  primary-background-color: '#000000'
+  secondary-background-color: '#0A0A0F'
+  card-background-color: '#0A0A0F'
+  primary-text-color: '#E8EAF0'
+  secondary-text-color: '#5A5E78'
+  text-primary-color: '#FFFFFF'
+  text-accent-color: '#FFFFFF'
+  disabled-text-color: '#3A3E55'
+  rgb-primary-color: 108, 180, 238
+  rgb-accent-color: 108, 180, 238
+  rgb-primary-text-color: 232, 234, 240
+  rgb-secondary-text-color: 90, 94, 120
+  rgb-card-background-color: 10, 10, 15
+  divider-color: rgba(232, 234, 240, 0.04)
+  scrollbar-thumb-color: '#1A1A22'
+  error-color: '#E74C3C'
+  warning-color: '#F9A06C'
+  success-color: '#2ECC71'
+  info-color: '#6CB4EE'
+  state-icon-color: '#5A5E78'
+  state-icon-active-color: '#6CB4EE'
+  state-icon-unavailable-color: '#3A3E55'
+  state-icon-error-color: '#E74C3C'
+  state-active-color: '#6CB4EE'
+  state-inactive-color: '#5A5E78'
+  state-unavailable-color: '#3A3E55'
+  app-header-background-color: '#000000'
+  app-header-text-color: '#E8EAF0'
+  app-header-selection-bar-color: '#6CB4EE'
+  app-header-edit-background-color: '#6CB4EE'
+  app-header-edit-text-color: '#FFFFFF'
+  sidebar-background-color: '#050508'
+  sidebar-text-color: '#E8EAF0'
+  sidebar-icon-color: '#5A5E78'
+  sidebar-selected-background-color: '#0A0A0F'
+  sidebar-selected-text-color: '#6CB4EE'
+  sidebar-selected-icon-color: '#6CB4EE'
+  ha-card-border-radius: 24px
+  ha-card-border-width: '0'
+  ha-card-border-color: transparent
+  ha-card-box-shadow: '4px 4px 10px #000000, -4px -4px 10px #1A1A22'
+  ha-card-background: '#0A0A0F'
+  ha-card-header-font-size: 20px
+  ha-card-header-color: '#E8EAF0'
+  state-alarm_control_panel-armed_away-color: '#E74C3C'
+  state-alarm_control_panel-armed_custom_bypass-color: '#F07B3F'
+  state-alarm_control_panel-armed_home-color: '#27AE60'
+  state-alarm_control_panel-armed_night-color: '#8E44AD'
+  state-alarm_control_panel-armed_vacation-color: '#2980B9'
+  state-alarm_control_panel-arming-color: '#F07B3F'
+  state-alarm_control_panel-disarmed-color: '#27AE60'
+  state-alarm_control_panel-pending-color: '#F39C12'
+  state-alarm_control_panel-triggered-color: '#E74C3C'
+  state-climate-auto-color: '#27AE60'
+  state-climate-cool-color: '#6CB4EE'
+  state-climate-dry-color: '#F39C12'
+  state-climate-fan_only-color: '#1ABC9C'
+  state-climate-heat-color: '#E74C3C'
+  state-climate-heat_cool-color: '#F39C12'
+  state-light-on-color: '#F9D71C'
+  state-switch-on-color: '#6CB4EE'
+  state-binary_sensor-active-color: '#6CB4EE'
+  state-binary_sensor-problem-color: '#E74C3C'
+  state-binary_sensor-safety-color: '#E74C3C'
+  state-lock-jammed-color: '#E74C3C'
+  state-lock-locked-color: '#27AE60'
+  state-lock-locking-color: '#F07B3F'
+  state-lock-unlocked-color: '#E74C3C'
+  state-lock-unlocking-color: '#F07B3F'
+  state-person-home-color: '#27AE60'
+  state-person-not_home-color: '#8A90A0'
+  state-person-zone-color: '#6CB4EE'
+  state-media_player-idle-color: '#8A90A0'
+  state-media_player-off-color: '#8A90A0'
+  state-media_player-paused-color: '#F07B3F'
+  state-media_player-playing-color: '#6CB4EE'
+  state-media_player-on-color: '#6CB4EE'
+  state-media_player-standby-color: '#8A90A0'
+  state-update-on-color: '#F07B3F'
+  state-update-installing-color: '#6CB4EE'
+  state-update-off-color: '#27AE60'
+  state-alert-on-color: '#E74C3C'
+  state-alert-off-color: '#8A90A0'
+  state-automation-on-color: '#6CB4EE'
+  state-automation-off-color: '#8A90A0'
+  state-script-on-color: '#6CB4EE'
+  state-sensor-battery-low-color: '#E74C3C'
+  state-sensor-battery-medium-color: '#F07B3F'
+  state-sensor-battery-high-color: '#27AE60'
+  state-fan-on-color: '#6CB4EE'
+  state-cover-open-color: '#6CB4EE'
+  state-cover-closed-color: '#8A90A0'
+  state-weather-exceptional-color: '#E74C3C'
+  state-weather-rainy-color: '#2980B9'
+  state-weather-snowy-color: '#85C1E9'
+  state-weather-sunny-color: '#F9D71C'
+  state-weather-cloudy-color: '#95A5A6'
+  state-weather-fog-color: '#BDC3C7'
+  state-weather-hail-color: '#5DADE2'
+  state-weather-lightning-color: '#F4D03F'
+  state-weather-partlycloudy-color: '#AED6F1'
+  state-weather-pouring-color: '#1A5276'
+  state-weather-windy-color: '#48C9B0'
+  state-vacuum-cleaning-color: '#6CB4EE'
+  state-vacuum-docked-color: '#27AE60'
+  state-vacuum-idle-color: '#8A90A0'
+  state-vacuum-returning-color: '#F07B3F'
+  state-vacuum-error-color: '#E74C3C'
+  switch-checked-button-color: '#FFFFFF'
+  switch-checked-track-color: '#6CB4EE'
+  switch-unchecked-button-color: '#1A1A22'
+  switch-unchecked-track-color: '#000000'
+  paper-slider-knob-color: '#6CB4EE'
+  paper-slider-knob-start-color: '#6CB4EE'
+  paper-slider-active-color: '#6CB4EE'
+  paper-slider-secondary-color: rgba(108, 180, 238, 0.3)
+  paper-slider-container-color: '#1A1A22'
+  paper-slider-pin-color: '#6CB4EE'
+  paper-slider-pin-start-color: '#6CB4EE'
+  ha-dialog-border-radius: 24px
+  dialog-backdrop-color: rgba(0, 0, 0, 0.7)
+  ha-label-badge-color: '#6CB4EE'
+  map-filter: invert(0.95) hue-rotate(170deg) brightness(1.1) contrast(1.2) saturate(0.3)
+  red-color: '#E74C3C'
+  pink-color: '#E91E90'
+  purple-color: '#8E44AD'
+  deep-purple-color: '#6C3483'
+  indigo-color: '#2E4053'
+  blue-color: '#6CB4EE'
+  light-blue-color: '#85C1E9'
+  cyan-color: '#1ABC9C'
+  teal-color: '#16A085'
+  green-color: '#27AE60'
+  light-green-color: '#2ECC71'
+  lime-color: '#A3CB38'
+  yellow-color: '#F9D71C'
+  amber-color: '#F39C12'
+  orange-color: '#F07B3F'
+  deep-orange-color: '#E67E22'
+  brown-color: '#795548'
+  grey-color: '#8A90A0'
+  blue-grey-color: '#607D8B'
+  white-color: '#FFFFFF'
+  disabled-color: '#B0B5C3'
+  black-color: '#000000'
+  graph-color-1: '#6CB4EE'
+  graph-color-2: '#F07B3F'
+  graph-color-3: '#27AE60'
+  graph-color-4: '#E74C3C'
+  graph-color-5: '#8E44AD'
+  graph-color-6: '#F9D71C'
+  energy-grid-consumption-color: '#6CB4EE'
+  energy-grid-return-color: '#27AE60'
+  energy-solar-color: '#F9D71C'
+  energy-non-fossil-color: '#1ABC9C'
+  energy-battery-in-color: '#27AE60'
+  energy-battery-out-color: '#F07B3F'
+  energy-gas-color: '#E67E22'
+  energy-water-color: '#3498DB'
+  history-unavailable-color: rgba(90, 94, 120, 0.3)
+  history-unknown-color: rgba(90, 94, 120, 0.15)
+  markdown-code-background-color: rgba(108, 180, 238, 0.06)
+  table-row-background-color: '#0A0A0F'
+  table-row-alternative-background-color: rgba(10, 10, 15, 0.6)
+  data-table-background-color: '#0A0A0F'
+  table-header-background-color: '#050508'
+  mdc-theme-primary: '#6CB4EE'
+  mdc-theme-secondary: '#F07B3F'
+  mdc-theme-on-primary: '#FFFFFF'
+  mdc-theme-on-secondary: '#FFFFFF'
+  mdc-theme-surface: '#0A0A0F'
+  mdc-theme-on-surface: '#E8EAF0'
+  mdc-theme-background: '#000000'
+  mdc-theme-error: '#E74C3C'
+  mdc-theme-on-error: '#FFFFFF'
+  mdc-button-outline-color: rgba(108, 180, 238, 0.2)
+  mdc-shape-small: 16px
+  mdc-shape-medium: 24px
+  mdc-checkbox-unchecked-color: '#1A1A22'
+  mdc-checkbox-checked-color: '#6CB4EE'
+  mdc-checkbox-ink-color: '#FFFFFF'
+  mdc-radio-unchecked-color: '#1A1A22'
+  mdc-radio-checked-color: '#6CB4EE'
+  mdc-tab-text-label-color-default: '#5A5E78'
+  mdc-tab-color-default: '#5A5E78'
+  mdc-dialog-heading-ink-color: '#E8EAF0'
+  mdc-dialog-content-ink-color: '#E8EAF0'
+  mdc-dialog-scroll-divider-color: rgba(232, 234, 240, 0.04)
+  mdc-text-field-fill-color: rgba(10, 10, 15, 0.4)
+  mdc-text-field-ink-color: '#E8EAF0'
+  mdc-text-field-label-ink-color: '#5A5E78'
+  mdc-text-field-idle-line-color: transparent
+  mdc-text-field-hover-line-color: '#6CB4EE'
+  mdc-select-fill-color: rgba(10, 10, 15, 0.4)
+  mdc-select-ink-color: '#E8EAF0'
+  mdc-select-label-ink-color: '#5A5E78'
+  mdc-select-idle-line-color: transparent
+  mdc-select-hover-line-color: '#6CB4EE'
+  mdc-select-dropdown-icon-color: '#5A5E78'
+  input-fill-color: rgba(10, 10, 15, 0.3)
+  input-ink-color: '#E8EAF0'
+  input-label-ink-color: '#5A5E78'
+  input-idle-line-color: rgba(232, 234, 240, 0.06)
+  input-hover-line-color: '#6CB4EE'
+  input-disabled-fill-color: rgba(10, 10, 15, 0.15)
+  input-disabled-ink-color: '#3A3E55'
+  input-disabled-line-color: rgba(232, 234, 240, 0.03)
+  input-outlined-idle-border-color: rgba(232, 234, 240, 0.08)
+  input-outlined-hover-border-color: '#6CB4EE'
+  input-outlined-disabled-border-color: rgba(232, 234, 240, 0.04)
+  input-dropdown-icon-color: '#5A5E78'
+  ha-button-active-color: '#6CB4EE'
+  ha-button-toggle-on-color: '#0A0A0F'
+  ha-button-toggle-off-color: '#0A0A0F'
+  ha-chip-background-color: '#0A0A0F'
+  ha-chip-text-color: '#E8EAF0'
+  codemirror-keyword: '#6CB4EE'
+  codemirror-operator: '#F07B3F'
+  codemirror-variable: '#8E44AD'
+  codemirror-variable-2: '#27AE60'
+  codemirror-variable-3: '#F07B3F'
+  codemirror-builtin: '#6CB4EE'
+  codemirror-atom: '#8E44AD'
+  codemirror-number: '#2ECC71'
+  codemirror-def: '#E8EAF0'
+  codemirror-string: '#2ECC71'
+  codemirror-string-2: '#16A085'
+  codemirror-comment: '#3A3E55'
+  codemirror-tag: '#E74C3C'
+  codemirror-meta: '#8A90A0'
+  codemirror-attribute: '#F07B3F'
+  codemirror-property: '#6CB4EE'
+  codemirror-qualifier: '#8E44AD'
+  codemirror-type: '#F07B3F'
+  # ─ Aerogel AMOLED custom vars ─
+  aerogel-base: '#000000'
+  aerogel-base-alt: '#0A0A0F'
+  aerogel-shadow-dark: '#000000'
+  aerogel-shadow-light: '#1A1A22'
+  aerogel-accent: '#6CB4EE'
+  aerogel-accent-rgb: 108, 180, 238
+  aerogel-warning: '#F07B3F'
+  aerogel-success: '#2ECC71'
+  aerogel-error: '#E74C3C'
+  aerogel-text: '#E8EAF0'
+  aerogel-text-secondary: '#5A5E78'
+  # ─ Glassmorphism (AMOLED) ─
+  aerogel-glass: rgba(10, 10, 15, 0.75)
+  aerogel-glass-dark: rgba(0, 0, 0, 0.6)
+  aerogel-glass-blur: blur(24px) saturate(1.4)
+  aerogel-glass-border: 1px solid rgba(255, 255, 255, 0.05)
+  aerogel-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5)
+  # ─ Gradients (AMOLED) ─
+  aerogel-gradient: linear-gradient(135deg, #6CB4EE 0%, #9BD4F5 50%, #A8E6CF 100%)
+  aerogel-gradient-warm: linear-gradient(135deg, #F07B3F 0%, #F9A06C 100%)
+  aerogel-gradient-cool: linear-gradient(135deg, #6CB4EE 0%, #9B8EC4 100%)
+  aerogel-gradient-surface: linear-gradient(145deg, #0D0D14 0%, #000000 100%)
+  aerogel-gradient-subtle: linear-gradient(135deg, rgba(108,180,238,0.04) 0%, rgba(168,230,207,0.04) 100%)
+  # ─ Spacing ─
+  aerogel-space-xs: 4px
+  aerogel-space-sm: 8px
+  aerogel-space-md: 16px
+  aerogel-space-lg: 24px
+  aerogel-space-xl: 32px
+  aerogel-space-2xl: 48px
+  # ─ Radius ─
+  aerogel-radius-xs: 8px
+  aerogel-radius-sm: 12px
+  aerogel-radius-md: 16px
+  aerogel-radius-lg: 24px
+  aerogel-radius-xl: 32px
+  aerogel-radius-full: 50px
+  # ─ Neumorphic shadows (AMOLED — softer, subtler) ─
+  aerogel-convex-xs: '1px 1px 3px #000000, -1px -1px 3px #1A1A22'
+  aerogel-convex-sm: '2px 2px 6px #000000, -2px -2px 6px #1A1A22'
+  aerogel-convex-md: '4px 4px 10px #000000, -4px -4px 10px #1A1A22'
+  aerogel-convex-lg: '6px 6px 16px #000000, -6px -6px 16px #1A1A22'
+  aerogel-convex-xl: '10px 10px 24px #000000, -10px -10px 24px #1A1A22'
+  aerogel-concave-xs: 'inset 1px 1px 3px #000000, inset -1px -1px 3px #1A1A22'
+  aerogel-concave-sm: 'inset 2px 2px 6px #000000, inset -2px -2px 6px #1A1A22'
+  aerogel-concave-md: 'inset 4px 4px 10px #000000, inset -4px -4px 10px #1A1A22'
+  aerogel-concave-lg: 'inset 6px 6px 14px #000000, inset -6px -6px 14px #1A1A22'
+  aerogel-hover: '6px 6px 14px #000000, -6px -6px 14px #1A1A22'
+  aerogel-active: 'inset 3px 3px 6px #000000, inset -3px -3px 6px #1A1A22'
+  aerogel-flat: 3px 3px 6px rgba(0, 0, 0, 0.6), -3px -3px 6px rgba(26, 26, 34, 0.6)
+  # ─ Glow effects (AMOLED — brighter for contrast) ─
+  aerogel-glow: 0 0 24px rgba(108, 180, 238, 0.35)
+  aerogel-glow-lg: 0 0 48px rgba(108, 180, 238, 0.2)
+  aerogel-glow-warning: 0 0 24px rgba(240, 123, 63, 0.35)
+  aerogel-glow-success: 0 0 24px rgba(39, 174, 96, 0.35)
+  aerogel-glow-error: 0 0 24px rgba(231, 76, 60, 0.35)
+  # ─ Transitions ─
+  aerogel-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1)
+  aerogel-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+  aerogel-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1)
+  aerogel-transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)
+  # ─ Mushroom ─
+  mush-rgb-info: 108, 180, 238
+  mush-rgb-success: 39, 174, 96
+  mush-rgb-warning: 240, 123, 63
+  mush-rgb-danger: 231, 76, 60
+  mush-rgb-disabled: 58, 62, 85
+  mush-title-font-weight: '700'
+  mush-title-letter-spacing: 0.02em
+  mush-card-primary-font-weight: '600'
+  mush-card-secondary-font-weight: '400'
+  mush-card-primary-font-size: 15px
+  mush-card-secondary-font-size: 13px
+  mush-card-primary-color: var(--aerogel-text)
+  mush-card-secondary-color: var(--aerogel-text-secondary)
+  mush-control-border-radius: 16px
+  mush-chip-border-radius: 16px
+  mush-icon-border-radius: 16px
+  mush-badge-border-radius: 50%
+  mush-chip-background: var(--aerogel-base)
+  mush-chip-box-shadow: var(--aerogel-convex-sm)
+  mush-chip-border-width: '0'
+  mush-control-height: 44px
+  mush-card-background-color: var(--aerogel-base-alt)
+  mush-card-box-shadow: var(--aerogel-convex-md)
+  mush-slider-background: var(--aerogel-base)
+  mush-slider-box-shadow: var(--aerogel-concave-sm)
+  mush-icon-background-color: var(--aerogel-base)
+  mush-icon-box-shadow: var(--aerogel-concave-xs)
+# ═══════════════════════════════════════════════════════════
+#  Accent Palettes — Dark variants with alternate accent colors
+# ═══════════════════════════════════════════════════════════
+Aerogel Rose:
+  card-mod-theme: Aerogel
+  primary-color: '#E91E90'
+  accent-color: '#E91E90'
+  primary-background-color: '#1A1D2E'
+  secondary-background-color: '#1E2132'
+  card-background-color: '#1A1D2E'
+  primary-text-color: '#E8EAF0'
+  secondary-text-color: '#6A7090'
+  text-primary-color: '#FFFFFF'
+  text-accent-color: '#FFFFFF'
+  disabled-text-color: '#4A5070'
+  rgb-primary-color: 233, 30, 144
+  rgb-accent-color: 233, 30, 144
+  rgb-primary-text-color: 232, 234, 240
+  rgb-secondary-text-color: 106, 112, 144
+  rgb-card-background-color: 26, 29, 46
+  app-header-background-color: '#1A1D2E'
+  app-header-text-color: '#E8EAF0'
+  app-header-selection-bar-color: '#E91E90'
+  app-header-edit-background-color: '#E91E90'
+  sidebar-background-color: '#1E2132'
+  sidebar-text-color: '#E8EAF0'
+  sidebar-icon-color: '#6A7090'
+  sidebar-selected-background-color: '#1A1D2E'
+  sidebar-selected-text-color: '#E91E90'
+  sidebar-selected-icon-color: '#E91E90'
+  ha-card-border-radius: 24px
+  ha-card-border-width: '0'
+  ha-card-box-shadow: '8px 8px 16px #12141F, -8px -8px 16px #222640'
+  ha-card-background: '#1A1D2E'
+  ha-card-header-color: '#E8EAF0'
+  state-active-color: '#E91E90'
+  state-icon-active-color: '#E91E90'
+  state-switch-on-color: '#E91E90'
+  state-binary_sensor-active-color: '#E91E90'
+  state-automation-on-color: '#E91E90'
+  state-script-on-color: '#E91E90'
+  state-fan-on-color: '#E91E90'
+  state-cover-open-color: '#E91E90'
+  switch-checked-track-color: '#E91E90'
+  paper-slider-knob-color: '#E91E90'
+  paper-slider-active-color: '#E91E90'
+  paper-slider-secondary-color: rgba(233, 30, 144, 0.3)
+  paper-slider-pin-color: '#E91E90'
+  ha-label-badge-color: '#E91E90'
+  mdc-theme-primary: '#E91E90'
+  mdc-checkbox-checked-color: '#E91E90'
+  mdc-radio-checked-color: '#E91E90'
+  aerogel-accent: '#E91E90'
+  aerogel-accent-rgb: 233, 30, 144
+  aerogel-base: '#1A1D2E'
+  aerogel-base-alt: '#1E2132'
+  aerogel-shadow-dark: '#12141F'
+  aerogel-shadow-light: '#222640'
+  aerogel-text: '#E8EAF0'
+  aerogel-text-secondary: '#6A7090'
+  aerogel-gradient: linear-gradient(135deg, #E91E90 0%, #F06DAB 50%, #F9A06C 100%)
+  aerogel-gradient-cool: linear-gradient(135deg, #E91E90 0%, #9B8EC4 100%)
+  aerogel-glow: 0 0 20px rgba(233, 30, 144, 0.3)
+  aerogel-glow-lg: 0 0 40px rgba(233, 30, 144, 0.15)
+  mush-rgb-info: 233, 30, 144
+  mush-chip-background: var(--aerogel-base)
+  mush-chip-box-shadow: var(--aerogel-convex-sm)
+Aerogel Lavender:
+  card-mod-theme: Aerogel
+  primary-color: '#9B8EC4'
+  accent-color: '#9B8EC4'
+  primary-background-color: '#1A1D2E'
+  secondary-background-color: '#1E2132'
+  card-background-color: '#1A1D2E'
+  primary-text-color: '#E8EAF0'
+  secondary-text-color: '#6A7090'
+  text-primary-color: '#FFFFFF'
+  text-accent-color: '#FFFFFF'
+  disabled-text-color: '#4A5070'
+  rgb-primary-color: 155, 142, 196
+  rgb-accent-color: 155, 142, 196
+  rgb-primary-text-color: 232, 234, 240
+  rgb-secondary-text-color: 106, 112, 144
+  rgb-card-background-color: 26, 29, 46
+  app-header-background-color: '#1A1D2E'
+  app-header-text-color: '#E8EAF0'
+  app-header-selection-bar-color: '#9B8EC4'
+  app-header-edit-background-color: '#9B8EC4'
+  sidebar-background-color: '#1E2132'
+  sidebar-text-color: '#E8EAF0'
+  sidebar-icon-color: '#6A7090'
+  sidebar-selected-background-color: '#1A1D2E'
+  sidebar-selected-text-color: '#9B8EC4'
+  sidebar-selected-icon-color: '#9B8EC4'
+  ha-card-border-radius: 24px
+  ha-card-border-width: '0'
+  ha-card-box-shadow: '8px 8px 16px #12141F, -8px -8px 16px #222640'
+  ha-card-background: '#1A1D2E'
+  ha-card-header-color: '#E8EAF0'
+  state-active-color: '#9B8EC4'
+  state-icon-active-color: '#9B8EC4'
+  state-switch-on-color: '#9B8EC4'
+  state-binary_sensor-active-color: '#9B8EC4'
+  state-automation-on-color: '#9B8EC4'
+  state-script-on-color: '#9B8EC4'
+  state-fan-on-color: '#9B8EC4'
+  state-cover-open-color: '#9B8EC4'
+  switch-checked-track-color: '#9B8EC4'
+  paper-slider-knob-color: '#9B8EC4'
+  paper-slider-active-color: '#9B8EC4'
+  paper-slider-secondary-color: rgba(155, 142, 196, 0.3)
+  paper-slider-pin-color: '#9B8EC4'
+  ha-label-badge-color: '#9B8EC4'
+  mdc-theme-primary: '#9B8EC4'
+  mdc-checkbox-checked-color: '#9B8EC4'
+  mdc-radio-checked-color: '#9B8EC4'
+  aerogel-accent: '#9B8EC4'
+  aerogel-accent-rgb: 155, 142, 196
+  aerogel-base: '#1A1D2E'
+  aerogel-base-alt: '#1E2132'
+  aerogel-shadow-dark: '#12141F'
+  aerogel-shadow-light: '#222640'
+  aerogel-text: '#E8EAF0'
+  aerogel-text-secondary: '#6A7090'
+  aerogel-gradient: linear-gradient(135deg, #9B8EC4 0%, #B8AED6 50%, #D4C4E9 100%)
+  aerogel-gradient-cool: linear-gradient(135deg, #9B8EC4 0%, #6CB4EE 100%)
+  aerogel-glow: 0 0 20px rgba(155, 142, 196, 0.3)
+  aerogel-glow-lg: 0 0 40px rgba(155, 142, 196, 0.15)
+  mush-rgb-info: 155, 142, 196
+  mush-chip-background: var(--aerogel-base)
+  mush-chip-box-shadow: var(--aerogel-convex-sm)
+Aerogel Mint:
+  card-mod-theme: Aerogel
+  primary-color: '#2ECC71'
+  accent-color: '#2ECC71'
+  primary-background-color: '#1A1D2E'
+  secondary-background-color: '#1E2132'
+  card-background-color: '#1A1D2E'
+  primary-text-color: '#E8EAF0'
+  secondary-text-color: '#6A7090'
+  text-primary-color: '#FFFFFF'
+  text-accent-color: '#FFFFFF'
+  disabled-text-color: '#4A5070'
+  rgb-primary-color: 46, 204, 113
+  rgb-accent-color: 46, 204, 113
+  rgb-primary-text-color: 232, 234, 240
+  rgb-secondary-text-color: 106, 112, 144
+  rgb-card-background-color: 26, 29, 46
+  app-header-background-color: '#1A1D2E'
+  app-header-text-color: '#E8EAF0'
+  app-header-selection-bar-color: '#2ECC71'
+  app-header-edit-background-color: '#2ECC71'
+  sidebar-background-color: '#1E2132'
+  sidebar-text-color: '#E8EAF0'
+  sidebar-icon-color: '#6A7090'
+  sidebar-selected-background-color: '#1A1D2E'
+  sidebar-selected-text-color: '#2ECC71'
+  sidebar-selected-icon-color: '#2ECC71'
+  ha-card-border-radius: 24px
+  ha-card-border-width: '0'
+  ha-card-box-shadow: '8px 8px 16px #12141F, -8px -8px 16px #222640'
+  ha-card-background: '#1A1D2E'
+  ha-card-header-color: '#E8EAF0'
+  state-active-color: '#2ECC71'
+  state-icon-active-color: '#2ECC71'
+  state-switch-on-color: '#2ECC71'
+  state-binary_sensor-active-color: '#2ECC71'
+  state-automation-on-color: '#2ECC71'
+  state-script-on-color: '#2ECC71'
+  state-fan-on-color: '#2ECC71'
+  state-cover-open-color: '#2ECC71'
+  switch-checked-track-color: '#2ECC71'
+  paper-slider-knob-color: '#2ECC71'
+  paper-slider-active-color: '#2ECC71'
+  paper-slider-secondary-color: rgba(46, 204, 113, 0.3)
+  paper-slider-pin-color: '#2ECC71'
+  ha-label-badge-color: '#2ECC71'
+  mdc-theme-primary: '#2ECC71'
+  mdc-checkbox-checked-color: '#2ECC71'
+  mdc-radio-checked-color: '#2ECC71'
+  aerogel-accent: '#2ECC71'
+  aerogel-accent-rgb: 46, 204, 113
+  aerogel-base: '#1A1D2E'
+  aerogel-base-alt: '#1E2132'
+  aerogel-shadow-dark: '#12141F'
+  aerogel-shadow-light: '#222640'
+  aerogel-text: '#E8EAF0'
+  aerogel-text-secondary: '#6A7090'
+  aerogel-gradient: linear-gradient(135deg, #2ECC71 0%, #A8E6CF 50%, #6CB4EE 100%)
+  aerogel-gradient-cool: linear-gradient(135deg, #2ECC71 0%, #1ABC9C 100%)
+  aerogel-glow: 0 0 20px rgba(46, 204, 113, 0.3)
+  aerogel-glow-lg: 0 0 40px rgba(46, 204, 113, 0.15)
+  mush-rgb-info: 46, 204, 113
+  mush-chip-background: var(--aerogel-base)
+  mush-chip-box-shadow: var(--aerogel-convex-sm)
+Aerogel Amber:
+  card-mod-theme: Aerogel
+  primary-color: '#F39C12'
+  accent-color: '#F39C12'
+  primary-background-color: '#1A1D2E'
+  secondary-background-color: '#1E2132'
+  card-background-color: '#1A1D2E'
+  primary-text-color: '#E8EAF0'
+  secondary-text-color: '#6A7090'
+  text-primary-color: '#FFFFFF'
+  text-accent-color: '#FFFFFF'
+  disabled-text-color: '#4A5070'
+  rgb-primary-color: 243, 156, 18
+  rgb-accent-color: 243, 156, 18
+  rgb-primary-text-color: 232, 234, 240
+  rgb-secondary-text-color: 106, 112, 144
+  rgb-card-background-color: 26, 29, 46
+  app-header-background-color: '#1A1D2E'
+  app-header-text-color: '#E8EAF0'
+  app-header-selection-bar-color: '#F39C12'
+  app-header-edit-background-color: '#F39C12'
+  sidebar-background-color: '#1E2132'
+  sidebar-text-color: '#E8EAF0'
+  sidebar-icon-color: '#6A7090'
+  sidebar-selected-background-color: '#1A1D2E'
+  sidebar-selected-text-color: '#F39C12'
+  sidebar-selected-icon-color: '#F39C12'
+  ha-card-border-radius: 24px
+  ha-card-border-width: '0'
+  ha-card-box-shadow: '8px 8px 16px #12141F, -8px -8px 16px #222640'
+  ha-card-background: '#1A1D2E'
+  ha-card-header-color: '#E8EAF0'
+  state-active-color: '#F39C12'
+  state-icon-active-color: '#F39C12'
+  state-switch-on-color: '#F39C12'
+  state-binary_sensor-active-color: '#F39C12'
+  state-automation-on-color: '#F39C12'
+  state-script-on-color: '#F39C12'
+  state-fan-on-color: '#F39C12'
+  state-cover-open-color: '#F39C12'
+  switch-checked-track-color: '#F39C12'
+  paper-slider-knob-color: '#F39C12'
+  paper-slider-active-color: '#F39C12'
+  paper-slider-secondary-color: rgba(243, 156, 18, 0.3)
+  paper-slider-pin-color: '#F39C12'
+  ha-label-badge-color: '#F39C12'
+  mdc-theme-primary: '#F39C12'
+  mdc-checkbox-checked-color: '#F39C12'
+  mdc-radio-checked-color: '#F39C12'
+  aerogel-accent: '#F39C12'
+  aerogel-accent-rgb: 243, 156, 18
+  aerogel-base: '#1A1D2E'
+  aerogel-base-alt: '#1E2132'
+  aerogel-shadow-dark: '#12141F'
+  aerogel-shadow-light: '#222640'
+  aerogel-text: '#E8EAF0'
+  aerogel-text-secondary: '#6A7090'
+  aerogel-gradient: linear-gradient(135deg, #F39C12 0%, #F9D71C 50%, #F07B3F 100%)
+  aerogel-gradient-cool: linear-gradient(135deg, #F39C12 0%, #E67E22 100%)
+  aerogel-glow: 0 0 20px rgba(243, 156, 18, 0.3)
+  aerogel-glow-lg: 0 0 40px rgba(243, 156, 18, 0.15)
+  mush-rgb-info: 243, 156, 18
+  mush-chip-background: var(--aerogel-base)
+  mush-chip-box-shadow: var(--aerogel-convex-sm)
+Aerogel Slate:
+  card-mod-theme: Aerogel
+  primary-color: '#607D8B'
+  accent-color: '#607D8B'
+  primary-background-color: '#1A1D2E'
+  secondary-background-color: '#1E2132'
+  card-background-color: '#1A1D2E'
+  primary-text-color: '#E8EAF0'
+  secondary-text-color: '#6A7090'
+  text-primary-color: '#FFFFFF'
+  text-accent-color: '#FFFFFF'
+  disabled-text-color: '#4A5070'
+  rgb-primary-color: 96, 125, 139
+  rgb-accent-color: 96, 125, 139
+  rgb-primary-text-color: 232, 234, 240
+  rgb-secondary-text-color: 106, 112, 144
+  rgb-card-background-color: 26, 29, 46
+  app-header-background-color: '#1A1D2E'
+  app-header-text-color: '#E8EAF0'
+  app-header-selection-bar-color: '#607D8B'
+  app-header-edit-background-color: '#607D8B'
+  sidebar-background-color: '#1E2132'
+  sidebar-text-color: '#E8EAF0'
+  sidebar-icon-color: '#6A7090'
+  sidebar-selected-background-color: '#1A1D2E'
+  sidebar-selected-text-color: '#607D8B'
+  sidebar-selected-icon-color: '#607D8B'
+  ha-card-border-radius: 24px
+  ha-card-border-width: '0'
+  ha-card-box-shadow: '8px 8px 16px #12141F, -8px -8px 16px #222640'
+  ha-card-background: '#1A1D2E'
+  ha-card-header-color: '#E8EAF0'
+  state-active-color: '#607D8B'
+  state-icon-active-color: '#607D8B'
+  state-switch-on-color: '#607D8B'
+  state-binary_sensor-active-color: '#607D8B'
+  state-automation-on-color: '#607D8B'
+  state-script-on-color: '#607D8B'
+  state-fan-on-color: '#607D8B'
+  state-cover-open-color: '#607D8B'
+  switch-checked-track-color: '#607D8B'
+  paper-slider-knob-color: '#607D8B'
+  paper-slider-active-color: '#607D8B'
+  paper-slider-secondary-color: rgba(96, 125, 139, 0.3)
+  paper-slider-pin-color: '#607D8B'
+  ha-label-badge-color: '#607D8B'
+  mdc-theme-primary: '#607D8B'
+  mdc-checkbox-checked-color: '#607D8B'
+  mdc-radio-checked-color: '#607D8B'
+  aerogel-accent: '#607D8B'
+  aerogel-accent-rgb: 96, 125, 139
+  aerogel-base: '#1A1D2E'
+  aerogel-base-alt: '#1E2132'
+  aerogel-shadow-dark: '#12141F'
+  aerogel-shadow-light: '#222640'
+  aerogel-text: '#E8EAF0'
+  aerogel-text-secondary: '#6A7090'
+  aerogel-gradient: linear-gradient(135deg, #607D8B 0%, #90A4AE 50%, #B0BEC5 100%)
+  aerogel-gradient-cool: linear-gradient(135deg, #607D8B 0%, #455A64 100%)
+  aerogel-glow: 0 0 20px rgba(96, 125, 139, 0.3)
+  aerogel-glow-lg: 0 0 40px rgba(96, 125, 139, 0.15)
+  mush-rgb-info: 96, 125, 139
+  mush-chip-background: var(--aerogel-base)
+  mush-chip-box-shadow: var(--aerogel-convex-sm)
+

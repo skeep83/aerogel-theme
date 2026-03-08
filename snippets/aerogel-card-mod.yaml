@@ -317,3 +317,233 @@
 #     ha-card:active::after {
 #       animation: aerogel-ripple 0.5s ease-out forwards;
 #     }
+
+# ============================================================
+#  v3.0.0 — NEW SNIPPETS
+# ============================================================
+
+# ═══ TILE CARD VARIANTS ═══════════════════════════════════
+
+# ─── Tile: Glass ──────────────────────────────────────────
+# type: tile
+# entity: light.living_room
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-glass) !important;
+#       backdrop-filter: var(--aerogel-glass-blur) !important;
+#       -webkit-backdrop-filter: var(--aerogel-glass-blur) !important;
+#       border: var(--aerogel-glass-border) !important;
+#       box-shadow: var(--aerogel-glass-shadow) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#     }
+
+# ─── Tile: Gradient ───────────────────────────────────────
+# type: tile
+# entity: sensor.temperature
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-gradient) !important;
+#       color: white !important;
+#       border: none !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#     }
+#     ha-card .primary { color: white !important; }
+#     ha-card .secondary { color: rgba(255,255,255,0.8) !important; }
+
+# ─── Tile: Flat ───────────────────────────────────────────
+# type: tile
+# entity: binary_sensor.door
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       box-shadow: none !important;
+#       border: 1px solid var(--divider-color) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#     }
+
+# ─── Tile: Glow ───────────────────────────────────────────
+# type: tile
+# entity: switch.porch_light
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#       border: none !important;
+#       transition: box-shadow 0.4s ease !important;
+#     }
+#     ha-card.active,
+#     ha-card:has([data-state="on"]) {
+#       box-shadow: var(--aerogel-convex-md), var(--aerogel-glow) !important;
+#     }
+
+# ─── Tile: Inset ──────────────────────────────────────────
+# type: tile
+# entity: sensor.humidity
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-concave-md) !important;
+#       border: none !important;
+#     }
+
+# ═══ CUSTOM CARD INTEGRATIONS ═════════════════════════════
+
+# ─── mini-graph-card — Neumorphic ─────────────────────────
+# type: custom:mini-graph-card
+# entities:
+#   - sensor.temperature
+# card_mod:
+#   style: |
+#     ha-card {
+#       background: var(--aerogel-base) !important;
+#       border-radius: var(--aerogel-radius-lg) !important;
+#       box-shadow: var(--aerogel-convex-md) !important;
+#       border: none !important;
+#       font-family: var(--aerogel-font) !important;
+#     }
+#     .graph {
+#       background: var(--aerogel-base-alt) !important;
+#       border-radius: var(--aerogel-radius-md) !important;
+#       box-shadow: var(--aerogel-concave-sm) !important;
+#       padding: 4px !important;
+#     }
+#     .graph .line--fill {
+#       fill: rgba(var(--aerogel-accent-rgb), 0.08) !important;
+#     }
+#     .graph .line--line {
+#       stroke: var(--aerogel-accent) !important;
+#     }
+#     .state__value {
+#       font-weight: 700 !important;
+#       font-size: 1.4em !important;
+#     }
+#     .graph__labels span {
+#       font-size: 0.7em !important;
+#       color: var(--aerogel-text-secondary) !important;
+#     }
+
+# ─── browser_mod Popup — Glassmorphism ────────────────────
+# To apply globally via browser_mod settings:
+# browser_mod:
+#   global_settings:
+#     style: |
+#       :host {
+#         --ha-dialog-border-radius: 28px !important;
+#       }
+#       ha-dialog {
+#         backdrop-filter: blur(24px) saturate(1.4) !important;
+#         -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+#       }
+#       .mdc-dialog__surface {
+#         background: var(--aerogel-glass) !important;
+#         border: var(--aerogel-glass-border) !important;
+#         box-shadow: var(--aerogel-glass-shadow) !important;
+#         border-radius: 28px !important;
+#       }
+#       ha-header-bar {
+#         background: linear-gradient(135deg,
+#           rgba(var(--aerogel-accent-rgb), 0.08) 0%,
+#           transparent 100%) !important;
+#         font-weight: 600 !important;
+#         font-family: var(--aerogel-font) !important;
+#       }
+#       .mdc-dialog__scrim {
+#         background: rgba(0, 0, 0, 0.4) !important;
+#         backdrop-filter: blur(6px) !important;
+#       }
+
+# ─── Custom Header / Kiosk Mode ──────────────────────────
+# Use with custom-header or kiosk-mode for wall-mounted tablets
+# In card-mod theme or via card_mod in view:
+# card_mod:
+#   style:
+#     .: |
+#       app-header {
+#         background: transparent !important;
+#         backdrop-filter: blur(12px) saturate(1.3) !important;
+#         -webkit-backdrop-filter: blur(12px) saturate(1.3) !important;
+#         box-shadow: none !important;
+#       }
+#       ha-tabs {
+#         --paper-tabs-selection-bar-color: var(--aerogel-accent) !important;
+#       }
+#       paper-tab {
+#         border-radius: var(--aerogel-radius-sm) !important;
+#         transition: all 0.25s ease !important;
+#       }
+#       paper-tab:hover {
+#         background: rgba(var(--aerogel-accent-rgb), 0.06) !important;
+#       }
+#       paper-tab[aria-selected="true"] {
+#         box-shadow: var(--aerogel-convex-xs) !important;
+#       }
+#       /* Full kiosk: add below line to hide header */
+#       /* app-header { display: none !important; } */
+
+# ═══ WEATHER ANIMATION SNIPPETS ═══════════════════════════
+
+# ─── Weather Card: Sunny Animation ───────────────────────
+# type: weather-forecast
+# entity: weather.home
+# card_mod:
+#   style: |
+#     ha-card .state .icon {
+#       animation: aerogel-sunny 3s ease-in-out infinite !important;
+#     }
+
+# ─── Weather Card: Rain Animation ────────────────────────
+# card_mod:
+#   style: |
+#     ha-card .state .icon[data-state="rainy"],
+#     ha-card .state .icon[data-state="pouring"] {
+#       animation: aerogel-rain 1.2s ease-in-out infinite !important;
+#     }
+
+# ─── Weather Card: Snow Animation ────────────────────────
+# card_mod:
+#   style: |
+#     ha-card .state .icon[data-state="snowy"] {
+#       animation: aerogel-snow 2.5s ease-in-out infinite !important;
+#     }
+
+# ─── Weather Card: Thunder Animation ─────────────────────
+# card_mod:
+#   style: |
+#     ha-card .state .icon[data-state="lightning"],
+#     ha-card .state .icon[data-state="lightning-rainy"] {
+#       animation: aerogel-thunder 4s ease infinite !important;
+#     }
+
+# ─── Weather Card: Fog Animation ─────────────────────────
+# card_mod:
+#   style: |
+#     ha-card .state .icon[data-state="fog"] {
+#       animation: aerogel-fog 4s ease-in-out infinite !important;
+#     }
+
+# ─── Weather Card: Cloudy Animation ──────────────────────
+# card_mod:
+#   style: |
+#     ha-card .state .icon[data-state="cloudy"],
+#     ha-card .state .icon[data-state="partlycloudy"] {
+#       animation: aerogel-clouds 5s ease-in-out infinite !important;
+#     }
+
+# ═══ MESH GRADIENT BACKGROUND ════════════════════════════
+
+# ─── Animated Mesh Gradient Dashboard ────────────────────
+# To activate the animated mesh gradient background on a view:
+# views:
+#   - title: Home
+#     path: home
+#     card_mod:
+#       class: aerogel-mesh
+#     cards: [...]

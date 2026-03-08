@@ -6,7 +6,7 @@
 [![HACS](https://img.shields.io/badge/HACS-Custom-orange?style=flat-square)](https://hacs.xyz/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-> A soft-UI neumorphic theme with **400+ CSS variables**, built-in **hover/press/glow animations**, glassmorphism effects, gradient accents, and 24px rounded cards. Install it — and your entire Home Assistant transforms.
+> A soft-UI neumorphic theme with **550+ CSS variables**, **9 theme variants**, built-in **hover/press/glow/weather animations**, glassmorphism, gradient accents, AMOLED mode, 5 accent palettes, and 24px rounded cards. Install it — and your entire Home Assistant transforms.
 
 <p align="center">
   <img src="images/preview.png" alt="Aerogel Theme Preview" width="100%">
@@ -16,12 +16,20 @@
 
 ## ✨ Features
 
-- **400+ CSS variables** — every HA element covered (light & dark modes)
-- **Built-in animations** — hover lift, press effect, pulse glow, alert, success, shimmer, breathe, float (via card-mod)
+- **550+ CSS variables** — every HA element covered (light, dark & AMOLED modes)
+- **9 theme variants** — Auto, Light, Dark, AMOLED, Rose, Lavender, Mint, Amber, Slate
+- **12+ animations** — hover lift, press, pulse, alert, success, shimmer, breathe, float + 6 weather (sun/rain/snow/thunder/fog/clouds)
 - **Glassmorphism** — frosted-glass cards with blur, border, and shadow variables
 - **Gradient accents** — sky→mint, warm, cool, and surface gradients
+- **AMOLED Dark mode** — true `#000000` black for OLED wall-mounted panels
+- **5 accent palettes** — Rose, Lavender, Mint, Amber, Slate — choose your vibe
 - **Neumorphic sidebar** — convex/concave items with accent glow on selection
+- **Neumorphic toggle switches** — concave track, convex thumb, glow on active
 - **Premium dialogs** — frosted glass backdrop with gradient header bars
+- **Animated mesh-gradient** — slow-moving gradient dashboard background
+- **5 tile card variants** — Glass, Gradient, Flat, Glow, Inset
+- **Custom card styles** — mini-graph-card, browser_mod popups, kiosk header
+- **CSS weather animations** — sunny pulse, rain drops, snow fall, thunder flash, fog drift, cloud float
 - **24px card radius** — ultra-modern rounded aesthetic
 - **Sky-blue accent** `#6CB4EE` — fresh & clean
 - **Nunito font** — friendly rounded typography from Google Fonts
@@ -31,7 +39,7 @@
 - **Badge & Chip styling** — neumorphic chips with hover lift
 - **Spacing system** — modular `--aerogel-space-*` (xs → 2xl) tokens
 - **Mushroom cards support** — 17+ variables for perfect Mushroom integration
-- **Custom `--aerogel-*` variables** — for advanced card-mod styling
+- **35+ card-mod snippets** — ready-to-paste examples
 
 ---
 

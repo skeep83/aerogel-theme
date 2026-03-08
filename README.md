@@ -6,7 +6,7 @@
 [![HACS](https://img.shields.io/badge/HACS-Custom-orange?style=flat-square)](https://hacs.xyz/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-> A soft-UI neumorphic theme with **550+ CSS variables**, **9 theme variants**, built-in **hover/press/glow/weather animations**, glassmorphism, gradient accents, AMOLED mode, 5 accent palettes, and 24px rounded cards. Install it — and your entire Home Assistant transforms.
+> A soft-UI neumorphic theme with **650+ CSS variables**, **15 theme variants**, adaptive time-of-day colors, AMOLED & Neon modes, weather animations, glassmorphism, and accessibility features. Install it — and your entire Home Assistant transforms.
 
 <p align="center">
   <img src="images/preview.png" alt="Aerogel Theme Preview" width="100%">
@@ -16,30 +16,31 @@
 
 ## ✨ Features
 
-- **550+ CSS variables** — every HA element covered (light, dark & AMOLED modes)
-- **9 theme variants** — Auto, Light, Dark, AMOLED, Rose, Lavender, Mint, Amber, Slate
-- **12+ animations** — hover lift, press, pulse, alert, success, shimmer, breathe, float + 6 weather (sun/rain/snow/thunder/fog/clouds)
-- **Glassmorphism** — frosted-glass cards with blur, border, and shadow variables
-- **Gradient accents** — sky→mint, warm, cool, and surface gradients
-- **AMOLED Dark mode** — true `#000000` black for OLED wall-mounted panels
-- **5 accent palettes** — Rose, Lavender, Mint, Amber, Slate — choose your vibe
-- **Neumorphic sidebar** — convex/concave items with accent glow on selection
+- **650+ CSS variables** — every HA element covered (light, dark, AMOLED & neon modes)
+- **15 theme variants** — Auto, Light, Dark, AMOLED, Rose, Lavender, Mint, Amber, Slate, Neon, High Contrast, Morning, Day, Evening, Night
+- **Adaptive Color Mode** — 4 time-of-day themes (Morning/Day/Evening/Night) with HA automation snippet
+- **Neon Glow Mode** — cyberpunk variant with `#00F5D4` accent and neon border glow
+- **High Contrast Mode** — accessibility variant with `#FFD700` accent on pure black
+- **15+ animations** — hover, press, pulse, alert, success, shimmer, breathe, float, dialog-open + 6 weather
+- **Glassmorphism & Frosted Glass** — opt-in glass cards with backdrop blur
+- **Animated entity states** — icon glow for on, golden glow for lights, greyed-out for unavailable
+- **Glass header bar** — transparent blurred header with pill-shaped tab buttons
+- **Premium dialog popups** — scale-in animation, glass surface, rounded sliders
+- **Sidebar animations** — hover bounce + concave selected state
+- **AMOLED Dark mode** — true `#000000` black for OLED panels
+- **5 accent palettes** — Rose, Lavender, Mint, Amber, Slate
 - **Neumorphic toggle switches** — concave track, convex thumb, glow on active
-- **Premium dialogs** — frosted glass backdrop with gradient header bars
 - **Animated mesh-gradient** — slow-moving gradient dashboard background
 - **5 tile card variants** — Glass, Gradient, Flat, Glow, Inset
-- **Custom card styles** — mini-graph-card, browser_mod popups, kiosk header
-- **CSS weather animations** — sunny pulse, rain drops, snow fall, thunder flash, fog drift, cloud float
-- **24px card radius** — ultra-modern rounded aesthetic
-- **Sky-blue accent** `#6CB4EE` — fresh & clean
-- **Nunito font** — friendly rounded typography from Google Fonts
-- **Full card-mod integration** — animations auto-apply via `card-mod-card-yaml`
-- **Deep coverage** — states, toggles, sliders, dialogs, inputs, chips, energy, code editor
-- **Styled scrollbars** — slim, rounded, accent-highlighted on hover
-- **Badge & Chip styling** — neumorphic chips with hover lift
-- **Spacing system** — modular `--aerogel-space-*` (xs → 2xl) tokens
-- **Mushroom cards support** — 17+ variables for perfect Mushroom integration
-- **35+ card-mod snippets** — ready-to-paste examples
+- **Custom card styles** — mini-graph-card, browser_mod popups, kiosk header, energy dashboard, map card
+- **CSS weather animations** — sunny, rain, snow, thunder, fog, clouds
+- **Loading skeleton shimmer** — YouTube-style loading placeholder
+- **Focus ring styling** — accessible accent-colored keyboard focus
+- **Print-friendly mode** — `@media print` styles for clean output
+- **Reduced motion** — `@media (prefers-reduced-motion)` accessibility
+- **Nunito font** — friendly rounded typography via Google Fonts
+- **Mushroom cards** — 17+ integration variables
+- **50+ card-mod snippets** — ready-to-paste examples
 
 ---
 

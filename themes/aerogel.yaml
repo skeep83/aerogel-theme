@@ -1,352 +1,236 @@
 Aerogel Pearl: &aerogel_pearl
-  card-mod-theme: Aerogel NeoSurface Pro
+  card-mod-theme: Aerogel Altal Neumorphism
   card-mod-root-yaml: &aerogel_root |
     .: |
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-      :host {
-        --aerogel-font: 'Inter', 'SF Pro Display', 'Segoe UI Variable', system-ui, sans-serif;
-      }
-      html, body {
-        font-family: var(--aerogel-font) !important;
-        background: var(--primary-background-color) !important;
-        color: var(--primary-text-color) !important;
-      }
-      body::before {
-        content: '';
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        background: var(--aerogel-ambient-overlay, transparent);
-        opacity: 1;
-        z-index: 0;
-      }
-      home-assistant,
-      home-assistant-main,
-      app-drawer-layout,
-      partial-panel-resolver,
-      ha-panel-lovelace,
-      ha-app-layout,
-      hui-root,
-      hui-view,
-      hui-panel-view {
-        background: transparent !important;
+      @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Rubik:wght@300;400;500;600;700&display=swap');
+      :host { --aerogel-font: 'Nunito', 'Rubik', 'Segoe UI', Roboto, sans-serif; }
+      html, body, home-assistant, home-assistant-main, app-drawer-layout, partial-panel-resolver,
+      ha-panel-lovelace, ha-app-layout, hui-root, hui-view, hui-panel-view {
+        background: var(--aerogel-base) !important;
+        color: var(--aerogel-text) !important;
         font-family: var(--aerogel-font) !important;
       }
-      ha-sidebar {
-        background: var(--aerogel-sidebar-bg, rgba(248,250,252,0.92)) !important;
-        border-right: 1px solid var(--aerogel-border, rgba(15,23,42,0.08)) !important;
-        backdrop-filter: blur(18px) !important;
-        -webkit-backdrop-filter: blur(18px) !important;
-        box-shadow: inset -1px 0 0 rgba(255,255,255,0.35) !important;
+      body::before { content: none !important; }
+      ha-sidebar, app-header, app-toolbar, .toolbar {
+        background: var(--aerogel-base) !important;
+        color: var(--aerogel-text) !important;
+        border: 0 !important;
+        box-shadow: var(--aerogel-convex-sm) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
       }
-      ha-sidebar .menu .title,
-      ha-sidebar .menu .subtitle,
-      paper-item,
-      mwc-list-item {
-        font-family: var(--aerogel-font) !important;
+      ha-sidebar .menu a, ha-sidebar .menu ha-icon-button, paper-icon-item, paper-item, paper-tab {
+        border-radius: 16px !important;
+        color: var(--aerogel-text) !important;
       }
-      ha-sidebar .menu a,
-      ha-sidebar .menu ha-icon-button {
-        border-radius: var(--aerogel-radius-button, 18px) !important;
-        transition: transform var(--aerogel-transition-fast, 160ms ease),
-                    background var(--aerogel-transition-fast, 160ms ease),
-                    box-shadow var(--aerogel-transition-fast, 160ms ease) !important;
+      ha-sidebar .menu a:hover, paper-icon-item:hover, paper-item:hover, paper-tab:hover {
+        background: var(--aerogel-base) !important;
+        box-shadow: var(--aerogel-convex-sm) !important;
       }
-      ha-sidebar .menu a:hover {
-        background: var(--aerogel-surface-raised, #FFFFFF) !important;
-        box-shadow: var(--aerogel-shadow-soft, 6px 6px 16px rgba(148,163,184,0.28), -5px -5px 14px rgba(255,255,255,0.95)) !important;
+      ha-sidebar .menu a[data-selected], paper-icon-item[aria-selected="true"], paper-item[aria-selected="true"], paper-tab[aria-selected="true"] {
+        background: var(--aerogel-base) !important;
+        color: var(--aerogel-accent) !important;
+        box-shadow: var(--aerogel-active) !important;
       }
-      ha-sidebar .menu a[data-selected] {
-        background: var(--aerogel-surface-raised, #FFFFFF) !important;
-        color: var(--aerogel-accent, #38BDF8) !important;
-        box-shadow: var(--aerogel-shadow-pressed, inset 6px 6px 14px rgba(148,163,184,0.28), inset -5px -5px 12px rgba(255,255,255,0.95)) !important;
-      }
-      .toolbar,
-      app-header,
-      app-toolbar {
-        background: var(--aerogel-header-bg, rgba(238,242,247,0.88)) !important;
-        border-bottom: 1px solid var(--aerogel-border, rgba(15,23,42,0.08)) !important;
-        backdrop-filter: blur(16px) !important;
-        -webkit-backdrop-filter: blur(16px) !important;
-        box-shadow: 0 10px 24px rgba(15,23,42,0.08) !important;
-      }
-      ha-tabs {
-        --paper-tabs-selection-bar-color: var(--aerogel-primary, #2563EB) !important;
-      }
-      paper-tab {
-        border-radius: var(--aerogel-radius-button, 18px) !important;
-      }
-      paper-tab:hover {
-        background: rgba(var(--aerogel-primary-rgb, 37,99,235), 0.08) !important;
-      }
-      paper-tab[aria-selected="true"] {
-        background: var(--aerogel-surface-raised, #FFFFFF) !important;
-        box-shadow: var(--aerogel-shadow-soft, 6px 6px 16px rgba(148,163,184,0.28), -5px -5px 14px rgba(255,255,255,0.95)) !important;
-      }
+      ha-tabs { --paper-tabs-selection-bar-color: var(--aerogel-accent) !important; }
       .mdc-dialog__scrim {
-        background: rgba(3,7,18,0.58) !important;
-        backdrop-filter: blur(8px) !important;
-        -webkit-backdrop-filter: blur(8px) !important;
+        background: var(--aerogel-dialog-scrim, rgba(30,35,45,0.55)) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
       }
-      *:focus-visible {
-        outline: 2px solid var(--aerogel-accent, #38BDF8) !important;
-        outline-offset: 2px !important;
-        border-radius: var(--aerogel-radius-button, 18px) !important;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-          scroll-behavior: auto !important;
-        }
-      }
+      *:focus-visible { outline: 2px solid var(--aerogel-accent) !important; outline-offset: 2px !important; border-radius: 14px !important; }
   card-mod-card-yaml: &aerogel_card |
     .: |
-      ha-card,
-      mushroom-card,
-      hui-card,
-      hui-tile-card {
-        background: var(--aerogel-surface, #F8FAFC) !important;
-        color: var(--aerogel-text-primary, #0F172A) !important;
-        border: 1px solid var(--aerogel-border, rgba(15,23,42,0.08)) !important;
-        border-radius: var(--aerogel-radius-card, 28px) !important;
-        box-shadow: var(--aerogel-shadow-raised, 10px 10px 24px rgba(148,163,184,0.28), -8px -8px 20px rgba(255,255,255,0.95)) !important;
+      ha-card, mushroom-card, hui-card, hui-tile-card {
+        background: var(--aerogel-base) !important;
+        color: var(--aerogel-text) !important;
+        border: 0 !important;
+        border-radius: var(--aerogel-radius-card, 24px) !important;
+        box-shadow: var(--aerogel-convex-lg) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         font-family: var(--aerogel-font) !important;
-        transition: transform var(--aerogel-transition-normal, 240ms ease),
-                    box-shadow var(--aerogel-transition-normal, 240ms ease),
-                    border-color var(--aerogel-transition-fast, 160ms ease) !important;
+        overflow: hidden;
       }
-      ha-card:hover,
-      mushroom-card:hover,
-      hui-card:hover,
-      hui-tile-card:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: var(--aerogel-shadow-hover, 14px 14px 32px rgba(148,163,184,0.32), -10px -10px 24px rgba(255,255,255,0.98)) !important;
-      }
-      ha-card:active,
-      mushroom-card:active,
-      hui-card:active,
-      hui-tile-card:active {
-        transform: translateY(1px) !important;
-        box-shadow: var(--aerogel-shadow-pressed, inset 6px 6px 14px rgba(148,163,184,0.28), inset -5px -5px 12px rgba(255,255,255,0.95)) !important;
-      }
-      ha-switch {
-        --switch-checked-track-color: rgba(var(--aerogel-accent-rgb, 56,189,248), 0.28) !important;
-        --switch-checked-button-color: var(--aerogel-accent, #38BDF8) !important;
-      }
-      ha-slider,
-      ha-bar-slider {
-        --slider-color: var(--aerogel-primary, #2563EB) !important;
-        --slider-secondary-color: rgba(var(--aerogel-primary-rgb, 37,99,235), 0.2) !important;
-      }
-      .weather-card,
-      ha-card.weather-card {
-        background: radial-gradient(circle at 20% 10%, rgba(var(--aerogel-primary-rgb, 37,99,235), 0.14), transparent 34%), var(--aerogel-surface, #F8FAFC) !important;
-        box-shadow: var(--aerogel-shadow-raised, 10px 10px 24px rgba(148,163,184,0.28), -8px -8px 20px rgba(255,255,255,0.95)) !important;
-      }
-      ha-state-label-badge,
-      ha-chip,
-      .chip {
-        background: var(--aerogel-badge-bg, rgba(248,250,252,0.86)) !important;
-        border: 1px solid var(--aerogel-border, rgba(15,23,42,0.08)) !important;
-        border-radius: 999px !important;
-        box-shadow: var(--aerogel-shadow-soft, 6px 6px 16px rgba(148,163,184,0.28), -5px -5px 14px rgba(255,255,255,0.95)) !important;
-        backdrop-filter: blur(12px) !important;
-        -webkit-backdrop-filter: blur(12px) !important;
-      }
-  card-mod-more-info-yaml: &aerogel_more_info |
-    .: |
-      ha-dialog,
-      ha-more-info-dialog,
-      ha-dialog > div,
-      .mdc-dialog__surface {
-        background: var(--aerogel-surface-raised, #FFFFFF) !important;
-        color: var(--aerogel-text-primary, #0F172A) !important;
-        border-radius: var(--aerogel-radius-dialog, 30px) !important;
-        border: 1px solid var(--aerogel-border, rgba(15,23,42,0.08)) !important;
-        box-shadow: 0 32px 90px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06) !important;
+      ha-card:hover, mushroom-card:hover, hui-card:hover, hui-tile-card:hover { box-shadow: var(--aerogel-convex-lg) !important; }
+      ha-card:active, mushroom-card:active, hui-card:active, hui-tile-card:active { box-shadow: var(--aerogel-active) !important; transform: translateY(1px) !important; }
+      .secondary, .secondary-text, .state, .subtext, .attribute, .metadata { color: var(--aerogel-text-secondary) !important; }
+      button, ha-icon-button, mwc-button, ha-chip, mushroom-chip, .chip, .badge {
+        background: var(--aerogel-base) !important;
+        color: var(--aerogel-text) !important;
+        border: 0 !important;
+        border-radius: var(--aerogel-radius-button, 16px) !important;
+        box-shadow: var(--aerogel-flat) !important;
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
       }
+      button:active, ha-icon-button:active, mwc-button:active, ha-chip:active, mushroom-chip:active, .chip:active, .badge:active { box-shadow: var(--aerogel-active) !important; }
+      ha-slider, ha-bar-slider { --slider-color: var(--aerogel-accent) !important; --slider-secondary-color: var(--aerogel-base-alt) !important; }
+      ha-switch { --switch-checked-track-color: var(--aerogel-accent) !important; --switch-checked-button-color: var(--aerogel-accent) !important; }
+      ha-state-label-badge { background: var(--aerogel-base) !important; color: var(--aerogel-text) !important; border: 0 !important; box-shadow: var(--aerogel-convex-sm) !important; }
+      ha-map, ha-chart-base, ha-graph, statistics-chart { background: var(--aerogel-base) !important; border-radius: 24px !important; box-shadow: var(--aerogel-concave-lg) !important; }
+  card-mod-more-info-yaml: &aerogel_more_info |
+    .: |
+      ha-dialog, ha-more-info-dialog, ha-dialog > div, .mdc-dialog__surface {
+        background: var(--aerogel-base) !important;
+        color: var(--aerogel-text) !important;
+        border-radius: var(--aerogel-radius-dialog, 28px) !important;
+        border: 0 !important;
+        box-shadow: var(--aerogel-convex-lg) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        font-family: var(--aerogel-font) !important;
+      }
+      .mdc-dialog__surface ha-card, ha-more-info-dialog ha-card { background: var(--aerogel-base) !important; border: 0 !important; box-shadow: var(--aerogel-convex-sm) !important; }
   card-mod-view-yaml: &aerogel_view |
     .: |
-      hui-view,
-      hui-panel-view,
-      .view {
-        background: var(--aerogel-view-background, var(--primary-background-color)) !important;
-        background-attachment: fixed !important;
-      }
-      #view {
-        position: relative;
-      }
+      hui-view, hui-panel-view, .view, #view { background: var(--aerogel-base) !important; background-image: none !important; }
   primary-font-family: var(--aerogel-font)
   paper-font-common-base_-_font-family: var(--aerogel-font)
   paper-font-body1_-_font-family: var(--aerogel-font)
   paper-font-headline_-_font-family: var(--aerogel-font)
-  primary-background-color: "#EEF2F7"
-  secondary-background-color: "#F8FAFC"
-  lovelace-background: "#EEF2F7"
-  card-background-color: "#F8FAFC"
-  ha-card-background: "#F8FAFC"
-  primary-text-color: "#000000"
-  secondary-text-color: "#000000"
-  disabled-text-color: "#64748B"
-  divider-color: "rgba(15,23,42,0.08)"
-  primary-color: "#2563EB"
-  accent-color: "#38BDF8"
-  rgb-primary-color: "37, 99, 235"
-  rgb-accent-color: "56, 189, 248"
-  state-icon-color: "#64748B"
-  state-icon-active-color: "#2563EB"
-  app-header-background-color: "rgba(238,242,247,0.88)"
-  sidebar-background-color: "rgba(248,250,252,0.92)"
-  ha-card-border-radius: "28px"
-  input-fill-color: "#FFFFFF"
-  input-idle-line-color: "rgba(15,23,42,0.10)"
-  input-hover-line-color: "rgba(37,99,235,0.55)"
-  mdc-theme-primary: "#2563EB"
-  mdc-theme-secondary: "#38BDF8"
-  mdc-theme-surface: "#F8FAFC"
-  mdc-dialog-scrim-color: "rgba(3,7,18,0.58)"
-  aerogel-font: "'Inter', 'SF Pro Display', 'Segoe UI Variable', system-ui, sans-serif"
-  aerogel-bg: "#EEF2F7"
-  aerogel-base: "#EEF2F7"
-  aerogel-surface: "#F8FAFC"
-  aerogel-surface-raised: "#FFFFFF"
-  aerogel-surface-pressed: "#E2E8F0"
-  aerogel-primary: "#2563EB"
-  aerogel-primary-rgb: "37, 99, 235"
-  aerogel-secondary: "#0EA5E9"
-  aerogel-accent: "#38BDF8"
-  aerogel-accent-rgb: "56, 189, 248"
-  aerogel-text-primary: "#000000"
-  aerogel-text-secondary: "#000000"
-  aerogel-text-muted: "#64748B"
-  aerogel-border: "rgba(15,23,42,0.08)"
-  aerogel-sidebar-bg: "rgba(248,250,252,0.92)"
-  aerogel-header-bg: "rgba(238,242,247,0.88)"
-  aerogel-badge-bg: "rgba(248,250,252,0.86)"
-  aerogel-radius-card: "28px"
-  aerogel-radius-button: "18px"
-  aerogel-radius-dialog: "30px"
+  primary-background-color: "#e3e6ec"
+  secondary-background-color: "#d1d5db"
+  lovelace-background: "#e3e6ec"
+  card-background-color: "#e3e6ec"
+  ha-card-background: "#e3e6ec"
+  primary-text-color: "#3b3f5c"
+  secondary-text-color: "#8b8fa3"
+  disabled-text-color: "#8b8fa3"
+  divider-color: "rgba(139,143,163,0.15)"
+  primary-color: "#6CB4EE"
+  accent-color: "#f07b3f"
+  rgb-primary-color: "108, 180, 238"
+  rgb-accent-color: "240, 123, 63"
+  state-icon-color: "#8b8fa3"
+  state-icon-active-color: "#6CB4EE"
+  app-header-background-color: "#e3e6ec"
+  sidebar-background-color: "#e3e6ec"
+  ha-card-border-radius: "24px"
+  ha-card-border-width: "0px"
+  ha-card-box-shadow: var(--aerogel-convex-lg)
+  input-fill-color: "#e3e6ec"
+  input-idle-line-color: "rgba(139,143,163,0.22)"
+  input-hover-line-color: "#6CB4EE"
+  mdc-theme-primary: "#6CB4EE"
+  mdc-theme-secondary: "#f07b3f"
+  mdc-theme-surface: "#e3e6ec"
+  mdc-dialog-scrim-color: "rgba(30,35,45,0.55)"
+  aerogel-font: "'Nunito', 'Rubik', 'Segoe UI', Roboto, sans-serif"
+  aerogel-base: "#e3e6ec"
+  aerogel-base-alt: "#d1d5db"
+  aerogel-surface: "#e3e6ec"
+  aerogel-surface-raised: "#e3e6ec"
+  aerogel-surface-pressed: "#d1d5db"
+  aerogel-text: "#3b3f5c"
+  aerogel-text-secondary: "#8b8fa3"
+  aerogel-text-primary: "#3b3f5c"
+  aerogel-text-muted: "#8b8fa3"
+  aerogel-accent: "#6CB4EE"
+  aerogel-accent-rgb: "108, 180, 238"
+  aerogel-warning: "#f07b3f"
+  aerogel-border: "transparent"
+  aerogel-radius-card: "24px"
+  aerogel-radius-button: "16px"
+  aerogel-radius-dialog: "28px"
   aerogel-radius-sm: "14px"
   aerogel-radius-md: "18px"
-  aerogel-radius-lg: "28px"
-  aerogel-radius-xl: "30px"
-  aerogel-shadow-dark: "rgba(148,163,184,0.34)"
-  aerogel-shadow-light: "rgba(255,255,255,0.98)"
-  aerogel-shadow-raised: "12px 12px 28px rgba(148,163,184,0.34), -10px -10px 24px rgba(255,255,255,0.98)"
-  aerogel-shadow-soft: "7px 7px 18px rgba(148,163,184,0.32), -6px -6px 16px rgba(255,255,255,0.98)"
-  aerogel-shadow-pressed: "inset 7px 7px 16px rgba(148,163,184,0.32), inset -6px -6px 14px rgba(255,255,255,0.96)"
-  aerogel-shadow-hover: "18px 18px 36px rgba(148,163,184,0.38), -12px -12px 28px rgba(255,255,255,1)"
-  aerogel-state-on: "#3B82F6"
-  aerogel-state-active: "#38BDF8"
-  aerogel-state-heating: "#F59E0B"
-  aerogel-state-cooling: "#06B6D4"
-  aerogel-state-eco: "#22C55E"
-  aerogel-state-warning: "#F97316"
-  aerogel-state-error: "#EF4444"
-  aerogel-state-unavailable: "#64748B"
-  aerogel-transition-fast: "160ms ease"
-  aerogel-transition-normal: "240ms ease"
-  aerogel-transition-slow: "400ms ease"
-  aerogel-ambient-overlay: "radial-gradient(circle at 16% 10%, rgba(37,99,235,0.08), transparent 28%), radial-gradient(circle at 84% 8%, rgba(14,165,233,0.08), transparent 26%)"
-  aerogel-view-background: "radial-gradient(circle at 16% 10%, rgba(37,99,235,0.08), transparent 28%), radial-gradient(circle at 84% 8%, rgba(14,165,233,0.08), transparent 26%), #EEF2F7"
+  aerogel-radius-lg: "24px"
+  aerogel-radius-xl: "28px"
+  aerogel-convex-lg: "6px 6px 14px rgba(166,180,200,0.7), -6px -6px 14px rgba(255,255,255,0.8)"
+  aerogel-convex-sm: "3px 3px 8px rgba(166,180,200,0.7), -3px -3px 8px rgba(255,255,255,0.8)"
+  aerogel-concave-lg: "inset 3px 3px 7px rgba(166,180,200,0.7), inset -3px -3px 7px rgba(255,255,255,0.8)"
+  aerogel-concave-sm: "inset 2px 2px 4px rgba(166,180,200,0.7), inset -2px -2px 4px rgba(255,255,255,0.8)"
+  aerogel-flat: "4px 4px 10px rgba(166,180,200,0.7), -4px -4px 10px rgba(255,255,255,0.8)"
+  aerogel-active: "inset 3px 3px 7px rgba(166,180,200,0.7), inset -3px -3px 7px rgba(255,255,255,0.8)"
+  aerogel-shadow-raised: var(--aerogel-convex-lg)
+  aerogel-shadow-soft: var(--aerogel-convex-sm)
+  aerogel-shadow-pressed: var(--aerogel-active)
+  aerogel-shadow-hover: var(--aerogel-convex-lg)
+  aerogel-state-on: "#6CB4EE"
+  aerogel-state-active: "#6CB4EE"
+  aerogel-state-heating: "#f07b3f"
+  aerogel-state-cooling: "#6CB4EE"
+  aerogel-state-eco: "#05a677"
+  aerogel-state-warning: "#f07b3f"
+  aerogel-state-error: "#e74c3c"
+  aerogel-state-unavailable: "#8b8fa3"
+  aerogel-dialog-scrim: "rgba(30,35,45,0.55)"
+  aerogel-view-background: "#e3e6ec"
 
 Aerogel Graphite: &aerogel_graphite
   <<: *aerogel_pearl
-  primary-background-color: "#2F3237"
-  secondary-background-color: "#35383E"
-  lovelace-background: "#2F3237"
-  card-background-color: "#35383E"
-  ha-card-background: "#35383E"
-  primary-text-color: "#FFFFFF"
-  secondary-text-color: "#FFFFFF"
-  disabled-text-color: "#94A3B8"
-  divider-color: "rgba(255,255,255,0.08)"
-  primary-color: "#4EA2FF"
-  accent-color: "#63C7FF"
-  rgb-primary-color: "78, 162, 255"
-  rgb-accent-color: "99, 199, 255"
-  state-icon-color: "#94A3B8"
-  state-icon-active-color: "#4EA2FF"
-  app-header-background-color: "rgba(47,50,55,0.88)"
-  sidebar-background-color: "rgba(53,56,62,0.92)"
-  input-fill-color: "#3A3D43"
-  input-idle-line-color: "rgba(255,255,255,0.12)"
-  input-hover-line-color: "rgba(99,199,255,0.48)"
-  mdc-theme-primary: "#4EA2FF"
-  mdc-theme-secondary: "#63C7FF"
-  mdc-theme-surface: "#35383E"
-  aerogel-bg: "#2F3237"
-  aerogel-base: "#2F3237"
-  aerogel-surface: "#35383E"
-  aerogel-surface-raised: "#3A3D43"
-  aerogel-surface-pressed: "#2A2D32"
-  aerogel-primary: "#4EA2FF"
-  aerogel-primary-rgb: "78, 162, 255"
-  aerogel-secondary: "#63C7FF"
-  aerogel-accent: "#63C7FF"
-  aerogel-accent-rgb: "99, 199, 255"
-  aerogel-text-primary: "#FFFFFF"
-  aerogel-text-secondary: "#FFFFFF"
-  aerogel-text-muted: "#94A3B8"
-  aerogel-border: "rgba(255,255,255,0.08)"
-  aerogel-sidebar-bg: "rgba(53,56,62,0.92)"
-  aerogel-header-bg: "rgba(47,50,55,0.88)"
-  aerogel-badge-bg: "rgba(58,61,67,0.82)"
-  aerogel-shadow-dark: "rgba(0,0,0,0.62)"
-  aerogel-shadow-light: "rgba(255,255,255,0.06)"
-  aerogel-shadow-raised: "12px 12px 30px rgba(0,0,0,0.62), -9px -9px 22px rgba(255,255,255,0.06)"
-  aerogel-shadow-soft: "7px 7px 18px rgba(0,0,0,0.54), -6px -6px 16px rgba(255,255,255,0.05)"
-  aerogel-shadow-pressed: "inset 7px 7px 16px rgba(0,0,0,0.60), inset -6px -6px 14px rgba(255,255,255,0.05)"
-  aerogel-shadow-hover: "18px 18px 38px rgba(0,0,0,0.72), -12px -12px 28px rgba(255,255,255,0.07)"
-  aerogel-ambient-overlay: "radial-gradient(circle at 18% 14%, rgba(78,162,255,0.10), transparent 28%), radial-gradient(circle at 82% 12%, rgba(99,199,255,0.08), transparent 24%)"
-  aerogel-view-background: "radial-gradient(circle at 18% 14%, rgba(78,162,255,0.10), transparent 28%), radial-gradient(circle at 82% 12%, rgba(99,199,255,0.08), transparent 24%), #2F3237"
+  primary-background-color: "#202630"
+  secondary-background-color: "#171C24"
+  lovelace-background: "#202630"
+  card-background-color: "#202630"
+  ha-card-background: "#202630"
+  primary-text-color: "#E8ECF3"
+  secondary-text-color: "#9AA5B8"
+  disabled-text-color: "#9AA5B8"
+  primary-color: "#6CB4EE"
+  accent-color: "#ff6b57"
+  rgb-primary-color: "108, 180, 238"
+  rgb-accent-color: "255, 107, 87"
+  app-header-background-color: "#202630"
+  sidebar-background-color: "#202630"
+  mdc-theme-primary: "#6CB4EE"
+  mdc-theme-secondary: "#ff6b57"
+  mdc-theme-surface: "#202630"
+  aerogel-base: "#202630"
+  aerogel-base-alt: "#171C24"
+  aerogel-surface: "#202630"
+  aerogel-surface-raised: "#202630"
+  aerogel-surface-pressed: "#171C24"
+  aerogel-text: "#E8ECF3"
+  aerogel-text-secondary: "#9AA5B8"
+  aerogel-text-primary: "#E8ECF3"
+  aerogel-accent: "#6CB4EE"
+  aerogel-accent-rgb: "108, 180, 238"
+  aerogel-warning: "#ff6b57"
+  aerogel-dialog-scrim: "rgba(0,0,0,0.58)"
+  aerogel-convex-lg: "8px 8px 18px rgba(0,0,0,0.46), -8px -8px 18px rgba(255,255,255,0.045)"
+  aerogel-convex-sm: "4px 4px 10px rgba(0,0,0,0.42), -4px -4px 10px rgba(255,255,255,0.04)"
+  aerogel-concave-lg: "inset 4px 4px 10px rgba(0,0,0,0.48), inset -4px -4px 10px rgba(255,255,255,0.04)"
+  aerogel-concave-sm: "inset 2px 2px 5px rgba(0,0,0,0.46), inset -2px -2px 5px rgba(255,255,255,0.04)"
+  aerogel-flat: "5px 5px 12px rgba(0,0,0,0.42), -5px -5px 12px rgba(255,255,255,0.04)"
+  aerogel-active: "inset 4px 4px 10px rgba(0,0,0,0.48), inset -4px -4px 10px rgba(255,255,255,0.04)"
+  aerogel-view-background: "#202630"
 
 Aerogel Obsidian: &aerogel_obsidian
   <<: *aerogel_graphite
-  primary-background-color: "#000000"
-  secondary-background-color: "#070A0F"
-  lovelace-background: "#000000"
-  card-background-color: "#070A0F"
-  ha-card-background: "#070A0F"
-  primary-text-color: "#FFFFFF"
-  secondary-text-color: "#FFFFFF"
-  primary-color: "#0EA5E9"
-  accent-color: "#60A5FA"
-  rgb-primary-color: "14, 165, 233"
-  rgb-accent-color: "96, 165, 250"
-  app-header-background-color: "rgba(0,0,0,0.88)"
-  sidebar-background-color: "rgba(7,10,15,0.92)"
-  input-fill-color: "#0D111A"
-  mdc-theme-primary: "#0EA5E9"
-  mdc-theme-secondary: "#60A5FA"
-  mdc-theme-surface: "#070A0F"
-  aerogel-bg: "#000000"
-  aerogel-base: "#000000"
-  aerogel-surface: "#070A0F"
-  aerogel-surface-raised: "#0D111A"
-  aerogel-surface-pressed: "#030507"
-  aerogel-primary: "#0EA5E9"
-  aerogel-primary-rgb: "14, 165, 233"
-  aerogel-secondary: "#22D3EE"
-  aerogel-accent: "#60A5FA"
-  aerogel-accent-rgb: "96, 165, 250"
-  aerogel-text-primary: "#FFFFFF"
-  aerogel-text-secondary: "#FFFFFF"
-  aerogel-border: "rgba(255,255,255,0.07)"
-  aerogel-sidebar-bg: "rgba(7,10,15,0.92)"
-  aerogel-header-bg: "rgba(0,0,0,0.88)"
-  aerogel-badge-bg: "rgba(13,17,26,0.82)"
-  aerogel-shadow-dark: "rgba(0,0,0,0.92)"
-  aerogel-shadow-light: "rgba(255,255,255,0.04)"
-  aerogel-shadow-raised: "12px 12px 30px rgba(0,0,0,0.92), -9px -9px 22px rgba(255,255,255,0.04)"
-  aerogel-shadow-soft: "7px 7px 18px rgba(0,0,0,0.84), -6px -6px 16px rgba(255,255,255,0.035)"
-  aerogel-shadow-pressed: "inset 7px 7px 16px rgba(0,0,0,0.92), inset -6px -6px 14px rgba(255,255,255,0.04)"
-  aerogel-shadow-hover: "18px 18px 38px rgba(0,0,0,0.98), -12px -12px 28px rgba(255,255,255,0.05)"
-  aerogel-ambient-overlay: "radial-gradient(circle at 16% 10%, rgba(14,165,233,0.12), transparent 24%), radial-gradient(circle at 82% 8%, rgba(96,165,250,0.10), transparent 22%)"
-  aerogel-view-background: "radial-gradient(circle at 16% 10%, rgba(14,165,233,0.12), transparent 24%), radial-gradient(circle at 82% 8%, rgba(96,165,250,0.10), transparent 22%), #000000"
+  primary-background-color: "#101319"
+  secondary-background-color: "#06080D"
+  lovelace-background: "#101319"
+  card-background-color: "#101319"
+  ha-card-background: "#101319"
+  primary-text-color: "#F3F6FA"
+  secondary-text-color: "#8F9AAD"
+  primary-color: "#5DB7FF"
+  accent-color: "#ff5f57"
+  rgb-primary-color: "93, 183, 255"
+  rgb-accent-color: "255, 95, 87"
+  app-header-background-color: "#101319"
+  sidebar-background-color: "#101319"
+  mdc-theme-primary: "#5DB7FF"
+  mdc-theme-secondary: "#ff5f57"
+  mdc-theme-surface: "#101319"
+  aerogel-base: "#101319"
+  aerogel-base-alt: "#06080D"
+  aerogel-surface: "#101319"
+  aerogel-surface-raised: "#101319"
+  aerogel-surface-pressed: "#06080D"
+  aerogel-text: "#F3F6FA"
+  aerogel-text-secondary: "#8F9AAD"
+  aerogel-text-primary: "#F3F6FA"
+  aerogel-accent: "#5DB7FF"
+  aerogel-accent-rgb: "93, 183, 255"
+  aerogel-warning: "#ff5f57"
+  aerogel-dialog-scrim: "rgba(0,0,0,0.65)"
+  aerogel-convex-lg: "8px 8px 20px rgba(0,0,0,0.72), -7px -7px 18px rgba(255,255,255,0.035)"
+  aerogel-convex-sm: "4px 4px 11px rgba(0,0,0,0.68), -4px -4px 10px rgba(255,255,255,0.03)"
+  aerogel-concave-lg: "inset 4px 4px 11px rgba(0,0,0,0.75), inset -4px -4px 10px rgba(255,255,255,0.03)"
+  aerogel-concave-sm: "inset 2px 2px 6px rgba(0,0,0,0.72), inset -2px -2px 5px rgba(255,255,255,0.028)"
+  aerogel-flat: "5px 5px 13px rgba(0,0,0,0.7), -5px -5px 12px rgba(255,255,255,0.03)"
+  aerogel-active: "inset 4px 4px 11px rgba(0,0,0,0.75), inset -4px -4px 10px rgba(255,255,255,0.03)"
+  aerogel-view-background: "#101319"

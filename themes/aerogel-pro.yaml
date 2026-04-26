@@ -1,7 +1,6 @@
 # Deprecated placeholder.
-# Actual theme definitions now live in themes/aerogel.yaml
-# so Home Assistant updates overwrite the legacy Aerogel file
-# and keep only the 3 supported themes:
+# Actual theme definitions live in themes/aerogel.yaml.
+# Supported themes:
 # - Aerogel Pearl
 # - Aerogel Graphite
 # - Aerogel Obsidian

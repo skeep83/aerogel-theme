@@ -21,10 +21,10 @@ const AEROGEL_BASE_STYLES = `
     --ag-surface-raised: var(--aerogel-surface-raised, #182131);
     --ag-surface-pressed: var(--aerogel-surface-pressed, #0F172A);
     --ag-border: 1px solid var(--aerogel-border, rgba(255,255,255,0.08));
-    --ag-elev-1: var(--aerogel-shadow-soft, 6px 6px 16px rgba(0,0,0,0.44), -5px -5px 14px rgba(255,255,255,0.04));
-    --ag-elev-2: var(--aerogel-shadow-raised, 10px 10px 24px rgba(0,0,0,0.48), -8px -8px 20px rgba(255,255,255,0.045));
-    --ag-elev-3: var(--aerogel-shadow-hover, 14px 14px 32px rgba(0,0,0,0.56), -10px -10px 24px rgba(255,255,255,0.05));
-    --ag-elev-pressed: var(--aerogel-shadow-pressed, inset 6px 6px 14px rgba(0,0,0,0.48), inset -5px -5px 12px rgba(255,255,255,0.045));
+    --ag-elev-1: var(--aerogel-shadow-soft, 7px 7px 18px rgba(0,0,0,0.54), -6px -6px 16px rgba(255,255,255,0.05));
+    --ag-elev-2: var(--aerogel-shadow-raised, 12px 12px 30px rgba(0,0,0,0.62), -9px -9px 22px rgba(255,255,255,0.06));
+    --ag-elev-3: var(--aerogel-shadow-hover, 18px 18px 38px rgba(0,0,0,0.72), -12px -12px 28px rgba(255,255,255,0.07));
+    --ag-elev-pressed: var(--aerogel-shadow-pressed, inset 7px 7px 16px rgba(0,0,0,0.60), inset -6px -6px 14px rgba(255,255,255,0.05));
     --ag-text: var(--primary-text-color, #F8FAFC);
     --ag-text-sec: var(--secondary-text-color, #94A3B8);
     --ag-radius: var(--aerogel-radius-lg, 28px);
@@ -68,7 +68,7 @@ const AEROGEL_BASE_STYLES = `
     justify-content: center;
     font-size: 24px;
     background: var(--ag-surface-raised);
-    border: 1px solid rgba(var(--ag-accent-rgb), 0.10);
+    border: 1px solid rgba(var(--ag-accent-rgb), 0.08);
     box-shadow: var(--ag-elev-1);
     transition: filter 240ms ease, background 240ms ease, color 240ms ease;
     flex-shrink: 0;

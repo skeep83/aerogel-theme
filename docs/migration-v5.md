@@ -2,7 +2,11 @@
 
 ## Theme Names
 
-The previous `Aerogel Pro` file has been replaced by:
+The maintained theme file is now:
+
+- `themes/aerogel.yaml`
+
+And it defines only:
 
 - `Aerogel Pearl`
 - `Aerogel Graphite`

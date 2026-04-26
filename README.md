@@ -10,11 +10,13 @@ Solid readable surfaces. Neumorphic depth. Smart-home state colors.
 
 ![Aerogel Preview](images/preview.png)
 
-## Three Themes
+## Three Themes Only
 
 - **Aerogel Pearl**: warm premium light mode with dense readable surfaces and soft white depth
 - **Aerogel Graphite**: flagship showcase mode for premium dashboards and smart-home panels
 - **Aerogel Obsidian**: near-black AMOLED mode for night use and wall panels
+
+All legacy theme variants were removed from the maintained theme file. The supported theme list is now intentionally limited to these three modes.
 
 ## Design Direction
 
@@ -46,7 +48,7 @@ That means:
 
 The new primary theme file is:
 
-- [themes/aerogel-pro.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\themes\aerogel-pro.yaml)
+- [themes/aerogel.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\themes\aerogel.yaml)
 
 ## Installation
 

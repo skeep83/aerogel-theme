@@ -1,6 +1,6 @@
 {
-    "name": "🫧✨ Aerogel — Premium Neumorphic Theme ✨🫧",
-    "description": "A soft-UI neumorphic theme with 650+ CSS variables, 15 theme variants (AMOLED, Neon, Adaptive Colors, High Contrast), weather animations, and premium card-mod integration.",
-    "homeassistant": "2023.1.0",
+    "name": "Aerogel Pro — Premium UI System for Home Assistant",
+    "description": "Premium Home Assistant theme system with graphite, light, and AMOLED modes, glass surfaces, design tokens, custom cards, and card-mod integration.",
+    "homeassistant": "2024.1.0",
     "render_readme": true
 }

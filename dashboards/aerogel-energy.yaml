@@ -1,0 +1,35 @@
+# Aerogel Pro Energy Dashboard
+# Replace the example entity ids with your energy sensors.
+title: Aerogel Energy
+views:
+  - title: Energy
+    path: energy
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        cards:
+          - type: custom:aerogel-energy-card
+            solar: sensor.solar_power
+            home: sensor.home_consumption
+            grid: sensor.grid_power
+            battery: sensor.battery_soc
+            daily_cost: sensor.daily_energy_cost
+          - type: energy-distribution
+      - type: grid
+        cards:
+          - type: statistics-graph
+            title: Production vs Consumption
+            days_to_show: 7
+            chart_type: line
+            entities:
+              - sensor.solar_power
+              - sensor.home_consumption
+              - sensor.grid_power
+          - type: entities
+            title: Cost & Storage
+            entities:
+              - sensor.daily_energy_cost
+              - sensor.monthly_energy_balance
+              - sensor.battery_soc
+              - sensor.battery_power

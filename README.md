@@ -1,271 +1,114 @@
-# 🫧 Aerogel — Premium Neumorphic Theme for Home Assistant
+# Aerogel Pro
 
-> Inspired by [Smartphone Car Control UI](https://www.figma.com/community/file/1076934576179162030) by Shivanshu Mathur
+Premium visual system for Home Assistant with glass surfaces, graphite depth, adaptive accents, and polished custom cards.
 
-[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2023.1+-41BDF5?style=flat-square&logo=home-assistant)](https://www.home-assistant.io/)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=flat-square&logo=home-assistant)](https://www.home-assistant.io/)
 [![HACS](https://img.shields.io/badge/HACS-Custom-orange?style=flat-square)](https://hacs.xyz/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-> A soft-UI neumorphic theme with **650+ CSS variables**, **15 theme variants**, adaptive time-of-day colors, AMOLED & Neon modes, weather animations, glassmorphism, and accessibility features. Install it — and your entire Home Assistant transforms.
+![Aerogel Preview](images/preview.png)
 
-<p align="center">
-  <img src="images/preview.png" alt="Aerogel Theme Preview" width="100%">
-</p>
+## Three Core Modes
 
----
+- **Aerogel Pro Graphite**: flagship dark mode with aurora depth and premium glass surfaces
+- **Aerogel Pro Light**: bright daytime mode with lighter glass, softer contrast, and the same token system
+- **Aerogel Pro AMOLED**: true-black mode for OLED panels and night dashboards
 
-## ✨ Features
+Legacy selectors stay available for compatibility:
 
-- **650+ CSS variables** — every HA element covered (light, dark, AMOLED & neon modes)
-- **15 theme variants** — Auto, Light, Dark, AMOLED, Rose, Lavender, Mint, Amber, Slate, Neon, High Contrast, Morning, Day, Evening, Night
-- **Adaptive Color Mode** — 4 time-of-day themes (Morning/Day/Evening/Night) with HA automation snippet
-- **Neon Glow Mode** — cyberpunk variant with `#00F5D4` accent and neon border glow
-- **High Contrast Mode** — accessibility variant with `#FFD700` accent on pure black
-- **15+ animations** — hover, press, pulse, alert, success, shimmer, breathe, float, dialog-open + 6 weather
-- **Glassmorphism & Frosted Glass** — opt-in glass cards with backdrop blur
-- **Animated entity states** — icon glow for on, golden glow for lights, greyed-out for unavailable
-- **Glass header bar** — transparent blurred header with pill-shaped tab buttons
-- **Premium dialog popups** — scale-in animation, glass surface, rounded sliders
-- **Sidebar animations** — hover bounce + concave selected state
-- **AMOLED Dark mode** — true `#000000` black for OLED panels
-- **5 accent palettes** — Rose, Lavender, Mint, Amber, Slate
-- **Neumorphic toggle switches** — concave track, convex thumb, glow on active
-- **Animated mesh-gradient** — slow-moving gradient dashboard background
-- **5 tile card variants** — Glass, Gradient, Flat, Glow, Inset
-- **Custom card styles** — mini-graph-card, browser_mod popups, kiosk header, energy dashboard, map card
-- **CSS weather animations** — sunny, rain, snow, thunder, fog, clouds
-- **Loading skeleton shimmer** — YouTube-style loading placeholder
-- **Focus ring styling** — accessible accent-colored keyboard focus
-- **Print-friendly mode** — `@media print` styles for clean output
-- **Reduced motion** — `@media (prefers-reduced-motion)` accessibility
-- **Nunito font** — friendly rounded typography via Google Fonts
-- **Mushroom cards** — 17+ integration variables
-- **50+ card-mod snippets** — ready-to-paste examples
+- `Aerogel` and `Aerogel Dark` now point to Graphite
+- `Aerogel Light` points to Pro Light
+- `Aerogel AMOLED` points to Pro AMOLED
+- `Aerogel Rose`, `Lavender`, `Mint`, `Amber`, and `Slate` remain available as accent-driven variants
 
----
+## What Changed In v5
 
-## 🎨 Design Tokens
+- Rebuilt `themes/aerogel.yaml` around shared card-mod anchors instead of repeated per-theme blocks
+- Replaced the old clay-style neumorphism with elevation, glass, border, and semantic state tokens
+- Switched the typography stack to Inter by default, while preserving `--aerogel-font` as an override point
+- Refreshed the bundled Lovelace cards to match the new glass/elevation language
+- Added a wall-panel variant and trimmed the card-mod snippet collection down to focused, reusable patterns
 
-| Token | Light | Dark |
-|-------|-------|------|
-| Base | `#E3E6EC` | `#1A1D2E` |
-| Shadow Dark | `#C8CBD3` | `#12141F` |
-| Shadow Light | `#FFFFFF` | `#222640` |
-| Accent | `#6CB4EE` | `#6CB4EE` |
-| Text | `#2C3345` | `#E8EAF0` |
-| Text Secondary | `#8A90A0` | `#6A7090` |
-| Warning | `#F07B3F` | `#F9A06C` |
-| Success | `#27AE60` | `#2ECC71` |
-| Error | `#E74C3C` | `#E74C3C` |
+## Installation
 
----
+### HACS
 
-## 📋 Requirements
+1. Add `https://github.com/skeep83/aerogel-theme` as a custom theme repository.
+2. Install Aerogel Pro.
+3. Reload themes in Home Assistant.
+4. Pick `Aerogel Pro Graphite`, `Aerogel Pro Light`, or `Aerogel Pro AMOLED` from your profile.
 
-| Component | Required | Notes |
-|-----------|----------|-------|
-| Home Assistant | 2023.1+ | Core requirement |
-| [HACS](https://hacs.xyz/) | Recommended | For easy installation |
-| [card-mod](https://github.com/thomasloven/lovelace-card-mod) | Recommended | Enables hover/press animations |
+### Manual
 
----
-
-## 🚀 Installation
-
-### Option A: HACS (Recommended)
-
-1. Open HACS → ⋮ → **Custom repositories**
-2. Add repository URL:
-   ```
-   https://github.com/skeep83/aerogel-theme
-   ```
-3. Select category: **Theme**
-4. Click **Add** → Find **"Aerogel"** → **Download**
-5. Go to Developer Tools → YAML → **Reload Themes**
-6. Profile → Theme → **Aerogel** (auto) / **Aerogel Light** / **Aerogel Dark**
-
-### Option B: Manual
-
-1. Download [`themes/aerogel.yaml`](themes/aerogel.yaml)
-2. Copy to `/config/themes/` in Home Assistant
-3. Ensure `configuration.yaml` includes:
-   ```yaml
-   frontend:
-     themes: !include_dir_merge_named themes
-   ```
-4. Reload themes → Select **"Aerogel"**
-
----
-
-## 🃏 Custom Cards (Optional)
-
-Aerogel includes 6 custom Lovelace cards that appear in the card picker dialog:
-
-| Card | Description |
-|------|-------------|
-| 🫧 **Aerogel Glass** | Frosted glass card with backdrop blur |
-| ⚡ **Aerogel Neon** | Cyberpunk neon glow border with animation |
-| 🎯 **Aerogel Entity** | Auto state glow (on) / dimming (unavailable) |
-| 🌈 **Aerogel Gradient** | 8 gradient presets (sunset, ocean, forest...) |
-| 🌦️ **Aerogel Weather** | Weather with animated icons (rain, snow, thunder) |
-| 🔲 **Aerogel Tile** | 6 variants: default, glass, gradient, flat, glow, inset |
-
-### Install Cards
-
-1. Copy `dist/aerogel-cards.js` to `/config/www/aerogel-cards.js`
-2. Add as Lovelace resource:
-   - Dashboard → ⋮ → **Edit dashboard** → ⋮ → **Manage resources**
-   - Add resource: `/local/aerogel-cards.js` (JavaScript module)
-3. Refresh browser — cards appear in the **"Add Card"** picker!
-
----
-
-## 🔧 Card-Mod Integration
-
-The theme **automatically applies** hover and press animations to all cards when card-mod is installed. No extra config needed!
-
-### What happens automatically:
-- 🏂 **Hover** → card lifts 2px with enhanced shadow
-- 👆 **Press** → card scales down with inset shadow
-- 🎨 **Font** → Nunito applied globally
-- 💬 **Dialogs** → 28px rounded corners with frosted glass
-- 📊 **Sidebar** → neumorphic items with accent glow on selection
-- 🎯 **Badges/Chips** → neumorphic shadows with hover lift
-- 📏 **Scrollbar** → slim & rounded, accent on hover
-
-### Custom CSS Variables
-
-For advanced styling, use these `--aerogel-*` variables in card-mod:
-
-| Variable | Description |
-|----------|-------------|
-| `--aerogel-convex-{xs,sm,md,lg,xl}` | Raised shadow (5 sizes) |
-| `--aerogel-concave-{xs,sm,md,lg}` | Inset shadow (4 sizes) |
-| `--aerogel-hover` | Enhanced hover shadow |
-| `--aerogel-active` | Press/active shadow |
-| `--aerogel-flat` | Subtle flat shadow |
-| `--aerogel-glow` | Sky-blue glow effect |
-| `--aerogel-glow-warning` | Orange glow effect |
-| `--aerogel-glow-success` | Green glow effect |
-| `--aerogel-glow-error` | Red glow effect |
-| `--aerogel-glass` | Glassmorphism background |
-| `--aerogel-glass-blur` | Frosted glass blur filter |
-| `--aerogel-glass-border` | Glass border |
-| `--aerogel-glass-shadow` | Glass shadow |
-| `--aerogel-gradient` | Sky→mint gradient |
-| `--aerogel-gradient-warm` | Orange→peach gradient |
-| `--aerogel-gradient-cool` | Blue→lavender gradient |
-| `--aerogel-gradient-surface` | Subtle surface gradient |
-| `--aerogel-gradient-subtle` | Ultra-subtle overlay gradient |
-| `--aerogel-radius-{xs,sm,md,lg,xl,full}` | Border radius (6 sizes) |
-| `--aerogel-space-{xs,sm,md,lg,xl,2xl}` | Spacing tokens (6 sizes) |
-| `--aerogel-base` | Base surface color |
-| `--aerogel-base-alt` | Alternate surface |
-| `--aerogel-transition` | Smooth cubic-bezier 0.3s |
-| `--aerogel-transition-fast` | Quick 0.15s |
-| `--aerogel-transition-bounce` | Bounce easing 0.4s |
-
-### Example: Neumorphic Tile Card
+1. Copy [themes/aerogel.yaml](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/themes/aerogel.yaml) into `/config/themes/`.
+2. Make sure Home Assistant loads themes with:
 
 ```yaml
-type: tile
-entity: light.living_room
-card_mod:
-  style: |
-    ha-card {
-      box-shadow: var(--aerogel-convex-md) !important;
-    }
-    ha-card:hover {
-      box-shadow: var(--aerogel-hover) !important;
-    }
-    ha-card:active {
-      box-shadow: var(--aerogel-active) !important;
-    }
+frontend:
+  themes: !include_dir_merge_named themes
 ```
 
-### Example: Glassmorphism Card
+3. Reload themes and select a mode.
 
-```yaml
-type: markdown
-content: "Frosted glass!"
-card_mod:
-  style: |
-    ha-card {
-      background: var(--aerogel-glass) !important;
-      backdrop-filter: var(--aerogel-glass-blur) !important;
-      -webkit-backdrop-filter: var(--aerogel-glass-blur) !important;
-      border: var(--aerogel-glass-border) !important;
-      border-radius: var(--aerogel-radius-lg) !important;
-      box-shadow: var(--aerogel-glass-shadow) !important;
-    }
-```
+## Custom Cards
 
-### Example: Pulse Glow Animation
+Aerogel Pro currently ships nine bundled Lovelace cards in [dist/aerogel-cards.js](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/dist/aerogel-cards.js):
 
-```yaml
-type: button
-entity: binary_sensor.door
-card_mod:
-  style: |
-    @keyframes aerogel-pulse {
-      0%, 100% { box-shadow: var(--aerogel-convex-md); }
-      50% { box-shadow: var(--aerogel-convex-md), var(--aerogel-glow); }
-    }
-    ha-card {
-      animation: aerogel-pulse 3s ease-in-out infinite;
-    }
-```
+- `aerogel-glass-card`
+- `aerogel-neon-card`
+- `aerogel-entity-card`
+- `aerogel-gradient-card`
+- `aerogel-weather-card`
+- `aerogel-tile-card`
+- `aerogel-room-card`
+- `aerogel-climate-card`
+- `aerogel-energy-card`
 
-### Example: Alert Pulse (Red Glow)
+Install them as a Lovelace resource:
 
-```yaml
-type: button
-entity: binary_sensor.smoke
-card_mod:
-  style: |
-    @keyframes aerogel-alert {
-      0%, 100% { box-shadow: var(--aerogel-convex-md); }
-      50% { box-shadow: var(--aerogel-convex-md), var(--aerogel-glow-error); }
-    }
-    ha-card {
-      animation: aerogel-alert 2s ease-in-out infinite;
-    }
-```
+1. Copy `dist/aerogel-cards.js` to `/config/www/aerogel-cards.js`.
+2. Add `/local/aerogel-cards.js` as a JavaScript module resource.
+3. Refresh the dashboard editor to see the cards in the picker.
 
-> 📎 More snippets in [`snippets/aerogel-card-mod.yaml`](snippets/aerogel-card-mod.yaml) — 12 card types + 7 animations
+## Card-Mod
 
----
+Aerogel Pro is strongest with [card-mod](https://github.com/thomasloven/lovelace-card-mod).
 
-## 🍄 Mushroom Cards
+- Shared theme-level styling is built into the theme file.
+- Ready-to-paste examples live in [snippets/aerogel-card-mod.yaml](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/snippets/aerogel-card-mod.yaml).
+- If backdrop blur is inconsistent in your setup, load card-mod as a frontend module as noted in the snippets file.
 
-Full Mushroom integration with neumorphic shadows on cards, sliders, chips, and icons:
+## Design Tokens
 
-```yaml
-# Supported Mushroom variables:
-mush-card-background-color    → neumorphic base
-mush-card-box-shadow          → convex shadow
-mush-slider-background        → concave track
-mush-slider-box-shadow        → inset shadow
-mush-chip-background          → neumorphic chips
-mush-chip-box-shadow          → convex chip shadow
-mush-icon-background-color    → concave icon well
-mush-icon-box-shadow          → inset icon shadow
-```
+The theme now centers on a smaller, more systematic token set:
 
----
+- Elevation: `--aerogel-elevation-0` through `--aerogel-elevation-glass`
+- Glass: `--aerogel-glass-bg`, `--aerogel-glass-blur`, `--aerogel-glass-border`
+- Radius: `--aerogel-radius-sm` through `--aerogel-radius-xl`
+- Motion: `--aerogel-transition-fast`, `--aerogel-transition-normal`, `--aerogel-transition-slow`
+- Semantic states: `--aerogel-state-on`, `--aerogel-state-heat`, `--aerogel-state-cool`, `--aerogel-state-eco`, `--aerogel-state-warning`, `--aerogel-state-alert`
 
-## 🤝 Contributing
+Deprecated `--aerogel-convex-*` and `--aerogel-concave-*` tokens are still mapped for compatibility.
 
-Contributions are welcome! Please open an issue or PR.
+## Dashboard Starter Pack
 
----
+Ready-to-customize examples now live in [dashboards](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dashboards):
 
-## 📄 License
+- [dashboards/aerogel-home.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dashboards\aerogel-home.yaml)
+- [dashboards/aerogel-climate.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dashboards\aerogel-climate.yaml)
+- [dashboards/aerogel-energy.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dashboards\aerogel-energy.yaml)
+- [dashboards/aerogel-wallpanel.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dashboards\aerogel-wallpanel.yaml)
 
-MIT — see [LICENSE](LICENSE)
+## Docs
 
----
+- [docs/design-system.md](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/docs/design-system.md)
+- [docs/color-tokens.md](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/docs/color-tokens.md)
+- [docs/migration-v5.md](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/docs/migration-v5.md)
 
-<p align="center">
-  🫧 Made with care for the Home Assistant community
-</p>
+## Next Steps
+
+This repo refresh lands the visual system foundation first. The next logical tranche is:
+
+1. flagship room/climate/energy cards
+2. starter dashboards
+3. updated showcase screenshots

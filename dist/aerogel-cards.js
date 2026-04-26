@@ -1,63 +1,74 @@
 /**
  * ╔═══════════════════════════════════════════════════════════╗
- * ║  Aerogel — Custom Lovelace Cards                        ║
- * ║  Premium neumorphic cards for Home Assistant             ║
+ * ║  Aerogel Pro — Custom Lovelace Cards                    ║
+ * ║  Premium glass cards for Home Assistant                  ║
  * ║  https://github.com/skeep83/aerogel-theme               ║
  * ╚═══════════════════════════════════════════════════════════╝
  */
-const AEROGEL_VERSION = '4.1.0';
+const AEROGEL_VERSION = '5.0.0';
 
 /* ─── Shared CSS ────────────────────────────────────────── */
 const AEROGEL_BASE_STYLES = `
   * { box-sizing: border-box; }
   :host {
-    --ag-font: var(--aerogel-font, 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif);
-    --ag-accent: var(--aerogel-accent, #6CB4EE);
-    --ag-accent-rgb: var(--aerogel-accent-rgb, 108,180,238);
-    --ag-base: var(--aerogel-base, #E3E6EC);
-    --ag-base-alt: var(--aerogel-base-alt, #DDE1E8);
-    --ag-shadow-dark: var(--aerogel-shadow-dark, #C8CBD3);
-    --ag-shadow-light: var(--aerogel-shadow-light, #FFFFFF);
-    --ag-text: var(--primary-text-color, #2C3345);
-    --ag-text-sec: var(--secondary-text-color, #8A90A0);
-    --ag-radius: var(--aerogel-radius-lg, 24px);
-    --ag-radius-sm: var(--aerogel-radius-sm, 12px);
-    --ag-convex: 8px 8px 16px var(--ag-shadow-dark), -8px -8px 16px var(--ag-shadow-light);
-    --ag-concave: inset 4px 4px 8px var(--ag-shadow-dark), inset -4px -4px 8px var(--ag-shadow-light);
+    --ag-font: var(--aerogel-font, 'Inter', 'SF Pro Display', 'Segoe UI Variable', system-ui, sans-serif);
+    --ag-accent: var(--aerogel-accent, #3B82F6);
+    --ag-accent-rgb: var(--aerogel-accent-rgb, 59, 130, 246);
+    --ag-accent-secondary: var(--aerogel-accent-secondary, #38BDF8);
+    --ag-base: var(--aerogel-base, #111827);
+    --ag-base-alt: var(--aerogel-base-alt, #0F172A);
+    --ag-surface: var(--aerogel-glass-bg, rgba(17, 24, 39, 0.72));
+    --ag-border: var(--aerogel-glass-border, 1px solid rgba(255,255,255,0.08));
+    --ag-elev-1: var(--aerogel-elevation-1, 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08));
+    --ag-elev-2: var(--aerogel-elevation-2, 0 8px 24px rgba(2,8,23,0.18));
+    --ag-elev-3: var(--aerogel-elevation-3, 0 16px 48px rgba(2,8,23,0.26));
+    --ag-elev-glass: var(--aerogel-elevation-glass, 0 20px 60px rgba(2,8,23,0.32));
+    --ag-text: var(--primary-text-color, #F8FAFC);
+    --ag-text-sec: var(--secondary-text-color, #94A3B8);
+    --ag-radius: var(--aerogel-radius-lg, 28px);
+    --ag-radius-sm: var(--aerogel-radius-sm, 14px);
+    --ag-radius-md: var(--aerogel-radius-md, 20px);
     display: block;
     font-family: var(--ag-font);
   }
   .card {
-    background: var(--ha-card-background, var(--ag-base));
+    background: var(--ag-surface);
+    border: var(--ag-border);
     border-radius: var(--ag-radius);
+    box-shadow: var(--ag-elev-glass);
+    backdrop-filter: var(--aerogel-glass-blur, blur(24px)) var(--aerogel-glass-saturate, saturate(1.2));
+    -webkit-backdrop-filter: var(--aerogel-glass-blur, blur(24px)) var(--aerogel-glass-saturate, saturate(1.2));
     padding: 16px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1),
-                box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+    transition: transform 240ms ease, box-shadow 240ms ease, border-color 160ms ease, background 160ms ease;
     cursor: pointer;
   }
   .card:hover {
     transform: translateY(-2px);
+    border-color: rgba(var(--ag-accent-rgb), 0.22);
+    box-shadow: var(--ag-elev-3);
   }
   .card:active {
     transform: scale(0.985);
-    transition: transform 0.1s ease;
+    transition: transform 120ms ease;
   }
   .entity-row {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
   .icon-wrap {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     border-radius: var(--ag-radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    transition: filter 0.3s ease;
+    background: rgba(var(--ag-accent-rgb), 0.08);
+    border: 1px solid rgba(var(--ag-accent-rgb), 0.12);
+    transition: filter 240ms ease, background 240ms ease, color 240ms ease;
     flex-shrink: 0;
   }
   .info {
@@ -75,7 +86,7 @@ const AEROGEL_BASE_STYLES = `
   .state {
     font-size: 13px;
     color: var(--ag-text-sec);
-    margin-top: 2px;
+    margin-top: 4px;
   }
   .value {
     font-size: 28px;
@@ -89,8 +100,8 @@ const AEROGEL_BASE_STYLES = `
     margin-left: 2px;
   }
   @keyframes ag-pulse {
-    0%,100%{filter:drop-shadow(0 0 4px rgba(var(--ag-accent-rgb),0.2));}
-    50%{filter:drop-shadow(0 0 12px rgba(var(--ag-accent-rgb),0.5));}
+    0%,100%{filter:drop-shadow(0 0 6px rgba(var(--ag-accent-rgb),0.18));}
+    50%{filter:drop-shadow(0 0 16px rgba(var(--ag-accent-rgb),0.42));}
   }
   @keyframes ag-shimmer {
     0%{background-position:-200% 0;}
@@ -142,6 +153,24 @@ function getStateDisplay(stateObj) {
   return s;
 }
 
+function parseNumber(stateObj) {
+  if (!stateObj) return null;
+  const value = Number.parseFloat(stateObj.state);
+  return Number.isFinite(value) ? value : null;
+}
+
+function countActiveEntities(hass, entityIds = []) {
+  return entityIds.reduce((count, entityId) => {
+    const stateObj = getEntity(hass, entityId);
+    if (!stateObj) return count;
+    return ['on', 'home', 'playing', 'heat', 'cool'].includes(stateObj.state) ? count + 1 : count;
+  }, 0);
+}
+
+function formatMaybeNumber(value, digits = 1) {
+  return Number.isFinite(value) ? value.toFixed(digits) : '--';
+}
+
 function fireEvent(el, type, detail) {
   const ev = new Event(type, { bubbles: true, composed: true });
   ev.detail = detail;
@@ -175,23 +204,18 @@ class AerogelGlassCard extends HTMLElement {
       <style>
         ${AEROGEL_BASE_STYLES}
         .card {
-          background: rgba(var(--rgb-card-background-color, 227,230,236), 0.5) !important;
-          backdrop-filter: blur(20px) saturate(1.4);
-          -webkit-backdrop-filter: blur(20px) saturate(1.4);
-          border: 1px solid rgba(255,255,255,0.25);
-          box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+          background: linear-gradient(180deg, rgba(var(--ag-accent-rgb), 0.12), rgba(var(--ag-accent-rgb), 0.04) 34%, var(--ag-surface) 100%);
         }
         .card:hover {
-          box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-          border-color: rgba(var(--ag-accent-rgb), 0.3);
+          border-color: rgba(var(--ag-accent-rgb), 0.24);
         }
         .icon-wrap {
-          background: rgba(var(--ag-accent-rgb), 0.1);
+          background: rgba(var(--ag-accent-rgb), 0.12);
           color: var(--ag-accent);
         }
         .icon-wrap.on {
-          background: rgba(var(--ag-accent-rgb), 0.2);
-          filter: drop-shadow(0 0 8px rgba(var(--ag-accent-rgb), 0.4));
+          background: rgba(var(--ag-accent-rgb), 0.18);
+          filter: drop-shadow(0 0 10px rgba(var(--ag-accent-rgb), 0.4));
         }
       </style>
       <ha-card>
@@ -244,14 +268,14 @@ class AerogelNeonCard extends HTMLElement {
       <style>
         ${AEROGEL_BASE_STYLES}
         .card {
-          background: var(--ha-card-background, #0F0F1E);
+          background: linear-gradient(160deg, rgba(34, 211, 238, 0.12), rgba(168, 85, 247, 0.1), rgba(15, 23, 42, 0.82));
           border: 1px solid ${c}33;
-          box-shadow: 0 0 12px ${c}1A, inset 0 1px 0 ${c}10;
-          color: #E0FFE0;
+          box-shadow: 0 16px 42px rgba(3, 7, 18, 0.34), 0 0 0 1px ${c}14 inset;
+          color: #E0F2FE;
         }
         .card:hover {
           border-color: ${c}66;
-          box-shadow: 0 0 24px ${c}33, 0 0 48px ${c}14, inset 0 1px 0 ${c}1F;
+          box-shadow: 0 18px 48px rgba(3, 7, 18, 0.38), 0 0 24px ${c}26;
         }
         .icon-wrap {
           background: ${c}1A;
@@ -326,25 +350,20 @@ class AerogelEntityCard extends HTMLElement {
       <style>
         ${AEROGEL_BASE_STYLES}
         .card {
-          box-shadow: var(--ag-convex);
-          border: none;
-        }
-        .card:hover {
-          box-shadow: 10px 10px 20px var(--ag-shadow-dark), -10px -10px 20px var(--ag-shadow-light);
+          background: linear-gradient(180deg, rgba(var(--ag-accent-rgb), 0.06), var(--ag-surface));
         }
         .card.unavailable {
           opacity: 0.4;
           filter: grayscale(1);
         }
         .icon-wrap {
-          background: var(--ag-base-alt);
-          box-shadow: var(--ag-concave);
+          background: rgba(255,255,255,0.04);
+          border-color: rgba(255,255,255,0.08);
           color: var(--ag-text-sec);
         }
         .icon-wrap.on {
           color: var(--ag-accent);
           background: rgba(var(--ag-accent-rgb), 0.1);
-          box-shadow: none;
           filter: drop-shadow(0 0 8px ${glowColor});
           animation: ag-pulse 3s ease-in-out infinite;
         }
@@ -410,16 +429,14 @@ class AerogelGradientCard extends HTMLElement {
         ${AEROGEL_BASE_STYLES}
         .card {
           background: ${bg};
-          box-shadow: var(--ag-convex);
-          border: none;
+          border: 1px solid rgba(255,255,255,0.12);
+          box-shadow: 0 18px 44px rgba(15, 23, 42, 0.22);
           color: white;
-        }
-        .card:hover {
-          box-shadow: 10px 10px 20px var(--ag-shadow-dark), -10px -10px 20px var(--ag-shadow-light);
         }
         .icon-wrap {
           background: rgba(255,255,255,0.2);
           color: white;
+          border-color: rgba(255,255,255,0.24);
         }
         .name { color: white; }
         .state { color: rgba(255,255,255,0.8); }
@@ -510,12 +527,8 @@ class AerogelWeatherCard extends HTMLElement {
       <style>
         ${AEROGEL_BASE_STYLES}
         .card {
-          box-shadow: var(--ag-convex);
-          border: none;
           padding: 20px;
-        }
-        .card:hover {
-          box-shadow: 10px 10px 20px var(--ag-shadow-dark), -10px -10px 20px var(--ag-shadow-light);
+          background: linear-gradient(180deg, rgba(var(--ag-accent-rgb), 0.14), var(--ag-surface));
         }
         .weather-main {
           display: flex;
@@ -550,7 +563,7 @@ class AerogelWeatherCard extends HTMLElement {
           gap: 16px;
           margin-top: 12px;
           padding-top: 12px;
-          border-top: 1px solid rgba(var(--ag-accent-rgb), 0.1);
+          border-top: 1px solid rgba(var(--ag-accent-rgb), 0.14);
         }
         .detail {
           display: flex;
@@ -636,34 +649,27 @@ class AerogelTileCard extends HTMLElement {
   _getVariantStyles(variant, isOn) {
     const variants = {
       default: `
-        box-shadow: var(--ag-convex);
-        border: none;
+        background: var(--ag-surface);
       `,
       glass: `
-        background: rgba(var(--rgb-card-background-color, 227,230,236), 0.5) !important;
-        backdrop-filter: blur(16px) saturate(1.3);
-        -webkit-backdrop-filter: blur(16px) saturate(1.3);
-        border: 1px solid rgba(255,255,255,0.25);
-        box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        background: linear-gradient(180deg, rgba(var(--ag-accent-rgb), 0.12), var(--ag-surface)) !important;
       `,
       gradient: `
         background: var(--aerogel-gradient, linear-gradient(135deg, #6CB4EE 0%, #9BD4F5 50%, #A8E6CF 100%));
-        border: none;
-        box-shadow: var(--ag-convex);
+        border: 1px solid rgba(255,255,255,0.14);
+        box-shadow: 0 18px 44px rgba(15, 23, 42, 0.22);
         color: white;
       `,
       flat: `
-        box-shadow: none;
+        box-shadow: var(--ag-elev-1);
         border: 1px solid var(--divider-color, rgba(0,0,0,0.08));
       `,
       glow: `
-        box-shadow: var(--ag-convex)${isOn ? ', 0 0 20px rgba(var(--ag-accent-rgb), 0.3)' : ''};
-        border: none;
+        box-shadow: var(--ag-elev-glass)${isOn ? ', 0 0 24px rgba(var(--ag-accent-rgb), 0.28)' : ''};
         transition: box-shadow 0.4s ease;
       `,
       inset: `
-        box-shadow: var(--ag-concave);
-        border: none;
+        box-shadow: var(--aerogel-concave-md, inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -2px 6px rgba(2,8,23,0.22));
       `,
     };
     return variants[variant] || variants.default;
@@ -691,9 +697,10 @@ class AerogelTileCard extends HTMLElement {
           transform: translateY(-2px);
         }
         .icon-wrap {
-          background: ${isGradient ? 'rgba(255,255,255,0.2)' : 'var(--ag-base-alt)'};
-          box-shadow: ${variant === 'inset' ? 'var(--ag-convex)' : variant === 'flat' ? 'none' : 'var(--ag-concave)'};
+          background: ${isGradient ? 'rgba(255,255,255,0.2)' : 'rgba(var(--ag-accent-rgb), 0.08)'};
+          box-shadow: none;
           color: ${isGradient ? 'white' : isOn ? 'var(--ag-accent)' : 'var(--ag-text-sec)'};
+          border-color: ${isGradient ? 'rgba(255,255,255,0.24)' : 'rgba(var(--ag-accent-rgb), 0.12)'};
         }
         .icon-wrap.on {
           filter: ${isGradient ? 'none' : 'drop-shadow(0 0 6px rgba(var(--ag-accent-rgb), 0.3))'};
@@ -734,6 +741,306 @@ class AerogelTileCard extends HTMLElement {
 }
 
 /* ═══════════════════════════════════════════════════════════
+   7. Aerogel Room Card
+   ═══════════════════════════════════════════════════════════ */
+class AerogelRoomCard extends HTMLElement {
+  static getConfigElement() { return document.createElement('aerogel-room-card-editor'); }
+  static getStubConfig() {
+    return {
+      name: 'Living Room',
+      temperature: 'sensor.living_room_temperature',
+      humidity: 'sensor.living_room_humidity',
+      lights: ['light.living_room_main'],
+      climate: 'climate.living_room',
+      motion: 'binary_sensor.living_room_motion',
+      media_player: 'media_player.living_room',
+    };
+  }
+
+  setConfig(config) {
+    if (!config.name) throw new Error('Please define a room name');
+    this._config = { lights: [], chips: [], ...config };
+    this._render();
+  }
+  set hass(hass) { this._hass = hass; this._render(); }
+
+  _render() {
+    if (!this._config || !this._hass) return;
+    const temp = parseNumber(getEntity(this._hass, this._config.temperature));
+    const humidity = parseNumber(getEntity(this._hass, this._config.humidity));
+    const climate = getEntity(this._hass, this._config.climate);
+    const motion = getEntity(this._hass, this._config.motion);
+    const media = getEntity(this._hass, this._config.media_player);
+    const lightsOn = countActiveEntities(this._hass, this._config.lights);
+    const chips = [
+      lightsOn ? `${lightsOn} light${lightsOn === 1 ? '' : 's'}` : 'Lights idle',
+      motion?.state === 'on' ? 'Motion' : 'No motion',
+      humidity != null ? `${Math.round(humidity)}% RH` : null,
+      climate?.state && climate.state !== 'off' ? climate.state : null,
+    ].filter(Boolean).slice(0, 4);
+    const actions = [
+      { label: 'Lights', icon: 'mdi:lightbulb-group', entity: this._config.lights?.[0], active: lightsOn > 0 },
+      { label: 'Climate', icon: 'mdi:thermostat', entity: this._config.climate, active: climate && climate.state !== 'off' },
+      { label: 'Media', icon: 'mdi:play-circle', entity: this._config.media_player, active: media && ['playing', 'on'].includes(media.state) },
+    ].filter((item) => item.entity);
+
+    if (!this.shadowRoot) this.attachShadow({mode: 'open'});
+    this.shadowRoot.innerHTML = `
+      <style>
+        ${AEROGEL_BASE_STYLES}
+        .card {
+          padding: 20px;
+          background: linear-gradient(180deg, rgba(var(--ag-accent-rgb), 0.14), rgba(255,255,255,0.02) 34%, var(--ag-surface) 100%);
+        }
+        .top, .actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .title { font-size: 18px; font-weight: 700; color: var(--ag-text); }
+        .metric { font-size: 28px; font-weight: 800; color: var(--ag-text); }
+        .submetric { color: var(--ag-text-sec); font-size: 13px; margin-top: 2px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+        .chip {
+          padding: 8px 12px;
+          border-radius: var(--ag-radius-sm);
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.08);
+          color: var(--ag-text-sec);
+          font-size: 12px;
+        }
+        .actions { margin-top: 16px; justify-content: flex-start; }
+        .action {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 10px 14px;
+          border-radius: 999px;
+          background: rgba(var(--ag-accent-rgb), 0.08);
+          border: 1px solid rgba(var(--ag-accent-rgb), 0.14);
+          color: var(--ag-text);
+          cursor: pointer;
+          font-size: 13px;
+        }
+        .action.active {
+          background: rgba(var(--ag-accent-rgb), 0.16);
+          color: var(--ag-accent);
+        }
+      </style>
+      <ha-card>
+        <div class="card">
+          <div class="top">
+            <div>
+              <div class="title">${this._config.name}</div>
+              <div class="submetric">${chips.join(' · ') || 'Room overview'}</div>
+            </div>
+            <div style="text-align:right">
+              <div class="metric">${formatMaybeNumber(temp)}°</div>
+              <div class="submetric">${humidity != null ? `${Math.round(humidity)}% humidity` : 'No humidity sensor'}</div>
+            </div>
+          </div>
+          <div class="chips">
+            ${chips.map((chip) => `<div class="chip">${chip}</div>`).join('')}
+          </div>
+          <div class="actions">
+            ${actions.map((action, index) => `<button class="action ${action.active ? 'active' : ''}" data-entity="${action.entity}" data-index="${index}"><ha-icon icon="${action.icon}"></ha-icon>${action.label}</button>`).join('')}
+          </div>
+        </div>
+      </ha-card>
+    `;
+    this.shadowRoot.querySelector('.card').addEventListener('click', () => {
+      if (this._config.climate) fireEvent(this, 'hass-more-info', { entityId: this._config.climate });
+    });
+    this.shadowRoot.querySelectorAll('.action').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.stopPropagation();
+        fireEvent(this, 'hass-more-info', { entityId: button.dataset.entity });
+      });
+    });
+  }
+
+  getCardSize() { return 3; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   8. Aerogel Climate Card
+   ═══════════════════════════════════════════════════════════ */
+class AerogelClimateCard extends HTMLElement {
+  static getConfigElement() { return document.createElement('aerogel-climate-card-editor'); }
+  static getStubConfig() {
+    return {
+      entity: 'climate.home',
+      supply_temperature: 'sensor.hvac_supply_temperature',
+      return_temperature: 'sensor.hvac_return_temperature',
+      cop: 'sensor.heat_pump_cop',
+      outdoor_temperature: 'sensor.outdoor_temperature',
+    };
+  }
+
+  setConfig(config) {
+    if (!config.entity) throw new Error('Please define a climate entity');
+    this._config = config;
+    this._render();
+  }
+  set hass(hass) { this._hass = hass; this._render(); }
+
+  _render() {
+    if (!this._config || !this._hass) return;
+    const climate = getEntity(this._hass, this._config.entity);
+    if (!climate) return;
+    const current = Number.parseFloat(climate.attributes.current_temperature ?? climate.state);
+    const target = Number.parseFloat(climate.attributes.temperature);
+    const supply = parseNumber(getEntity(this._hass, this._config.supply_temperature));
+    const ret = parseNumber(getEntity(this._hass, this._config.return_temperature));
+    const cop = parseNumber(getEntity(this._hass, this._config.cop));
+    const outside = parseNumber(getEntity(this._hass, this._config.outdoor_temperature));
+    const delta = Number.isFinite(supply) && Number.isFinite(ret) ? supply - ret : null;
+    const hvacAction = climate.attributes.hvac_action || climate.state;
+    const chips = [
+      hvacAction && hvacAction !== 'off' ? hvacAction : 'Idle',
+      climate.attributes.preset_mode || null,
+      climate.attributes.fan_mode || null,
+      cop != null ? `COP ${cop.toFixed(1)}` : null,
+    ].filter(Boolean).slice(0, 4);
+
+    if (!this.shadowRoot) this.attachShadow({mode: 'open'});
+    this.shadowRoot.innerHTML = `
+      <style>
+        ${AEROGEL_BASE_STYLES}
+        .card { padding: 22px; }
+        .layout { display:grid; grid-template-columns: 124px 1fr; gap: 18px; align-items: center; }
+        .ring {
+          width: 124px; height: 124px; border-radius: 50%;
+          display:flex; align-items:center; justify-content:center; flex-direction:column;
+          background:
+            radial-gradient(circle at center, rgba(15,23,42,0.88) 0 56%, transparent 57%),
+            conic-gradient(var(--ag-accent) 0deg 240deg, rgba(255,255,255,0.08) 240deg 360deg);
+          border: 1px solid rgba(var(--ag-accent-rgb), 0.22);
+          box-shadow: var(--ag-elev-2);
+        }
+        .ring-value { font-size: 30px; font-weight: 800; color: var(--ag-text); line-height: 1; }
+        .ring-label { font-size: 12px; color: var(--ag-text-sec); margin-top: 6px; }
+        .title { font-size: 18px; font-weight: 700; color: var(--ag-text); }
+        .target { font-size: 14px; color: var(--ag-text-sec); margin-top: 4px; }
+        .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top: 14px; }
+        .chip {
+          padding: 8px 12px; border-radius: 999px; font-size: 12px;
+          background: rgba(var(--ag-accent-rgb), 0.08); border: 1px solid rgba(var(--ag-accent-rgb), 0.14);
+        }
+        .stats { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+        .stat {
+          padding: 12px 14px; border-radius: var(--ag-radius-md);
+          background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+        }
+        .stat-label { font-size: 12px; color: var(--ag-text-sec); margin-bottom: 6px; }
+        .stat-value { font-size: 18px; font-weight: 700; color: var(--ag-text); }
+      </style>
+      <ha-card>
+        <div class="card">
+          <div class="layout">
+            <div class="ring">
+              <div class="ring-value">${formatMaybeNumber(current)}°</div>
+              <div class="ring-label">Current</div>
+            </div>
+            <div>
+              <div class="title">${getFriendlyName(climate)}</div>
+              <div class="target">Target ${formatMaybeNumber(target)}° · ${hvacAction || 'idle'}</div>
+              <div class="chips">${chips.map((chip) => `<div class="chip">${chip}</div>`).join('')}</div>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="stat-label">Supply</div><div class="stat-value">${formatMaybeNumber(supply)}°</div></div>
+            <div class="stat"><div class="stat-label">Return</div><div class="stat-value">${formatMaybeNumber(ret)}°</div></div>
+            <div class="stat"><div class="stat-label">Delta T</div><div class="stat-value">${delta != null ? delta.toFixed(1) : '--'}°</div></div>
+            <div class="stat"><div class="stat-label">Outdoor</div><div class="stat-value">${formatMaybeNumber(outside)}°</div></div>
+          </div>
+        </div>
+      </ha-card>
+    `;
+    this.shadowRoot.querySelector('.card').addEventListener('click', () => {
+      fireEvent(this, 'hass-more-info', { entityId: this._config.entity });
+    });
+  }
+
+  getCardSize() { return 4; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   9. Aerogel Energy Card
+   ═══════════════════════════════════════════════════════════ */
+class AerogelEnergyCard extends HTMLElement {
+  static getConfigElement() { return document.createElement('aerogel-energy-card-editor'); }
+  static getStubConfig() {
+    return {
+      solar: 'sensor.solar_power',
+      home: 'sensor.home_consumption',
+      grid: 'sensor.grid_power',
+      battery: 'sensor.battery_soc',
+      daily_cost: 'sensor.daily_energy_cost',
+    };
+  }
+
+  setConfig(config) {
+    this._config = config;
+    this._render();
+  }
+  set hass(hass) { this._hass = hass; this._render(); }
+
+  _render() {
+    if (!this._config || !this._hass) return;
+    const solar = parseNumber(getEntity(this._hass, this._config.solar));
+    const home = parseNumber(getEntity(this._hass, this._config.home));
+    const grid = parseNumber(getEntity(this._hass, this._config.grid));
+    const battery = parseNumber(getEntity(this._hass, this._config.battery));
+    const dailyCost = parseNumber(getEntity(this._hass, this._config.daily_cost));
+    const flowLabel = grid == null ? 'Grid unknown' : grid >= 0 ? 'Importing from grid' : 'Exporting to grid';
+
+    if (!this.shadowRoot) this.attachShadow({mode: 'open'});
+    this.shadowRoot.innerHTML = `
+      <style>
+        ${AEROGEL_BASE_STYLES}
+        .card {
+          padding: 22px;
+          background: linear-gradient(180deg, rgba(34,197,94,0.10), rgba(var(--ag-accent-rgb), 0.06) 42%, var(--ag-surface));
+        }
+        .header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+        .title { font-size: 18px; font-weight: 700; color: var(--ag-text); }
+        .subtitle { font-size: 13px; color: var(--ag-text-sec); margin-top: 4px; }
+        .battery {
+          padding: 10px 12px; border-radius: 999px; font-size: 13px;
+          background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.18);
+        }
+        .grid { display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+        .cell {
+          padding: 14px; border-radius: var(--ag-radius-md);
+          background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+        }
+        .label { font-size: 12px; color: var(--ag-text-sec); margin-bottom: 6px; }
+        .value { font-size: 26px; font-weight: 800; color: var(--ag-text); }
+        .flow {
+          margin-top: 16px; padding: 14px; border-radius: var(--ag-radius-md);
+          background: rgba(var(--ag-accent-rgb), 0.08); border: 1px solid rgba(var(--ag-accent-rgb), 0.14);
+          color: var(--ag-text);
+        }
+      </style>
+      <ha-card>
+        <div class="card">
+          <div class="header">
+            <div>
+              <div class="title">Energy Cockpit</div>
+              <div class="subtitle">${flowLabel}</div>
+            </div>
+            ${battery != null ? `<div class="battery">Battery ${battery.toFixed(0)}%</div>` : ''}
+          </div>
+          <div class="grid">
+            <div class="cell"><div class="label">Solar</div><div class="value">${formatMaybeNumber(solar, 0)}</div><div class="subtitle">W production</div></div>
+            <div class="cell"><div class="label">Home</div><div class="value">${formatMaybeNumber(home, 0)}</div><div class="subtitle">W consumption</div></div>
+            <div class="cell"><div class="label">Grid</div><div class="value">${formatMaybeNumber(grid, 0)}</div><div class="subtitle">W net</div></div>
+          </div>
+          <div class="flow">Daily cost ${dailyCost != null ? dailyCost.toFixed(2) : '--'} · Use this card with solar, battery, and tariff sensors for a full cockpit view.</div>
+        </div>
+      </ha-card>
+    `;
+  }
+
+  getCardSize() { return 4; }
+}
+
+/* ═══════════════════════════════════════════════════════════
    Card Editors (minimal config UI)
    ═══════════════════════════════════════════════════════════ */
 class AerogelCardEditor extends HTMLElement {
@@ -765,10 +1072,10 @@ class AerogelCardEditor extends HTMLElement {
         }
         .field input, .field select {
           width: 100%;
-          padding: 8px 12px;
-          border: 1px solid var(--divider-color, #ddd);
-          border-radius: 8px;
-          background: var(--card-background-color, #fff);
+          padding: 10px 12px;
+          border: 1px solid var(--divider-color, rgba(148,163,184,0.24));
+          border-radius: 12px;
+          background: var(--card-background-color, rgba(17,24,39,0.72));
           color: var(--primary-text-color);
           font-size: 14px;
         }
@@ -850,6 +1157,37 @@ class AerogelTileCardEditor extends AerogelCardEditor {
   ];
 }
 
+class AerogelRoomCardEditor extends AerogelCardEditor {
+  _fields = [
+    { key: 'name', label: 'Room Name', type: 'text' },
+    { key: 'temperature', label: 'Temperature Sensor', type: 'text' },
+    { key: 'humidity', label: 'Humidity Sensor', type: 'text' },
+    { key: 'climate', label: 'Climate Entity', type: 'text' },
+    { key: 'motion', label: 'Motion Sensor', type: 'text' },
+    { key: 'media_player', label: 'Media Player', type: 'text' },
+  ];
+}
+
+class AerogelClimateCardEditor extends AerogelCardEditor {
+  _fields = [
+    { key: 'entity', label: 'Climate Entity', type: 'entity' },
+    { key: 'supply_temperature', label: 'Supply Temp Sensor', type: 'text' },
+    { key: 'return_temperature', label: 'Return Temp Sensor', type: 'text' },
+    { key: 'cop', label: 'COP Sensor', type: 'text' },
+    { key: 'outdoor_temperature', label: 'Outdoor Temp Sensor', type: 'text' },
+  ];
+}
+
+class AerogelEnergyCardEditor extends AerogelCardEditor {
+  _fields = [
+    { key: 'solar', label: 'Solar Power Sensor', type: 'text' },
+    { key: 'home', label: 'Home Consumption Sensor', type: 'text' },
+    { key: 'grid', label: 'Grid Power Sensor', type: 'text' },
+    { key: 'battery', label: 'Battery SOC Sensor', type: 'text' },
+    { key: 'daily_cost', label: 'Daily Cost Sensor', type: 'text' },
+  ];
+}
+
 /* ═══════════════════════════════════════════════════════════
    Registration
    ═══════════════════════════════════════════════════════════ */
@@ -859,6 +1197,9 @@ customElements.define('aerogel-entity-card', AerogelEntityCard);
 customElements.define('aerogel-gradient-card', AerogelGradientCard);
 customElements.define('aerogel-weather-card', AerogelWeatherCard);
 customElements.define('aerogel-tile-card', AerogelTileCard);
+customElements.define('aerogel-room-card', AerogelRoomCard);
+customElements.define('aerogel-climate-card', AerogelClimateCard);
+customElements.define('aerogel-energy-card', AerogelEnergyCard);
 
 customElements.define('aerogel-glass-card-editor', AerogelGlassCardEditor);
 customElements.define('aerogel-neon-card-editor', AerogelNeonCardEditor);
@@ -866,6 +1207,9 @@ customElements.define('aerogel-entity-card-editor', AerogelEntityCardEditor);
 customElements.define('aerogel-gradient-card-editor', AerogelGradientCardEditor);
 customElements.define('aerogel-weather-card-editor', AerogelWeatherCardEditor);
 customElements.define('aerogel-tile-card-editor', AerogelTileCardEditor);
+customElements.define('aerogel-room-card-editor', AerogelRoomCardEditor);
+customElements.define('aerogel-climate-card-editor', AerogelClimateCardEditor);
+customElements.define('aerogel-energy-card-editor', AerogelEnergyCardEditor);
 
 /* ─── Register in card picker ───────────────────────────── */
 window.customCards = window.customCards || [];
@@ -873,21 +1217,21 @@ window.customCards.push(
   {
     type: 'aerogel-glass-card',
     name: '🫧 Aerogel Glass',
-    description: 'Frosted glass card with backdrop blur and translucent background',
+    description: 'Flagship glass surface with premium depth and subtle accent wash',
     preview: true,
     documentationURL: 'https://github.com/skeep83/aerogel-theme',
   },
   {
     type: 'aerogel-neon-card',
     name: '⚡ Aerogel Neon',
-    description: 'Cyberpunk neon glow card with animated border lighting',
+    description: 'Neon accent card for standout controls, scenes, and dashboards',
     preview: true,
     documentationURL: 'https://github.com/skeep83/aerogel-theme',
   },
   {
     type: 'aerogel-entity-card',
     name: '🎯 Aerogel Entity',
-    description: 'Neumorphic entity card with auto state glow and unavailable dimming',
+    description: 'General-purpose entity card with semantic glow and offline dimming',
     preview: true,
     documentationURL: 'https://github.com/skeep83/aerogel-theme',
   },
@@ -901,17 +1245,38 @@ window.customCards.push(
   {
     type: 'aerogel-weather-card',
     name: '🌦️ Aerogel Weather',
-    description: 'Weather card with animated icons (sun pulse, rain, snow, thunder, fog)',
+    description: 'Weather summary card with premium surface treatment and animated conditions',
     preview: true,
     documentationURL: 'https://github.com/skeep83/aerogel-theme',
   },
   {
     type: 'aerogel-tile-card',
     name: '🔲 Aerogel Tile',
-    description: 'Multi-variant tile: default, glass, gradient, flat, glow, inset',
+    description: 'Multi-variant tile with glass, gradient, flat, glow, and inset styles',
+    preview: true,
+    documentationURL: 'https://github.com/skeep83/aerogel-theme',
+  },
+  {
+    type: 'aerogel-room-card',
+    name: '🛋️ Aerogel Room',
+    description: 'Room-first summary card with temperature, chips, and quick actions',
+    preview: true,
+    documentationURL: 'https://github.com/skeep83/aerogel-theme',
+  },
+  {
+    type: 'aerogel-climate-card',
+    name: '🌡️ Aerogel Climate',
+    description: 'Premium HVAC overview with current, target, supply, return, and COP',
+    preview: true,
+    documentationURL: 'https://github.com/skeep83/aerogel-theme',
+  },
+  {
+    type: 'aerogel-energy-card',
+    name: '⚡ Aerogel Energy',
+    description: 'Energy cockpit card for solar, home load, grid flow, battery, and cost',
     preview: true,
     documentationURL: 'https://github.com/skeep83/aerogel-theme',
   },
 );
 
-console.info(`%c🫧 AEROGEL CARDS v${AEROGEL_VERSION} loaded`, 'color: #6CB4EE; font-weight: bold; font-size: 14px;');
+console.info(`%c🫧 AEROGEL PRO CARDS v${AEROGEL_VERSION} loaded`, 'color: #3B82F6; font-weight: bold; font-size: 14px;');

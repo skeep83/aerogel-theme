@@ -1,0 +1,35 @@
+# Aerogel Pro Climate Dashboard
+# Replace the example entity ids with the climate and HVAC sensors from your installation.
+title: Aerogel Climate
+views:
+  - title: Climate
+    path: climate
+    type: sections
+    max_columns: 3
+    sections:
+      - type: grid
+        cards:
+          - type: custom:aerogel-climate-card
+            entity: climate.home
+            supply_temperature: sensor.hvac_supply_temperature
+            return_temperature: sensor.hvac_return_temperature
+            cop: sensor.heat_pump_cop
+            outdoor_temperature: sensor.outdoor_temperature
+          - type: thermostat
+            entity: climate.home
+      - type: grid
+        cards:
+          - type: entities
+            title: HVAC Telemetry
+            entities:
+              - sensor.hvac_supply_temperature
+              - sensor.hvac_return_temperature
+              - sensor.heat_pump_cop
+              - sensor.outdoor_temperature
+              - sensor.indoor_average_temperature
+          - type: history-graph
+            hours_to_show: 24
+            entities:
+              - entity: sensor.hvac_supply_temperature
+              - entity: sensor.hvac_return_temperature
+              - entity: sensor.outdoor_temperature

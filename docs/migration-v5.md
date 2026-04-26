@@ -1,47 +1,38 @@
-# Migrating To Aerogel Pro v5
+# Migrating To Aerogel NeoSurface Pro
 
 ## Theme Names
 
-These legacy names still work in v5:
+The previous `Aerogel Pro` file has been replaced by:
 
-- `Aerogel`
-- `Aerogel Dark`
-- `Aerogel Light`
-- `Aerogel AMOLED`
-- `Aerogel Rose`
-- `Aerogel Lavender`
-- `Aerogel Mint`
-- `Aerogel Amber`
-- `Aerogel Slate`
+- `Aerogel Pearl`
+- `Aerogel Graphite`
+- `Aerogel Obsidian`
 
-Preferred new selectors:
+## Biggest Visual Change
 
-- `Aerogel Pro Graphite`
-- `Aerogel Pro Light`
-- `Aerogel Pro AMOLED`
-- `Aerogel Pro Wall Panel`
+The UI is no longer glass-first.
 
-## Visual Changes
+What changed:
 
-- Heavy dual-shadow neumorphism has been replaced by thinner glass borders and elevation shadows.
-- Typography now defaults to Inter.
-- Accent variants inherit the Graphite system instead of shipping as full duplicated themes.
+- cards are now solid and readable
+- dialogs use dense raised surfaces
+- glass is limited to sidebar, header, badges, ambient layers, and modal scrims
+- soft 3D depth is back through NeoSurface shadow tokens
 
-## Token Changes
+## If You Used Older card-mod Snippets
 
-New token families:
+Update custom snippets to use:
 
-- `--aerogel-elevation-*`
-- `--aerogel-glass-*`
-- `--aerogel-state-*`
+- `--aerogel-surface`
+- `--aerogel-surface-raised`
+- `--aerogel-surface-pressed`
+- `--aerogel-shadow-raised`
+- `--aerogel-shadow-soft`
+- `--aerogel-shadow-pressed`
 
-Compatibility aliases remain for:
+## Recommended Upgrade Path
 
-- `--aerogel-convex-*`
-- `--aerogel-concave-*`
-
-## Recommended Update Path
-
-1. Switch to one of the three core Pro modes.
-2. Re-test any custom `card_mod` blocks that relied on the old convex/concave look.
-3. Replace old shadow usage with the new elevation tokens over time.
+1. Reload themes after updating.
+2. Switch to `Aerogel Graphite` first.
+3. Re-check more-info dialogs and any custom cards.
+4. Move old blur-heavy snippets to solid NeoSurface surfaces.

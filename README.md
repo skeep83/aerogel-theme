@@ -1,6 +1,8 @@
-# Aerogel Pro
+# Aerogel NeoSurface Pro
 
-Premium visual system for Home Assistant with glass surfaces, graphite depth, adaptive accents, and polished custom cards.
+Premium soft-3D theme for Home Assistant.
+
+Solid readable surfaces. Neumorphic depth. Smart-home state colors.
 
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2024.1+-41BDF5?style=flat-square&logo=home-assistant)](https://www.home-assistant.io/)
 [![HACS](https://img.shields.io/badge/HACS-Custom-orange?style=flat-square)](https://hacs.xyz/)
@@ -8,39 +10,56 @@ Premium visual system for Home Assistant with glass surfaces, graphite depth, ad
 
 ![Aerogel Preview](images/preview.png)
 
-## Three Core Modes
+## Three Themes
 
-- **Aerogel Pro Graphite**: flagship dark mode with aurora depth and premium glass surfaces
-- **Aerogel Pro Light**: bright daytime mode with lighter glass, softer contrast, and the same token system
-- **Aerogel Pro AMOLED**: true-black mode for OLED panels and night dashboards
+- **Aerogel Pearl**: warm premium light mode with dense readable surfaces and soft white depth
+- **Aerogel Graphite**: flagship showcase mode for premium dashboards and smart-home panels
+- **Aerogel Obsidian**: near-black AMOLED mode for night use and wall panels
 
-Legacy selectors stay available for compatibility:
+## Design Direction
 
-- `Aerogel` and `Aerogel Dark` now point to Graphite
-- `Aerogel Light` points to Pro Light
-- `Aerogel AMOLED` points to Pro AMOLED
-- `Aerogel Rose`, `Lavender`, `Mint`, `Amber`, and `Slate` remain available as accent-driven variants
+Aerogel NeoSurface Pro is not a glassmorphism theme.
 
-## What Changed In v5
+The system is intentionally weighted like this:
 
-- Rebuilt `themes/aerogel.yaml` around shared card-mod anchors instead of repeated per-theme blocks
-- Replaced the old clay-style neumorphism with elevation, glass, border, and semantic state tokens
-- Switched the typography stack to Inter by default, while preserving `--aerogel-font` as an override point
-- Refreshed the bundled Lovelace cards to match the new glass/elevation language
-- Added a wall-panel variant and trimmed the card-mod snippet collection down to focused, reusable patterns
+- `80%` solid surfaces
+- `15%` soft 3D / NeoSurface depth
+- `5%` decorative glass for header, sidebar, badges, and ambient layers
+
+That means:
+
+- no transparent text cards
+- no blurry more-info bodies
+- no washed-out dialogs
+- no random glow as the main styling language
+
+## What Changed
+
+- Rebuilt the theme around **solid readable surfaces**
+- Restored premium **3D neumorphic depth** using theme shadow tokens
+- Restricted blur and translucency to **sidebar, header, badges, weather hero layers, and modal scrims**
+- Split the visual system into **Pearl / Graphite / Obsidian**
+- Reworked bundled cards to use shared surface, border, radius, and shadow tokens
+- Added a Sections-based starter demo dashboard
+
+## Theme File
+
+The new primary theme file is:
+
+- [themes/aerogel-pro.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\themes\aerogel-pro.yaml)
 
 ## Installation
 
 ### HACS
 
 1. Add `https://github.com/skeep83/aerogel-theme` as a custom theme repository.
-2. Install Aerogel Pro.
+2. Install Aerogel NeoSurface Pro.
 3. Reload themes in Home Assistant.
-4. Pick `Aerogel Pro Graphite`, `Aerogel Pro Light`, or `Aerogel Pro AMOLED` from your profile.
+4. Pick `Aerogel Pearl`, `Aerogel Graphite`, or `Aerogel Obsidian`.
 
 ### Manual
 
-1. Copy [themes/aerogel.yaml](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/themes/aerogel.yaml) into `/config/themes/`.
+1. Copy [themes/aerogel-pro.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\themes\aerogel-pro.yaml) into `/config/themes/`.
 2. Make sure Home Assistant loads themes with:
 
 ```yaml
@@ -48,11 +67,30 @@ frontend:
   themes: !include_dir_merge_named themes
 ```
 
-3. Reload themes and select a mode.
+3. Reload themes and choose one of the three variants.
 
-## Custom Cards
+## Card-Mod Setup
 
-Aerogel Pro currently ships nine bundled Lovelace cards in [dist/aerogel-cards.js](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/dist/aerogel-cards.js):
+Aerogel NeoSurface Pro relies heavily on `card-mod`.
+
+Recommended Home Assistant configuration:
+
+```yaml
+frontend:
+  themes: !include_dir_merge_named themes
+  extra_module_url:
+    - /hacsfiles/lovelace-card-mod/card-mod.js
+```
+
+Why:
+
+- improves theme application outside Lovelace
+- helps panel-wide styling
+- is the recommended path for deeper `card-mod` integrations
+
+## Bundled Cards
+
+Bundled Lovelace cards live in [dist/aerogel-cards.js](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dist\aerogel-cards.js).
 
 - `aerogel-glass-card`
 - `aerogel-neon-card`
@@ -64,35 +102,13 @@ Aerogel Pro currently ships nine bundled Lovelace cards in [dist/aerogel-cards.j
 - `aerogel-climate-card`
 - `aerogel-energy-card`
 
-Install them as a Lovelace resource:
+## Dashboard Demo
 
-1. Copy `dist/aerogel-cards.js` to `/config/www/aerogel-cards.js`.
-2. Add `/local/aerogel-cards.js` as a JavaScript module resource.
-3. Refresh the dashboard editor to see the cards in the picker.
+Starter Sections dashboard:
 
-## Card-Mod
+- [dashboards/aerogel-demo-sections.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dashboards\aerogel-demo-sections.yaml)
 
-Aerogel Pro is strongest with [card-mod](https://github.com/thomasloven/lovelace-card-mod).
-
-- Shared theme-level styling is built into the theme file.
-- Ready-to-paste examples live in [snippets/aerogel-card-mod.yaml](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/snippets/aerogel-card-mod.yaml).
-- If backdrop blur is inconsistent in your setup, load card-mod as a frontend module as noted in the snippets file.
-
-## Design Tokens
-
-The theme now centers on a smaller, more systematic token set:
-
-- Elevation: `--aerogel-elevation-0` through `--aerogel-elevation-glass`
-- Glass: `--aerogel-glass-bg`, `--aerogel-glass-blur`, `--aerogel-glass-border`
-- Radius: `--aerogel-radius-sm` through `--aerogel-radius-xl`
-- Motion: `--aerogel-transition-fast`, `--aerogel-transition-normal`, `--aerogel-transition-slow`
-- Semantic states: `--aerogel-state-on`, `--aerogel-state-heat`, `--aerogel-state-cool`, `--aerogel-state-eco`, `--aerogel-state-warning`, `--aerogel-state-alert`
-
-Deprecated `--aerogel-convex-*` and `--aerogel-concave-*` tokens are still mapped for compatibility.
-
-## Dashboard Starter Pack
-
-Ready-to-customize examples now live in [dashboards](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dashboards):
+Additional starter files remain available:
 
 - [dashboards/aerogel-home.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dashboards\aerogel-home.yaml)
 - [dashboards/aerogel-climate.yaml](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\dashboards\aerogel-climate.yaml)
@@ -101,14 +117,7 @@ Ready-to-customize examples now live in [dashboards](C:\Users\cashm\OneDrive\ф�
 
 ## Docs
 
-- [docs/design-system.md](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/docs/design-system.md)
-- [docs/color-tokens.md](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/docs/color-tokens.md)
-- [docs/migration-v5.md](/Users/cashm/OneDrive/фото/Desktop/neumorphic-bliss/aerogel-theme/docs/migration-v5.md)
-
-## Next Steps
-
-This repo refresh lands the visual system foundation first. The next logical tranche is:
-
-1. flagship room/climate/energy cards
-2. starter dashboards
-3. updated showcase screenshots
+- [docs/design-system.md](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\docs\design-system.md)
+- [docs/color-tokens.md](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\docs\color-tokens.md)
+- [docs/screenshots.md](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\docs\screenshots.md)
+- [docs/migration-v5.md](C:\Users\cashm\OneDrive\фото\Desktop\neumorphic-bliss\aerogel-theme\docs\migration-v5.md)

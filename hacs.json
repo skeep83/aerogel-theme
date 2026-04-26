@@ -1,6 +1,6 @@
 {
-    "name": "Aerogel Pro — Premium UI System for Home Assistant",
-    "description": "Premium Home Assistant theme system with graphite, light, and AMOLED modes, glass surfaces, design tokens, custom cards, and card-mod integration.",
+    "name": "Aerogel NeoSurface Pro — Premium soft-3D theme",
+    "description": "Premium Home Assistant NeoSurface theme with Pearl, Graphite, and Obsidian modes, solid readable surfaces, soft neumorphic depth, and restrained glass accents.",
     "homeassistant": "2024.1.0",
     "render_readme": true
 }

@@ -1,0 +1,56 @@
+# Aerogel NeoSurface Pro demo dashboard
+# Replace demo entity ids with your own installation values.
+title: Aerogel Demo Sections
+views:
+  - title: Demo
+    path: demo
+    type: sections
+    max_columns: 4
+    sections:
+      - type: grid
+        cards:
+          - type: markdown
+            content: |
+              # Aerogel NeoSurface Pro
+              Solid surfaces, soft depth, restrained accent glass.
+          - type: custom:aerogel-room-card
+            name: Living Room
+            temperature: sensor.living_room_temperature
+            humidity: sensor.living_room_humidity
+            lights:
+              - light.living_room_main
+              - light.living_room_led
+            climate: climate.living_room
+            motion: binary_sensor.living_room_motion
+            media_player: media_player.living_room
+      - type: grid
+        cards:
+          - type: custom:aerogel-climate-card
+            entity: climate.home
+            supply_temperature: sensor.hvac_supply_temperature
+            return_temperature: sensor.hvac_return_temperature
+            cop: sensor.heat_pump_cop
+            outdoor_temperature: sensor.outdoor_temperature
+          - type: thermostat
+            entity: climate.home
+      - type: grid
+        cards:
+          - type: custom:aerogel-energy-card
+            solar: sensor.solar_power
+            home: sensor.home_consumption
+            grid: sensor.grid_power
+            battery: sensor.battery_soc
+            daily_cost: sensor.daily_energy_cost
+          - type: weather-forecast
+            entity: weather.home
+      - type: grid
+        cards:
+          - type: entities
+            title: Security
+            entities:
+              - lock.front_door
+              - binary_sensor.front_door
+              - binary_sensor.back_door
+              - alarm_control_panel.home
+          - type: media-control
+            entity: media_player.living_room

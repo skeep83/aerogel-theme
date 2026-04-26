@@ -1,62 +1,49 @@
 # ============================================================
-#  Aerogel Pro - Card-Mod Snippets
-#  Requires: card-mod
-#  Optional frontend module for stronger blur support:
-#  frontend:
-#    extra_module_url:
-#      - /hacsfiles/lovelace-card-mod/card-mod.js
+# Aerogel NeoSurface Pro - card-mod snippets
+# Recommended frontend module setup:
+#
+# frontend:
+#   extra_module_url:
+#     - /hacsfiles/lovelace-card-mod/card-mod.js
 # ============================================================
 
-# --- Base Glass Card ----------------------------------------
+# --- NeoSurface card ----------------------------------------
 # type: tile
 # entity: light.living_room
 # card_mod:
 #   style: |
 #     ha-card {
-#       background: var(--aerogel-glass-bg) !important;
-#       border: var(--aerogel-glass-border) !important;
-#       border-radius: var(--aerogel-radius-lg) !important;
-#       box-shadow: var(--aerogel-elevation-glass) !important;
-#       backdrop-filter: var(--aerogel-glass-blur) var(--aerogel-glass-saturate) !important;
-#       -webkit-backdrop-filter: var(--aerogel-glass-blur) var(--aerogel-glass-saturate) !important;
-#     }
-#     ha-card:hover {
-#       transform: translateY(-2px);
-#       box-shadow: var(--aerogel-elevation-3) !important;
+#       background: var(--aerogel-surface) !important;
+#       border: 1px solid var(--aerogel-border) !important;
+#       border-radius: var(--aerogel-radius-card) !important;
+#       box-shadow: var(--aerogel-shadow-raised) !important;
 #     }
 
-# --- Dense Control Tile -------------------------------------
+# --- Pressed control ----------------------------------------
 # type: button
 # entity: switch.coffee_machine
 # card_mod:
 #   style: |
-#     ha-card {
-#       background: color-mix(in srgb, var(--aerogel-glass-bg) 82%, transparent) !important;
-#       border: var(--aerogel-glass-border) !important;
-#       border-radius: var(--aerogel-radius-md) !important;
-#       box-shadow: var(--aerogel-elevation-2) !important;
-#     }
 #     ha-card:active {
-#       transform: scale(0.985);
+#       box-shadow: var(--aerogel-shadow-pressed) !important;
+#       transform: translateY(1px);
 #     }
 
-# --- Accent Gradient Hero -----------------------------------
+# --- Decorative header / hero -------------------------------
 # type: markdown
 # content: "## Climate"
 # card_mod:
 #   style: |
 #     ha-card {
-#       background: var(--aerogel-gradient) !important;
-#       color: white !important;
-#       border: none !important;
-#       border-radius: var(--aerogel-radius-xl) !important;
-#       box-shadow: var(--aerogel-elevation-3) !important;
-#     }
-#     .card-content {
-#       padding: 20px !important;
+#       background:
+#         radial-gradient(circle at 20% 10%, rgba(var(--aerogel-primary-rgb), 0.14), transparent 34%),
+#         var(--aerogel-surface) !important;
+#       border: 1px solid var(--aerogel-border) !important;
+#       border-radius: var(--aerogel-radius-card) !important;
+#       box-shadow: var(--aerogel-shadow-raised) !important;
 #     }
 
-# --- Inset Stats Panel --------------------------------------
+# --- Dense dialog-like panel --------------------------------
 # type: entities
 # entities:
 #   - sensor.grid_import
@@ -64,89 +51,49 @@
 # card_mod:
 #   style: |
 #     ha-card {
-#       background: rgba(var(--rgb-card-background-color), 0.82) !important;
-#       border: 1px solid rgba(var(--aerogel-accent-rgb), 0.08) !important;
-#       border-radius: var(--aerogel-radius-lg) !important;
-#       box-shadow: var(--aerogel-concave-md) !important;
+#       background: var(--aerogel-surface-raised) !important;
+#       border: 1px solid var(--aerogel-border) !important;
+#       border-radius: var(--aerogel-radius-dialog) !important;
+#       box-shadow: 0 24px 60px rgba(0,0,0,0.24) !important;
 #     }
 
-# --- State Warning Card -------------------------------------
-# type: tile
-# entity: binary_sensor.water_leak
+# --- Badges with light blur only ----------------------------
+# type: markdown
+# content: "Badge layer"
 # card_mod:
 #   style: |
 #     ha-card {
-#       border: 1px solid rgba(249, 115, 22, 0.35) !important;
-#       box-shadow: var(--aerogel-elevation-2), var(--aerogel-glow-warning) !important;
+#       background: var(--aerogel-badge-bg) !important;
+#       border: 1px solid var(--aerogel-border) !important;
+#       border-radius: 999px !important;
+#       box-shadow: var(--aerogel-shadow-soft) !important;
+#       backdrop-filter: blur(12px) !important;
+#       -webkit-backdrop-filter: blur(12px) !important;
 #     }
 
-# --- State Alert Card ---------------------------------------
-# type: tile
-# entity: alarm_control_panel.home
-# card_mod:
-#   style: |
-#     @keyframes aerogel-danger-pulse {
-#       0%, 100% { filter: saturate(1); }
-#       50% { filter: saturate(1.2) brightness(1.04); }
-#     }
-#     ha-card {
-#       border: 1px solid rgba(239, 68, 68, 0.4) !important;
-#       box-shadow: var(--aerogel-elevation-2), var(--aerogel-glow-error) !important;
-#       animation: aerogel-danger-pulse 3s ease-in-out infinite;
-#     }
-
-# --- Weather / Graph Panel ----------------------------------
+# --- Weather surface ----------------------------------------
 # type: weather-forecast
 # entity: weather.home
 # card_mod:
 #   style: |
 #     ha-card {
-#       background: linear-gradient(180deg, rgba(var(--aerogel-accent-rgb), 0.14), rgba(var(--rgb-card-background-color), 0.88)) !important;
-#       border: var(--aerogel-glass-border) !important;
-#       border-radius: var(--aerogel-radius-lg) !important;
-#       box-shadow: var(--aerogel-elevation-glass) !important;
+#       background:
+#         radial-gradient(circle at 20% 10%, rgba(var(--aerogel-primary-rgb), 0.14), transparent 34%),
+#         var(--aerogel-surface) !important;
+#       border-radius: var(--aerogel-radius-card) !important;
+#       border: 1px solid var(--aerogel-border) !important;
+#       box-shadow: var(--aerogel-shadow-raised) !important;
 #     }
 
-# --- Media Surface ------------------------------------------
-# type: media-control
-# entity: media_player.living_room
-# card_mod:
-#   style: |
-#     ha-card {
-#       background: var(--aerogel-glass-bg) !important;
-#       border: var(--aerogel-glass-border) !important;
-#       border-radius: var(--aerogel-radius-xl) !important;
-#       box-shadow: var(--aerogel-elevation-glass) !important;
-#       overflow: hidden;
-#     }
-#     .controls mwc-icon-button {
-#       border-radius: var(--aerogel-radius-full) !important;
-#       background: rgba(var(--aerogel-accent-rgb), 0.08) !important;
-#     }
-
-# --- Flat Table Card ----------------------------------------
-# type: entities
-# title: Network
+# --- Flat dense data panel ----------------------------------
+# type: history-graph
 # entities:
-#   - binary_sensor.internet
-#   - sensor.download_speed
+#   - sensor.temperature
 # card_mod:
 #   style: |
 #     ha-card {
-#       background: rgba(var(--rgb-card-background-color), 0.9) !important;
-#       border: 1px solid var(--divider-color) !important;
-#       border-radius: var(--aerogel-radius-lg) !important;
-#       box-shadow: var(--aerogel-flat) !important;
-#     }
-
-# --- Wall Panel Touch Target --------------------------------
-# type: button
-# name: Scene
-# icon: mdi:sofa
-# card_mod:
-#   style: |
-#     ha-card {
-#       min-height: 96px;
-#       border-radius: var(--aerogel-radius-xl) !important;
-#       font-size: 1.05rem;
+#       background: var(--aerogel-surface) !important;
+#       border: 1px solid var(--aerogel-border) !important;
+#       border-radius: var(--aerogel-radius-card) !important;
+#       box-shadow: var(--aerogel-shadow-soft) !important;
 #     }

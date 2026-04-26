@@ -1,11 +1,11 @@
 /**
  * ╔═══════════════════════════════════════════════════════════╗
- * ║  Aerogel Pro — Custom Lovelace Cards                    ║
- * ║  Premium glass cards for Home Assistant                  ║
+ * ║  Aerogel NeoSurface Pro — Custom Lovelace Cards         ║
+ * ║  Premium soft-3D cards for Home Assistant                ║
  * ║  https://github.com/skeep83/aerogel-theme               ║
  * ╚═══════════════════════════════════════════════════════════╝
  */
-const AEROGEL_VERSION = '5.0.0';
+const AEROGEL_VERSION = '6.0.0';
 
 /* ─── Shared CSS ────────────────────────────────────────── */
 const AEROGEL_BASE_STYLES = `
@@ -17,12 +17,14 @@ const AEROGEL_BASE_STYLES = `
     --ag-accent-secondary: var(--aerogel-accent-secondary, #38BDF8);
     --ag-base: var(--aerogel-base, #111827);
     --ag-base-alt: var(--aerogel-base-alt, #0F172A);
-    --ag-surface: var(--aerogel-glass-bg, rgba(17, 24, 39, 0.72));
-    --ag-border: var(--aerogel-glass-border, 1px solid rgba(255,255,255,0.08));
-    --ag-elev-1: var(--aerogel-elevation-1, 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08));
-    --ag-elev-2: var(--aerogel-elevation-2, 0 8px 24px rgba(2,8,23,0.18));
-    --ag-elev-3: var(--aerogel-elevation-3, 0 16px 48px rgba(2,8,23,0.26));
-    --ag-elev-glass: var(--aerogel-elevation-glass, 0 20px 60px rgba(2,8,23,0.32));
+    --ag-surface: var(--aerogel-surface, #111827);
+    --ag-surface-raised: var(--aerogel-surface-raised, #182131);
+    --ag-surface-pressed: var(--aerogel-surface-pressed, #0F172A);
+    --ag-border: 1px solid var(--aerogel-border, rgba(255,255,255,0.08));
+    --ag-elev-1: var(--aerogel-shadow-soft, 6px 6px 16px rgba(0,0,0,0.44), -5px -5px 14px rgba(255,255,255,0.04));
+    --ag-elev-2: var(--aerogel-shadow-raised, 10px 10px 24px rgba(0,0,0,0.48), -8px -8px 20px rgba(255,255,255,0.045));
+    --ag-elev-3: var(--aerogel-shadow-hover, 14px 14px 32px rgba(0,0,0,0.56), -10px -10px 24px rgba(255,255,255,0.05));
+    --ag-elev-pressed: var(--aerogel-shadow-pressed, inset 6px 6px 14px rgba(0,0,0,0.48), inset -5px -5px 12px rgba(255,255,255,0.045));
     --ag-text: var(--primary-text-color, #F8FAFC);
     --ag-text-sec: var(--secondary-text-color, #94A3B8);
     --ag-radius: var(--aerogel-radius-lg, 28px);
@@ -35,9 +37,7 @@ const AEROGEL_BASE_STYLES = `
     background: var(--ag-surface);
     border: var(--ag-border);
     border-radius: var(--ag-radius);
-    box-shadow: var(--ag-elev-glass);
-    backdrop-filter: var(--aerogel-glass-blur, blur(24px)) var(--aerogel-glass-saturate, saturate(1.2));
-    -webkit-backdrop-filter: var(--aerogel-glass-blur, blur(24px)) var(--aerogel-glass-saturate, saturate(1.2));
+    box-shadow: var(--ag-elev-2);
     padding: 16px;
     position: relative;
     overflow: hidden;
@@ -50,7 +50,8 @@ const AEROGEL_BASE_STYLES = `
     box-shadow: var(--ag-elev-3);
   }
   .card:active {
-    transform: scale(0.985);
+    transform: translateY(1px);
+    box-shadow: var(--ag-elev-pressed);
     transition: transform 120ms ease;
   }
   .entity-row {
@@ -66,8 +67,9 @@ const AEROGEL_BASE_STYLES = `
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    background: rgba(var(--ag-accent-rgb), 0.08);
-    border: 1px solid rgba(var(--ag-accent-rgb), 0.12);
+    background: var(--ag-surface-raised);
+    border: 1px solid rgba(var(--ag-accent-rgb), 0.10);
+    box-shadow: var(--ag-elev-1);
     transition: filter 240ms ease, background 240ms ease, color 240ms ease;
     flex-shrink: 0;
   }
@@ -178,7 +180,7 @@ function fireEvent(el, type, detail) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   1. Aerogel Glass Card — Frosted glass entity card
+   1. Aerogel Glass Card — Decorative translucent accent card
    ═══════════════════════════════════════════════════════════ */
 class AerogelGlassCard extends HTMLElement {
   static getConfigElement() { return document.createElement('aerogel-glass-card-editor'); }
@@ -665,7 +667,7 @@ class AerogelTileCard extends HTMLElement {
         border: 1px solid var(--divider-color, rgba(0,0,0,0.08));
       `,
       glow: `
-        box-shadow: var(--ag-elev-glass)${isOn ? ', 0 0 24px rgba(var(--ag-accent-rgb), 0.28)' : ''};
+        box-shadow: var(--ag-elev-2)${isOn ? ', 0 0 24px rgba(var(--ag-accent-rgb), 0.28)' : ''};
         transition: box-shadow 0.4s ease;
       `,
       inset: `
@@ -1217,7 +1219,7 @@ window.customCards.push(
   {
     type: 'aerogel-glass-card',
     name: '🫧 Aerogel Glass',
-    description: 'Flagship glass surface with premium depth and subtle accent wash',
+    description: 'Decorative accent card with restrained translucency and soft depth',
     preview: true,
     documentationURL: 'https://github.com/skeep83/aerogel-theme',
   },
@@ -1252,7 +1254,7 @@ window.customCards.push(
   {
     type: 'aerogel-tile-card',
     name: '🔲 Aerogel Tile',
-    description: 'Multi-variant tile with glass, gradient, flat, glow, and inset styles',
+    description: 'Multi-variant tile with NeoSurface, gradient, flat, glow, and inset styles',
     preview: true,
     documentationURL: 'https://github.com/skeep83/aerogel-theme',
   },

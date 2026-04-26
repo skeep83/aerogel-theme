@@ -233,8 +233,6 @@ Aerogel Pro Graphite: &aerogel_pro_graphite
       #view {
         position: relative;
       }
-  modes:
-    dark_mode: true
   primary-font-family: var(--aerogel-font)
   paper-font-common-base_-_font-family: var(--aerogel-font)
   paper-font-body1_-_font-family: var(--aerogel-font)
@@ -378,8 +376,6 @@ Aerogel Pro: &aerogel_pro_default
 
 Aerogel Pro Light: &aerogel_pro_light
   <<: *aerogel_pro_graphite
-  modes:
-    dark_mode: false
   primary-color: "#2563EB"
   accent-color: "#06B6D4"
   rgb-primary-color: "37, 99, 235"
